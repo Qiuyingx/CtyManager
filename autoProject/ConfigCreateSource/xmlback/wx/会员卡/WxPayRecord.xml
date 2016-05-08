@@ -1,0 +1,12 @@
+  <resultMap  type="WxPayRecord" mark="wxshops" tables="wx_d_pay_record" comment="消费记录管理" >
+    <result name="payId" column="pay_id" jdbcType="VARCHAR" comment="消费ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result name="shopsId" column="shops_id" jdbcType="VARCHAR" comment="消费门店"/>
+    <result name="time" column="time" jdbcType="DATETIME" comment="消费时间"/>
+    <result name="paySum" column="pay_sum" jdbcType="INT" comment="消费充值金额"/>
+    <result name="getSum" column="get_sum" jdbcType="INT" comment="消费赠送金额"/>
+    <result name="description" column="description" jdbcType="VARCHAR" comment="备注"/>
+    <result name="memberId" column="member_id" jdbcType="VARCHAR" comment="会员"/>
+    <result name="sysuserid" column="sysuserid" jdbcType="VARCHAR" comment="操作人员ID"/>
+    <result name="valicode" column="valicode" jdbcType="VARCHAR" comment="校验码"/>
+    <result name="status" column="status" jdbcType="INT" comment="状态"/>
+ </resultMap>

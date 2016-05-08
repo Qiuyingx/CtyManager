@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汇聚全城精选兴趣课程</title>
+	<!-- 我的店铺 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+
+    <script type="text/javascript">
+  		 var imgPath = "${httpUrl}"
+    </script>
+</head>
+<body>
+	
+	<div>
+		<div>
+			    <!-- 顶部浮动开始 -->
+				<div class="page container"> 
+					<header class="bar bar-nav">
+					    <a class="button button-link button-nav pull-left" onclick="javascript:forward('index')" data-transition='slide-out'>
+					      <span class="icon icon-left  bar_nav_margin_left" style="margin-left:15px"></span>
+					    </a>
+					    <h1 class="title">我的店铺</h1>
+						<a onclick="javascript:forward('index')">
+					      <button class="button button-link button-nav pull-right" style="margin-right:5px;">
+						    	<span style="color:#2cc7d2; padding-right:12px;font-size:16px">商城首页</span>
+						  </button>
+						</a>
+				    </header>
+
+				    <!-- 顶部浮动结束 -->
+					<div>
+					    <!-- 内容区开始 -->
+
+					    <div>
+							<!-- 总计 -->
+							<div class="so_total_count container_style ov_input_div">
+								<table border="0" class="full_width" >
+									<tr>
+										<td colspan="2" class="si_head_title">尊敬的店主你好，你的店铺总体收益如下：</td>
+									</tr>
+									<tr>
+										<td align="left" height="30px"><span class="si_title_title">订单总数：</span><span class="si_title_content" style="color:#2cc7d2" id="orderAmount">0</span>个</td>
+										<td align="left"><span class="si_title_title">销售总额：</span><span class="si_title_content" id="totalsales">0</span>元</td>
+									</tr>
+									<tr>
+										<td align="left" height="30px"><span class="si_title_title">总收益：</span><span class="si_title_content" id="income">0</span>元</td>
+										<td align="left"><span class="si_title_title">当前余额：</span><span class="si_title_content"  id="balance">0</span>元</td>
+									</tr>
+								</table>
+							</div>
+
+						    <div class="page-index container_style si_input_div">
+						    	<input type="text" placeholder="请输入验证码"  id="valiCode"><div class="button si_input_submit_btn" onclick="javascript:vali_order_info()">验证</div>
+						    </div>
+						    <div style="margin-top:-12px;">
+					    		<a onclick="javascript:forward('shop_order_list')"><div class="si_submit_btn">订单管理</div></a>
+					    		<a onclick="javascript:forward('shop_home')"><div class="si_submit_btn">店铺管理</div></a>
+						    </div>
+					    </div>
+
+					    <!-- 内容区结束 -->
+					</div>
+
+				</div>
+		</div>
+	</div>
+
+    
+	<#include "/WEB-INF/include/include_sui_js.html" />
+
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+
+	<script type="text/javascript">
+	$(function(){
+		viewMyShopInfo();
+	});
+	</script>
+</body>
+</html>

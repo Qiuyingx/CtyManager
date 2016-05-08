@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>活动列表管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+</head>
+<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/modules/act/actsignupindex.js?${.now?long}"></script>
+
+<body class="easyui-layout" id="main">
+	<!-- 活动报名列表 -->
+	<div region="center" style="padding: 5px; background: #eee;">
+		<div id="toolbar">
+			 <a class="easyui-linkbutton" plain="true" iconCls="icon-back" onclick="history.go(-1)" >返回活动</a>
+		</div>
+		<table id="grid" class="easyui-datagrid" idField="id" url="querylist?actId=${actId!0}" rownumbers="true" striped="true" fitColumns="true" fit="true"
+			pagination="true" singleSelect="true"   toolbar="#toolbar" pageSize="20">
+			<thead>
+				<tr>
+					<th field="id" width="20" sortable="true" align="left" hidden="true">活动报名ID</th>
+					<th field="name" width="15" >姓名</th>
+					<th field="tel" width="25">电话</th>
+					<th field="nickName" width="20">昵称</th>
+					<th field="courtyardName" width="20">所属院子</th>
+					<th field="content" width="30">备注</th>
+					<th field="createTime" width="23" formatter="mills2DateTime">报名时间</th>
+				</tr>
+			</thead>
+		</table> 
+	</div>
+	
+</body>
+</html>

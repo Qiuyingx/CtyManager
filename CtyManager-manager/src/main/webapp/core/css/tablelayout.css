@@ -1,0 +1,16 @@
+.tableLabel {
+	text-align: right;
+}
+
+.tableBtn {
+	text-align: center;
+}
+
+.tableSpaceRow {
+	height: 15px;
+}
+
+.button_ui {
+	width: 80px; 
+	height: 30px
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>活动评论管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+</head>
+<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/modules/act/actreplyindex.js?${.now?long}"></script> 
+
+<body class="easyui-layout" id="main">
+	<!-- 评论列表 -->
+	<div region="center" style="padding: 5px; background: #eee;">
+		<div id="toolbar">
+			 <a class="easyui-linkbutton" plain="true" iconCls="icon-back" onclick="history.go(-1)">返回列表</a>
+			 <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="javascript:del()">删除</a>  
+		</div>
+		<table id="grid" class="easyui-datagrid" idField="id" url="../reply/queryreplylist?actId=${actId!}" rownumbers="true" striped="true" fitColumns="true" fit="true"
+			pagination="true" singleSelect="true"   toolbar="#toolbar" pageSize="20">
+			<thead>
+				<tr>
+					<th field="id" width="20" sortable="true" align="left" hidden="true">评论ID</th>
+					<th field="rNickName" width="15" >评论人</th>
+					<th field="tNickName" width="20" formatter="targetActName">被评论对象</th>
+					<th field="content" width="35" formatter="faceIcon">评论内容</th>
+					<th field="createTime" width="20" formatter="mills2DateTime">评论时间</th>
+				</tr>
+			</thead>
+		</table> 
+	</div>
+	
+</body>
+</html>

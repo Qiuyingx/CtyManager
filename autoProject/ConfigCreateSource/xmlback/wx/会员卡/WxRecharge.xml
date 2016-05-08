@@ -1,0 +1,12 @@
+  <resultMap  type="WxRecharge" mark="wxshops" tables="wx_d_recharge" comment="充值记录管理" >
+    <result name="rechargeId" column="recharge_id" jdbcType="VARCHAR" comment="充值ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result name="rechargeWay" column="recharge_way" jdbcType="VARCHAR" comment="充值方式"/>
+    <result name="time" column="time" jdbcType="DATETIME" comment="充值时间"/>
+    <result name="rechargeSum" column="recharge_sum" jdbcType="INT" comment="充值金额"/>
+    <result name="getSum" column="get_sum" jdbcType="INT" comment="赠送金额"/>
+    <result name="sysuserid" column="sysuserid" jdbcType="VARCHAR" comment="操作人员ID"/>
+    <result name="description" column="description" jdbcType="VARCHAR" comment="备注"/>
+    <result name="memberId" column="member_id" jdbcType="VARCHAR" comment="会员"/>
+    <result name="valicode" column="valicode" jdbcType="VARCHAR" comment="校验码"/>
+    <result name="status" column="status" jdbcType="INT" comment="状态"/>
+ </resultMap>

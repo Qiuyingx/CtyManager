@@ -1,0 +1,16 @@
+  <resultMap  type="WxMember" mark="wxconfig" tables="wx_m_member" comment="微信会员管理" >
+    <result name="memberId" column="member_id" jdbcType="VARCHAR" comment="微信会员ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result name="wxUserId" column="wxuserid" jdbcType="VARCHAR" comment="微信用户ID"/>
+    <result name="memberName" column="member_name" jdbcType="VARCHAR" comment="姓名"/>
+    <result name="memberMobile" column="member_mobile" jdbcType="VARCHAR" comment="电话"/>
+    <result name="rankId" column="rank_id" jdbcType="VARCHAR" comment="会员等级"/>
+    <result name="vipcardNumber" column="vipcard_number" jdbcType="VARCHAR" comment="会员卡号"/>
+    <result name="vipcardId" column="vipcard_id" jdbcType="VARCHAR" comment="会员卡ID"/>
+    <result name="time" column="time" jdbcType="DATETIME" comment="领卡时间"/>
+    <result name="password" column="password" jdbcType="VARCHAR" comment="消费密码"/>
+    <result name="balance" column="balance" jdbcType="INT" comment="余额"/>
+    <result name="getbalance" column="getbalance" jdbcType="INT" comment="赠送余额"/>
+    <result name="isband" column="isband" jdbcType="INT" comment="是否绑定微信账号"/>
+    <result name="status" column="status" jdbcType="INT" comment="状态"/>
+    <result name="sort" column="sort" jdbcType="INT" comment="排序"/>
+ </resultMap>

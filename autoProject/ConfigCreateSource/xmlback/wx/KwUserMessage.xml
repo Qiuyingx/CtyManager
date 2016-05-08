@@ -1,0 +1,11 @@
+  <resultMap  type="KwUserMessage" mark="kewei" tables="user_message_id" comment="用户基础信息" >
+    <result column="user_message_id" jdbcType="VARCHAR" comment="用户信息id" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="openid" jdbcType="VARCHAR" comment="微信用户ID"/>
+    <result column="name" jdbcType="VARCHAR" comment="姓名"/>
+    <result column="mobile" jdbcType="VARCHAR" comment="电话"/>
+    <result column="city" jdbcType="VARCHAR" comment="市"/>
+    <result column="area" jdbcType="VARCHAR" comment="区"/>
+    <result column="address" jdbcType="VARCHAR" comment="详细地址"/>
+    <result column="hope_time" jdbcType="VARCHAR" comment="预约时间"/>
+    <result column="description" jdbcType="VARCHAR" comment="其他需求"/>
+ </resultMap>

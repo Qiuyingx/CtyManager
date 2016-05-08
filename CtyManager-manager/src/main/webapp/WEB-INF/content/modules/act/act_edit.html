@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>活动编辑管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+	<#include "/WEB-INF/content/core/include-ueditor.html"/>
+	<link rel="stylesheet" type="text/css" href="../../core/css/form_style.css">
+	<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+	<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script> 
+	<script type="text/javascript" src="../../js/modules/act/act_edit.js?${.now?long}"></script> 
+	<script type="text/javascript" src="../../js/common/ajaxfileupload.js?${.now?long}"></script>
+	<script type="text/javascript">
+		// 加载ueditor
+		var ue = UE.getEditor('editor');
+		var imgServer = "${httpUrl}";
+		var process = "${process!''}";
+		var id = "${id!''}";
+
+		ue.ready(function () {
+			ue.addListener('contentChange', function () {
+				$("#preview").html(ue.getContent());
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			$("#chooseImgBtn").mouseover(function(){
+				$(this).addClass("webuploader-pick-hover");
+			}).mouseout(function () {
+				$(this).removeClass("webuploader-pick-hover");
+		    });
+		});
+	</script>
+</head>
+<body id="main" onLoad="page_loading()">
+	<#include "/WEB-INF/content/core/include-loading.html"/>
+	<div region="center" style="padding: 5px; background: #eee; overflow: auto;">
+		<div class="content_form">
+			<div class="content_ele">
+				<table style="width:100%;" border="0">
+				    <colgroup>
+				    	<tr>
+				    		<td width="120px"></td>
+				    		<td></td>
+				    	</tr>
+				    </colgroup>
+				    <tr>
+				    	<td colspan="2"><a class="easyui-linkbutton" plain="true" iconCls="icon-back" onclick="history.go(-1)">返回列表</a></td>
+				    </tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips"></p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">活动标题：</label></td>
+						<td>
+							<input id="actTitle" class="easyui-textbox" style="width: 680px; height: 40px;" 
+								data-options="required:true,validType:'length[3,50]'"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips">长度为3-50个字符。</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">活动描述：</label></td>
+						<td colspan="3">
+							<input id="description" class="easyui-textbox" multiline="true" style="width: 680px; height: 100px;"
+						 		 data-options="required:true,validType:'length[10,100]'"  />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips">简单描述，限制10-100字符以内。</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">城市选择：</label></td>
+						<td>
+							<input id="city" disabled="true" class="easyui-combobox" url="../../js/modules/data/json/cityText.js" panelHeight="auto" panelMaxHeight="200" editable="false" valueField="id" textField="text" style="width: 320px; height: 40px;"/>
+							<input type="checkbox" checked id="isAllYards"/><span style="color:red;">所有院子</span>
+							<span class="frm_tips_span">默认不做限制。</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">院子选择：</label></td>
+						<td>
+							<input id="yards" class="easyui-combotree" disabled="true" url="" panelHeight="auto" panelMaxHeight="200" data-options="multiple: true" editable="false" valueField="id" textField="text" style="width: 320px; height: 40px;"/>
+							<span class="frm_tips_span">所有院子勾选状态下，不能选择城市和院子。</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">开始时间：</label></td>
+						<td>
+							<input id="startTime" class="easyui-datetimebox" editable="false" style="width: 320px; height: 40px;">
+							<span class="frm_tips_span">开始时间必须小于结束时间。</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">结束时间：</label></td>
+						<td>
+							<input id="endTime" class="easyui-datetimebox" editable="false" style="width: 320px; height: 40px;">
+							<span class="frm_tips_span"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">报名状态：</label></td>
+						<td><input id="status" class="easyui-combobox" url="../../js/modules/data/json/isJoinText.js" panelHeight="auto" panelMaxHeight="200" editable="false" panelHeight="auto" valueField="id" textField="text" style="width: 320px; height: 40px;"/>
+							<span class="frm_tips_span"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">报名人数：</label></td>
+						<td>
+							<input id="countLimit" class="easyui-numberspinner" data-options="min:0,max:20000" style="width: 320px; height: 40px;"/>
+							<span class="frm_tips_span">为可报名状态时，此为必填项。</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">封面图：</label></td>
+						<td>
+							<div style="width:320px; height:160px; cursor: pointer" id="imgShowDiv">
+								<img src="" style="width:100%; height:160px; display:none;" id="uploadImgArea" />
+								<img src="../../image/modules/addImg.png" style="margin-left:116px;margin-top:43px" onerror="javascript:this.src='../../image/modules/addImg.png'" id="imgArea"/>
+							</div>
+							<input type="hidden" id="image" value="" />
+							<div class="webuploader-pick" id="chooseImgBtn">点击选择图片</div>
+							<input id="fileName" name="file" type="file"  onchange="javascript:uploadViewImg('image','viewId','fileName','isPicShow', 'true')" style="width: 0; height: 0; display:none" />
+							<img id="viewId" src="" style="cursor: pointer; border: 1px; display:none;" />
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">活动详情：</label></td>
+						<td>
+							<table border="0" width="100%;">
+								<tr>
+									<td>
+									    <script id="editor" type="text/plain" style="width:320px;height:430px"></script>
+									</td>
+									<td>
+										<div id="previewbox" style="display: block;">
+											<div class="preview_content">
+												<div id="preview"></div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="tool_area">
+		        <div class="tool_bar border tc">
+		        	<input type="hidden" id="id" value="${id!''}" />
+		        		<#if process?? && process == "update">
+		        	 		<span id="submit_update" class="btn btn_input btn_primary" onclick="edit('update')"><button>确认修改</button></span>
+		        		<#else>
+		        			<span id="submit_add" class="btn btn_input btn_primary" onclick="edit('add')"><button>确认发布</button></span>
+		        		</#if>
+		        		<span  class="btn btn_input btn_default" onclick="cleanBtn()"><button>重置修改</button></span>
+		        		<span  class="btn btn_input btn_default" onclick="history.go(-1)"><button>返回列表</button></span>
+		         </div>
+		    </div>
+		</div>
+	</div>
+	
+	<!-- @ -->
+ 	<div style="position: fixed; top: 40%; right: 60px; z-index:21000" onclick="javascript:enterAtTarget()">
+		<div style="position:relative;width:40px;height:40px;background-color:#fa6a29;color:#ffffff;border-radius:5px;
+		 font-size:12px; margin:auto; line-height:40px; cursor:pointer;">&nbsp;&nbsp;&nbsp;&nbsp;@</div>
+	</div> 
+	
+	<input type="hidden" id="atTargetUrl" />
+	<!-- 添加@对象面板  -->
+	<#include "/WEB-INF/content/core/include-atTarget.html"/>
+	
+	<!-- 置顶 -->
+	<#include "/WEB-INF/content/core/include-toTop.html"/>
+</body>
+</html>

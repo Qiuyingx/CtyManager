@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汇聚全城精选兴趣课程</title>
+	<!-- 商家订单管理 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+    
+	<#include "/WEB-INF/include/include_animate_css.html" />
+	
+    <style type="text/css">
+	    .buttons-tab .button {
+		  font-size: 0.8rem;
+		}
+    </style>
+    <script type="text/javascript">
+  		 var imgPath = "${httpUrl}"
+    </script>
+</head>
+<body>
+	
+	<div class="page">
+		<div>
+			    <!-- 顶部浮动开始 -->
+				<header class="bar bar-nav container" style="position:fixed; top:0px;">
+				    <a class="button button-link button-nav pull-left" onclick="forward('shop_index')" data-transition='slide-out'>
+				      <span class="icon icon-left  bar_nav_margin_left"></span>
+				    </a>
+				    <h1 class="title">订单管理</h1>
+					<!-- <a href="">
+				      <button class="button button-link button-nav pull-right" style="padding-right:15px;">
+					    <span class="icon icon-search bar_nav_margin_right"></span>
+					  </button>
+					</a> -->
+			    </header>
+				<div class="content container_top  infinite-scroll pull-to-refresh-content" data-distance="50"  data-ptr-distance="70">
+				    <!-- 默认的下拉刷新层 -->
+					<div class="pull-to-refresh-layer">
+						<div class="preloader"></div>
+						<div class="pull-to-refresh-arrow"></div>
+					</div>
+				    <div class="container_top si_top_div">
+						<div class="buttons-tab" >
+						    <a href="#tab10" class="tab-link active button" onclick="javascript:record_tab_order('10')">全部</a>
+						    <a href="#tab1" class="tab-link button" onclick="javascript:record_tab_order('1')">已支付</a>
+						    <a href="#tab2" class="tab-link button" onclick="javascript:record_tab_order('2')">已消费</a>
+						    <a href="#tab6" class="tab-link button" onclick="javascript:record_tab_order('6')">已过期</a>
+						    <a href="#tab4" class="tab-link button" onclick="javascript:record_tab_order('4')">退款中</a>
+						    <a href="#tab5" class="tab-link button" onclick="javascript:record_tab_order('5')">已退款</a>
+						</div>
+					</div>
+
+					<div>
+						<div class="margin_top_container si_top_content">
+							<!-- 总计 -->
+							<div class="so_total_count container_style">
+								<table border="0" class="full_width" >
+									<tr>
+										<td align="center"><span class="so_title_title">订单数：</span><span class="so_title_content" id="orderAmount">0</span></td>
+										<td align="center"><span class="so_title_title">销售额：</span><span class="so_title_content" id="totalSalesAmount">0</span></td>
+									</tr>
+								</table>
+							</div>
+							<!-- 分类查询 -->
+						    <div class="tabs">
+						        <div id="tab10" class="tab active wow slideInLeft">
+								     <!-- 订单列表(全部) -->
+								    <div class="osl_search_list so_list_top" id="order_shoper_list_div_10"></div>
+						    	</div>
+							    <div id="tab1" class="tab wow slideInRight">
+								     <!-- 订单列表 （已付款）-->
+								    <div class="osl_search_list so_list_top" id="order_shoper_list_div_1"></div>
+							    </div>
+							    <div id="tab2" class="tab wow slideInLeft">
+								     <!-- 订单列表（已消费） -->
+								    <div class="osl_search_list so_list_top" id="order_shoper_list_div_2"></div>
+							    </div>
+							    <div id="tab6" class="tab wow slideInRight">
+								     <!-- 订单列表（已过期） -->
+								    <div class="osl_search_list so_list_top" id="order_shoper_list_div_6"></div>
+							    </div>
+							    <div id="tab4" class="tab wow slideInLeft">
+								     <!-- 订单列表（退款中） -->
+								    <div class="osl_search_list so_list_top" id="order_shoper_list_div_4"></div>
+							    </div>
+							    <div id="tab5" class="tab wow slideInRight">
+								     <!-- 订单列表 (已退款)-->
+								    <div class="osl_search_list so_list_top" id="order_shoper_list_div_5"></div>
+							    </div>
+							</div>
+							
+						    <div class="loading_text">已无更多数据加载...</div>
+							<!-- 加载提示符 -->
+							<div class="infinite-scroll-preloader">
+								<div class="preloader"></div>
+							</div>
+				    </div>
+				</div>
+		</div>
+	</div>
+
+	<#include "/WEB-INF/templ/templ_div_item.html" />
+	
+	<#include "/WEB-INF/include/include_animate_js.html" />
+
+    <script type="text/javascript" src="../source/js/formatter.js"  charset='utf-8'></script>
+    
+	<#include "/WEB-INF/include/include_sui_js.html" />
+
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+
+	<script type="text/javascript">
+		$(function(){
+			// 记录当前视图
+			setCookie("shop.order.list.currTab", "10");
+			
+			setCookie("pageNum_10", 1);
+			setCookie("pageNum_1", 1);
+			setCookie("pageNum_2", 1);
+			setCookie("pageNum_6", 1);
+			setCookie("pageNum_4", 1);
+			setCookie("pageNum_5", 1);
+			
+			// 全部
+			getOrderShoperList(pageNum, rowsNum, 10);
+			
+			new WOW().init();
+		});
+	</script>
+	<!-- 全部 -->
+	<script type="text/javascript">
+	$(function(){
+		// 加载更多
+		$(document).on('infinite', '.infinite-scroll',function() {
+	        // 如果正在加载，则退出
+	        if (loading) return;
+	        
+            // 添加新条目
+			getOrderShoperList(getPageNum(), rowsNum, getOrderTypeId());
+
+            //容器发生改变,如果是js滚动，需要刷新滚动
+            $.refreshScroller();
+		});
+		
+		// 下拉刷新
+		var zindex = 1;
+		$(document).on('refresh', '.pull-to-refresh-content',function(e) {
+			pageNum = 1;
+			if(zindex == 1) {
+				zindex = 2;
+				getOrderShoperList(pageNum, rowsNum, getOrderTypeId());
+			}else{
+				zindex = 1;
+			}
+	        // 加载完毕需要重置
+	        $.pullToRefreshDone('.pull-to-refresh-content');
+		});
+	});
+	function getPageNum() {
+		var currPage = getCookie("shop.order.list.currTab");
+		if(isNull(currPage)) {
+			currPage = "10";
+		}
+		var currPageNum = getCookie("pageNum_"+currPage);
+		if(isNull(currPageNum)) {
+			return 1;
+		}
+		return currPageNum;
+	}
+	function getOrderTypeId(){
+		var currType = getCookie("shop.order.list.currTab");
+		if(isNull(currType)) {
+			currType = "10";
+		}
+		return currType;
+	}
+	function setPageNum(nextPage) {
+		var currPage = getCookie("shop.order.list.currTab");
+		if(isNull(currPage)) {
+			currPage = "10";
+		}
+		setCookie("pageNum_"+currPage, nextPage);
+	}
+	</script>
+</body>
+</html>

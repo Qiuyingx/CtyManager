@@ -1,0 +1,36 @@
+package ${package}.${mark}.entity;
+
+import java.io.Serializable;
+
+/**
+* 
+*
+* @author 夏远明
+*
+*/
+public class ${entityName}Entity implements Serializable {
+	private static final long serialVersionUID = ${VersionUID}L;
+    
+    // fields
+    #foreach(${column} in ${table.columns})
+	private ${column.type.getJ()} ${column.code};
+	#end
+
+    //fields
+    #foreach(${column} in ${table.columns})
+    /**
+	 * Return the value associated with the column: ${column.code}
+	 */
+	public ${column.type.getJ()} get${column.entityName} () {
+		return ${column.code};
+	}
+	
+	/**
+	 * Set the value related to the column: ${column.code}
+	 * @param ${column.code} the ${column.code} value
+	 */
+	public void set${column.entityName} (${column.type.getJ()} ${column.code}) {
+		this.${column.code} = ${column.code};
+	}
+	#end
+}

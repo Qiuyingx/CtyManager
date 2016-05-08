@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汇聚全城精选兴趣课程</title>
+	<!-- 登录 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+
+</head>
+<body>
+	
+	<div class="page container">
+		<div>
+			    <!-- 顶部浮动开始 -->
+			    <header class="bar bar-nav">
+				    <a class="button button-link button-nav pull-left" onclick="javascript:forward('index')" data-transition='slide-out'>
+				      <span class="icon icon-left  bar_nav_margin_left"></span>
+				    </a>
+				    <h1 class="title">登录</h1>
+			    </header>
+			    <!-- 顶部浮动结束 -->
+
+			    <!-- 内容区开始 -->
+			    <div class="content">
+				    <div class="page-index">
+						<center>
+							<div class="login_img_logo">
+									<img src="../source/images/logo.png">
+							</div>
+							<div class="login_form_div">
+								<div><input type="text" placeholder="请输入手机号" id="tel"></div>
+								<div><input type="password" placeholder="请输入密码" id="password"></div>
+							</div>
+							<div class="login_forget_pwd_div">
+								<!-- <a href="">
+									<div class="login_forget_pwd_span">忘记密码?</div>
+								</a> -->
+							</div>
+							<div class="login_submit_btn_div" onclick="javascript:click_login_submit()">
+								<div class="button login_submit_btn">登录</div>
+							</div>
+							<div class="login_regirest_enter_div">
+								<div>
+									<span class="login_regirest_enter_label">还没有账号?</span>
+									<a href="enter_register">
+										<span class="login_regirest_enter_text">点击这里注册</span>
+									</a>
+								</div>
+							</div>
+						</center>
+					</div>
+			    </div>
+			    <!-- 内容区结束 -->
+		</div>
+	</div>
+
+	<#include "/WEB-INF/include/include_sui_js.html" />
+
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+
+</body>
+</html>

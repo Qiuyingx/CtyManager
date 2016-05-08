@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>帖子管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+</head>
+<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/modules/post/postindex.js?${.now?long}"></script>
+<script type="text/javascript">
+</script>
+<body class="easyui-layout" id="main">
+	<!-- 帖子筛选 -->
+	<div region="north" border="false" title="检索信息" style="height: 60px; min-width: 700px; background: #eee; line-height: 25px">
+		<div style="margin-top:4px;">
+			<!-- <input id="titleSearch" class="easyui-textbox" prompt="帖子标题" value="${query.title!}" style="width:130px; height:27px;"/> -->
+			<input id="nicknameSearch" class="easyui-textbox" prompt="发帖人昵称" value="${query.nickname!}" style="width:130px; height:27px;"/>
+			<input id="startDate" class="easyui-datebox" editable="false" prompt="开始时间" value="${query.startDate!}" style="width:130px; height:27px;">
+				&nbsp;至&nbsp;
+			<input id="endDate" class="easyui-datebox" editable="false" prompt="结束时间" value="${query.endDate!}" style="width:130px; height:27px;">
+			<input id="specialTitleSearch" class="easyui-textbox" prompt="专题活动标题" value="${query.specialTitle!}" style="width:130px; height:27px;"/>
+			<input id="telSearch" class="easyui-textbox" prompt="发帖人电话" value="${query.tel!}"/>
+			<input id="yardidsSearch" class="easyui-combotree" url="../../common/getyardcombo" value="${query.yardids!}"　
+				panelHeight="auto" panelMaxHeight="200" data-options="multiple: true"  editable="false" valueField="id" textField="text" prompt="所属院子" style="width:130px; height:27px;"/>
+			<input id="isTopSearch" type="checkbox" /> 置顶贴
+		
+			&nbsp;&nbsp;
+			<a href="#" class="easyui-linkbutton"  iconCls="icon-search" onclick="javascript:query()">点击筛选</a>
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-reload" onclick="javascript:flush()">重置筛选</a>
+		</div>
+	</div>
+	
+	<!-- 帖子列表 -->
+	<div region="center" style="padding: 5px; background: #eee;">
+		<div id="toolbar"> 
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-tip" onclick="javascript:lookPics('${httpUrl}')">浏览图片</a>
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="javascript:deletePost()">删除话题</a>  
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-tip" onclick="javascript:lookSignup()" >查看评论</a>
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-tip" onclick="javascript:toTopPostPanel()" >帖子置顶</a>
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-tip" onclick="javascript:cancelTopPost()" style="display:none;" id="cancelTop">取消置顶</a>
+		</div>
+		<table id="grid" class="easyui-datagrid" idField="id" url="querypostlist?contentType=3" rownumbers="true" striped="true" fitColumns="true" fit="true"
+			pagination="true" singleSelect="true"   toolbar="#toolbar" pageSize="20">
+			<thead>
+				<tr>
+				<th field="id" width="20" sortable="true" align="left" hidden="true">帖子ID</th>
+			    <th field="title" width="20" sortable="true" align="left" hidden="true">标题</th>
+			    <th field="nickName" width="20" sortable="true" align="left">发帖人</th>
+			    <th field="courtyardId" hidden="true">所属院子ID</th>
+			    <th field="courtyardName" width="20" sortable="true" align="left">所属院子</th>
+			    <th field="createTime" width="20" sortable="true" align="left" formatter="mills2DateTime">发布时间</th>
+			    <th field="contentType" width="20" sortable="true" align="left" hidden="true">内容类型</th>
+			    <th field="imageNames" width="20" sortable="true" align="left" hidden="true">图片地址</th>
+			    <th field="content" width="40" sortable="true" align="left" formatter="faceIcon">内容</th>
+			    <th field="priority" width="20" sortable="true" align="center" formatter="isHarry" hidden="true">是否紧急</th>
+			    <th field="tag" width="20" sortable="true" align="left" hidden="true">标签</th>
+			    <th field="acceptId" width="20" sortable="true" align="left" hidden="true">是否已采纳</th>
+			    <th field="reward" width="20" sortable="true" align="left" hidden="true">悬赏额</th>
+			    <th field="myself" width="20" sortable="true" align="left">是否是介绍自己</th>
+			    <th field="laudCount" width="20" sortable="true" align="left">感谢数</th>
+			    <th field="replyCount" width="20" sortable="true" align="left">评论数</th>
+				</tr>
+			</thead>
+		</table> 
+	</div>
+	
+	<!--  帖子置顶操作面板 -->
+	<div id="toTopPostInfo"  class="easyui-window" closed="true" style="overflow:auto;" align="center">
+		<table border="0" style="width:330px; height:100px; margin:auto;">	
+			<tr>
+				<td>
+				                置顶范围：
+				</td>
+				<td>
+					<input type="radio" name="topType" value="0" /> 本社区&nbsp;&nbsp;<input type="radio" name="topType" value="1" checked /> 周边社区&nbsp;&nbsp;<!-- <input type="radio" name="topType" value="2" checked/> 所有社区 -->
+				</td>
+			</tr>
+			<tr align="center">
+				<td>
+					置顶级别：
+				</td>
+				<td>
+					<input id="priority" class="easyui-combobox" value="2" url="../../js/modules/data/json/topPriorityText.js" panelHeight="auto" panelMaxHeight="200"  editable="false" valueField="id" textField="text" />
+					<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-ok" onclick="javascript:addTopPost()">确认置顶</a>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><span style="color:red;">提示：置顶级别越大排序越靠前</span></td>
+			</tr>
+		 </table>
+	</div>
+</body>
+</html>

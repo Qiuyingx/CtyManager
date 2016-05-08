@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>商家店铺信息管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+	<#include "/WEB-INF/content/core/include-ueditor.html"/>
+	<link rel="stylesheet" type="text/css" href="../../core/css/form_style.css">
+	<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+	<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script> 
+	<script type="text/javascript" src="../../js/merchant/train/traininfoindex.js?${.now?long}"></script>
+	<script type="text/javascript" src="../../js/common/ajaxfileupload.js?${.now?long}"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=dRTBgcrjyFM1FqjLOcsm0t6a"></script>
+	<style type="text/css">
+		#allmap {width: 640px;height: 400px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+		
+	    .sub-nav dl {
+		  position: relative;
+		  transition: all .33s;
+		  float: left;
+		}
+	    .sub-nav {
+		  position: absolute;
+		  left: 0;
+		  z-index: 6;
+		  float: left;
+		  overflow: hidden;
+		  background: #fff;
+		  border-top: solid 1px #e5e5e5;
+		  border-bottom: solid 3px #0098dd;
+		  font-size: 12px;
+		  display: none;
+		  opacity: 0;
+		  box-shadow: 2px 2px 4px #666;
+		}
+	
+		#searchBtn {
+		  color: #fff;
+		  background: #0098dd;
+		  padding: 6px 10px;
+		  position: relative;
+		  left: -5px;
+		  cursor: pointer;
+		  float: left;
+		  height: 16px;
+		}
+		
+		.sub-nav input {
+		  padding-left: 5px;
+		  width: 220px;
+		  height: 24px;
+		  font-size: 15px;
+		  border: none;
+		  color: #666;
+		  border-bottom: 1px solid #fff;
+		  outline: none;
+		  background: #fff;
+		  border: solid 1px #eeeeee;
+		  -webkit-transition: box-shadow .33s,border .33s;
+		  -moz-transition: box-shadow .33s,border .33s;
+		  -ms-transition: box-shadow .33s,border .33s;
+		  -o-transition: box-shadow .33s,border .33s;
+		  transition: box-shadow .33s,border .33s;
+		  font-family: "微软雅黑","Microsoft YaHei",sans-serif;
+		  color: #999999;
+		  float: left;
+		}
+	</style>
+	<script type="text/javascript">
+		function cat() {
+			<#if entity.category??>
+				$("#classTypeChoose").combotree("setValues", "${entity.category!''}");
+			</#if>
+		}
+		$(function(){
+			<#if entity.cityId??>
+				$("#cityId").combobox("setValue","${entity.cityId!''}");
+			</#if>
+			<#if entity.classType??>
+				$("#classType").combobox("setValue","${entity.classType!''}");
+			</#if>
+
+			setTimeout("cat()", 100);
+			
+			$("#chooseImgBtn, #chooseImgBtnLogo").mouseover(function(){
+				$(this).addClass("webuploader-pick-hover");
+			}).mouseout(function () {
+				$(this).removeClass("webuploader-pick-hover");
+		    });
+
+			$("#searchImg").click(function(){
+				var searchTr = $("#searchTr").css("display");
+				if(searchTr == "none") {
+					$("#searchTr").css("display","block");
+				}else{
+					$("#searchTr").css("display","none");
+				}
+			});
+			
+			$("#searchBtn").click(function(){
+				var placeName = $("#apisearchContent").val();
+				search(placeName);
+			});
+		});
+		
+	</script>
+	<script type="text/javascript">
+
+		// 加载ueditor
+		var ue = UE.getEditor('editor');
+		var imgServer = "${httpUrl}";
+		
+		ue.ready(function () {
+			ue.addListener('contentChange', function () {
+				var oldContent = ue.getContent();
+				$("#preview").html(oldContent);
+			});
+			<#if entity.content??>
+				ue.setContent($("#openContentDiv").html());
+				$("#preview").html(ue.getContent());
+			</#if>
+		});
+	</script>
+</head>
+<body id="main" onLoad="page_loading();">
+	<div id="openContentDiv" style="position:fixed; top:-20000px;">
+		${entity.content!''}
+	</div>
+	<#include "/WEB-INF/content/core/include-loading.html"/>
+	<div region="center" style="padding: 5px; background: #eee; overflow: auto;">
+		<div class="content_form">
+			<div class="content_ele">
+				<table style="width:100%;" border="0">
+				    <colgroup>
+				    	<tr>
+				    		<td width="120px"></td>
+				    		<td></td>
+				    	</tr>
+				    </colgroup>
+					<tr>
+						<td><label class="frm_lable">名称：</label></td>
+						<td>
+							<input id="title" class="easyui-textbox"  style="width: 680px; height: 40px;" value="${entity.title!''}" 
+								data-options="validType:'length[3,32]'"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips">长度为3-32个字符。</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">描述：</label></td>
+					<td colspan="3">
+						<input id="description" class="easyui-textbox" multiline="true" style="width: 680px; height: 100px;" value="${entity.description!''}"
+							data-options="validType:'length[10,100]'" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips">简单描述，限制10-100字符以内。</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">上课时间：</label></td>
+						<td>
+							<input id="businessHours" class="easyui-textbox" style="width: 320px; height: 40px;" value="${entity.businessHours!''}"
+								data-options="validType:'length[3,50]'"/>
+							<span class="frm_tips_span">长度为3-50个字符。</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">电话号码：</label></td>
+						<td>
+							<input id="tel" class="easyui-textbox" style="width: 320px; height: 40px;" value="${entity.tel!''}"
+								data-options="validType:'length[11,11]'"/>
+							<span class="frm_tips_span">请输入手机号码！</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">所在城市：</label></td>
+						<td>
+							<input id="cityId" class="easyui-combobox" url="../../js/data/json/cityText.json" panelHeight="auto" panelMaxHeight="200" 
+							 	editable="false" valueField="id" textField="text" style="width: 320px; height: 40px;" value="1"/>
+							<span class="frm_tips_span">请选择培训室所在城市！</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">地址：</label></td>
+						<td>
+							<input id="address" class="easyui-textbox" style="width: 320px; height: 40px;" value="${entity.address!''}" />
+							<span class="frm_tips_span">请输入店铺所在详细地址！</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">类型：</label></td>
+						<td>
+							<!-- <input id="classType" class="easyui-combobox" url="../../js/data/json/classType.json" panelHeight="auto" panelMaxHeight="200" 
+							 	editable="false" valueField="id" textField="text" style="width: 150px; height: 40px;" value="1"/>
+						 	&nbsp;&nbsp; -->
+						 	<input id="classTypeChoose" class="easyui-combotree" url="../../js/data/json/classType_qinzi.json" panelHeight="auto" panelMaxHeight="200" 
+						 		editable="false" valueField="id" textField="text" style="width: 320px; height: 40px;" value="1" multiple="true"/>
+							<span class="frm_tips_span">请选择培训室类型，可多选！</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">经度：</label></td>
+						<td>
+							<input id="longitude" class="easyui-textbox" style="width: 320px; height: 40px;" value="${entity.longitude!''}"
+								data-options="validType:'length[0,180]'"/>
+							<span class="frm_tips_span">使用百度地图坐标拾取器，如：104.175167</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">纬度：</label></td>
+						<td>
+							<input id="latitude" class="easyui-textbox" style="width: 320px; height: 40px;" value="${entity.latitude!''}"
+								data-options="validType:'length[0,90]'"/>
+							<span class="frm_tips_span">使用百度地图坐标拾取器，如：30.651512</span><br/>
+							
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">坐标选取</label></td>
+						<td>
+							<div id="allmap"></div>
+							<div style="float:right; margin-right:40px; position:relative; margin-top:-400px; cursor: pointer;" id="searchImg" ><img src="../../core/img/center/search-btn.png" title="点击可按照地区查找.."/></div>
+							<div class="nav" id="searchTr" style="display:none;">
+								<div class="sub-nav" style="position:relative; display: block; margin-top:-400px; float:left; opacity: 8;  z-index:2000;">
+							 		<dl style="width:285px;padding:3px;">
+											<input id="apisearchContent" onfocus="this.value=''" value="请输入..." type="text">
+											<span id="searchBtn">搜索</span>
+									</dl>	
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips" style="width:100%;">请点击地图，选择店铺所在地理位置，将自动填充经度和纬度。</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">LOGO图：</label></td>
+						<td>
+							<div style="width:320px; height:160px; cursor: pointer" id="imgShowLogoDiv">
+								<#if entity.logo??>
+									<img src="${httpUrl}${entity.logo!''}" style="width:100px; height:100px; margin-top:20px; margin-left:28px;border-radius:5px;" id="uploadImgLogo" />
+								<#else>
+									<img src="${httpUrl}${entity.logo!''}" style="width:100px; height:100px; display:none; margin-top:20px; margin-left:28px;border-radius:5px;" id="uploadImgLogo" />
+									<img src="../../image/modules/addImg.png" style="margin-left:116px;margin-top:43px" onerror="javascript:this.src='../../image/modules/addImg.png'" id="imgLogo"/>
+								</#if>
+							</div>
+							<input type="hidden" id="imageLogo" value="${entity.logo!''}" />
+							<div class="webuploader-pick" id="chooseImgBtnLogo">点击选择图片</div>
+							<input id="fileNameLogo" name="file" type="file"  onchange="javascript:uploadViewImg('imageLogo','viewIdLogo','fileNameLogo','logos', 'true')" style="width: 0; height: 0; display:none" />
+							<img id="viewIdLogo" src="" style="cursor: pointer; border: 1px; display:none;" />
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">封面图：</label></td>
+						<td>
+							<div style="width:320px; height:160px; cursor: pointer" id="imgShowDiv">
+								<#if entity.bannerImg??>
+									<img src="${httpUrl}${entity.bannerImg!''}" style="width:100%; height:160px;" id="uploadImgArea" />
+								<#else>
+									<img src="${httpUrl}${entity.bannerImg!''}" style="width:100%; height:160px; display:none;" id="uploadImgArea" />
+									<img src="../../image/modules/addImg.png" style="margin-left:116px;margin-top:43px" onerror="javascript:this.src='../../image/modules/addImg.png'" id="imgArea"/>
+								</#if>
+							</div>
+							<input type="hidden" id="image" value="${entity.bannerImg!''}" />
+							<div class="webuploader-pick" id="chooseImgBtn">点击选择图片</div>
+							<input id="fileName" name="file" type="file"  onchange="javascript:uploadViewImg('image','viewId','fileName','faceImgs', 'true')" style="width: 0; height: 0; display:none" />
+							<img id="viewId" src="" style="cursor: pointer; border: 1px; display:none;" />
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">详细介绍：</label></td>
+						<td>
+							<table border="0" width="100%;">
+								<tr>
+									<td>
+									    <script id="editor" type="text/plain" style="width:320px;height:430px"></script>
+									</td>
+									<td>
+										<div id="previewbox" style="display: block;">
+											<div class="preview_content">
+												<div id="preview"></div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="tool_area">
+		        <div class="tool_bar border tc">
+		        	<input type="hidden" id="id" value="${entity.id!''}" />
+		        	<#if entity.status?? && entity.status == 0>
+		        	 	<span id="submit_open" class="btn btn_input btn_primary" onclick="complete('complete')"><button>立马开通</button></span>
+		        	<#elseif entity.status?? && entity.status == 1>
+		        		<span id="submit_update" class="btn btn_input btn_primary" onclick="complete('update')"><button>确认修改</button></span>
+		        	</#if>
+		          
+		            <!-- <span id="js_submit" class="btn btn_input btn_primary"><button>确认修改</button></span> -->
+		           <!--  <span id="js_preview" class="btn btn_input btn_default"><button>取消</button></span> -->
+		         </div>
+		    </div>
+		</div>
+	</div>
+	
+	<!-- 置顶 -->
+	<#include "/WEB-INF/content/core/include-toTop.html"/>
+</body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");  
+    var poi = "重庆";
+    var room = 12;
+    
+    <#if entity?? && entity.longitude?? && entity.latitude?? && entity.longitude != "0" && entity.latitude != "0">
+	    poi = new BMap.Point("${entity.longitude!''}", "${entity.latitude!''}");
+	    room = 18;
+        var marker = new BMap.Marker(poi,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+            imageOffset: new BMap.Size(-46,-46)
+          })});
+		map.addOverlay(marker);
+		marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+		setTextForMap(poi, map);
+    </#if>
+    
+	map.centerAndZoom(poi, room);           
+	//单击获取点击的经纬度
+	map.addEventListener("click",function(e){
+		$("#longitude").textbox("setValue", e.point.lng);
+		$("#latitude").textbox("setValue", e.point.lat);
+		
+		map.clearOverlays(); 
+		
+	    var cpoi = new BMap.Point(e.point.lng, e.point.lat);
+        var marker = new BMap.Marker(cpoi,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+            imageOffset: new BMap.Size(-92,-21)
+          })});
+		map.addOverlay(marker);
+		
+		setTextForMap(cpoi, map);
+		
+	});
+	
+	function setTextForMap(point, map) {
+	    var text = "${entity.address!''}";
+		if(!Common.isNull(text)) {
+			var opts = {
+				  position : point,    // 指定文本标注所在的地理位置
+				  offset   : new BMap.Size(20, -25)   //设置文本偏移量
+				}
+			var label = new BMap.Label(text, opts);  // 创建文本标注对象
+			label.setStyle({
+				 color : "black",
+				 fontSize : "12px",
+				 height : "20px",
+				 lineHeight : "20px",
+				 fontFamily:"微软雅黑"
+			 });
+			map.addOverlay(label);
+		}
+	}
+	function search(searchTitle){ 
+		var local = new BMap.LocalSearch(map, { 
+			renderOptions: {
+				map: map, 
+				panel: "panel",
+				//结果容器id enableautoViewport: true, 
+				//自动结果标注 selectFirstResult: true //指定到第一个目标 
+			}, 
+			pageCapacity: 4 
+			
+		}); 
+		local.search(searchTitle); 
+	}
+</script>

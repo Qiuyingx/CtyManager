@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>群发管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+</head>
+<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script> 
+<script type="text/javascript" src="../../js/modules/notice/pushindex.js?${.now?long}"></script>
+<body class="easyui-layout" id="main">
+	<div region="center" style="padding: 5px; background: #eee; " align="center">
+		<table border="0" style="width:750px; margin-top:10px;">
+			<tr>
+				<td>推送内容：</td>
+				<td colspan="3">
+				     <textarea rows="9" cols="90" id="content"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>城市选择：</td>
+				<td>
+					<input id="city" multiple="true" style="width:120px;" disabled="true" class="easyui-combotree" url="../../js/modules/data/json/cityText.js" panelHeight="auto" panelMaxHeight="200" editable="false" valueField="id" textField="text" prompt="请选择城市"/>
+					<input type="checkbox" checked id="isAllCity"/><span style="color:red;">勾选推送至所有用户</span>
+				</td>
+				<td>院子选择：</td>
+				<td>
+					<input id="yards" class="easyui-combotree" disabled="true" url="" panelHeight="auto" panelMaxHeight="200" data-options="multiple: true" editable="false" valueField="id" textField="text" prompt="请选择所属院子"/>
+					<input type="checkbox" checked id="isAllYards"/><span style="color:red;">勾选推送所选城市下院子</span>
+				</td>
+			</tr>
+			<tr style="height:50px;">
+				<td colspan="4">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="4" align="right">
+					<input id="submitBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px" value="确认推送"/> 
+					<input id="reloadBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px" value="重置"	/> 
+					<input id="viewListBtn" type="button" class="easyui-linkbutton" style="width: 100px; height: 30px" value="查看群发列表"	/>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+	<!-- 置顶 -->
+	<div style="position: fixed; top: 49%; right: 60px;display:none; z-index:21000" id="scrollTop">
+		<img src="../../image/modules/tops.png" style="border-radius:5px;" id="imgStop"/>
+		<div style="position:relative;width:40px;height:40px;background-color:#fa6a29;color:#ffffff;border-radius:5px;
+		 font-size:12px; margin:auto; line-height:40px; cursor:pointer;display:none;" id="textStop">&nbsp;&nbsp;置顶</div>
+	</div>
+	
+	<script type="text/javascript">
+    function ani(num){
+    	$("body,html").animate({
+    		scrollTop:num
+    		},400);
+    }
+    function anit(num,time){
+    	$("body,html").animate({
+    		scrollTop:num
+    		},time);
+    }
+    
+    $(function() {
+        $("#scrollTop").click(function(){
+        	ani(0);
+        });
+        $("#imgStop").mouseover(function(){
+        	$(this).hide();
+        	$("#textStop").show();
+        });
+        $("#textStop").mouseleave(function(){
+        	$(this).hide();
+        	$("#imgStop").show();
+        });
+
+        $(window).scroll(function() {
+        
+            if ($(document).scrollTop() >= 415) {
+            	 $("#scrollTop").fadeIn(1000);
+            } 
+             if ($(document).scrollTop() < 215) {
+            	 $("#scrollTop").fadeOut(1000);
+            } 
+       
+        });
+    });
+	</script>

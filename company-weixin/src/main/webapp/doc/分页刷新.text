@@ -1,0 +1,66 @@
+
+	<script type="text/javascript">
+	$(function(){
+		// 加载更多
+		$(document).on('infinite', '.infinite-scroll',function() {
+	        // 如果正在加载，则退出
+	        if (loading) return;
+	        
+            // 添加新条目
+			getTrainOfIdList(pageNum, rowsNum, trainTypeId, 0, 0);
+
+            //容器发生改变,如果是js滚动，需要刷新滚动
+            $.refreshScroller();
+		});
+		
+		// 下拉刷新
+		var zindex = 1;
+		$(document).on('refresh', '.pull-to-refresh-content',function(e) {
+			pageNum = 1;
+			if(zindex == 1) {
+				zindex = 2;
+				getTrainOfIdList(pageNum, rowsNum, trainTypeId, 0, 0);
+			}else{
+				zindex = 1;
+			}
+	        // 加载完毕需要重置
+	        $.pullToRefreshDone('.pull-to-refresh-content');
+		});
+	});
+	</script>
+	
+	infinite-scroll pull-to-refresh-content" data-distance="50"  data-ptr-distance="70">
+	 
+		<!-- 默认的下拉刷新层 -->
+	<div class="pull-to-refresh-layer">
+		<div class="preloader"></div>
+		<div class="pull-to-refresh-arrow"></div>
+	</div>
+	
+	
+			<div class="loading_text">已无更多数据加载...</div>
+			<!-- 加载提示符 -->
+			<div class="infinite-scroll-preloader">
+				<div class="preloader"></div>
+			</div>
+			
+	
+	
+    loading = true;
+						
+							
+	
+	if(trainOfCourseJson.length <= 0) {
+		$('.infinite-scroll-preloader').remove();
+		$(".loading_text").show();
+	}else{
+		pageNum += 1;
+		$(".loading_text").hide();
+	}
+	
+	
+	if(page == 1) {
+		$("#value_train_of_course_list").html(dataList);
+	}else{
+		$("#value_train_of_course_list").append(dataList);
+	}

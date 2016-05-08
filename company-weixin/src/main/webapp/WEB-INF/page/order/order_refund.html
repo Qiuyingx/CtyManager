@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汇聚全城精选兴趣课程</title>
+	<!-- 申请退款 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+
+    <script type="text/javascript">
+    	var imgPath = "${httpUrl}"
+    	var orderNo = "${orderNo}";
+    </script>
+
+</head>
+<body>
+	
+	<div class="page container">
+		<div>
+			    <!-- 顶部浮动开始 -->
+
+			    <header class="bar bar-nav">
+				    <a class="button button-link button-nav pull-left" onclick="javascript:click_order_owner()" data-transition='slide-out'>
+				      <span class="icon icon-left  bar_nav_margin_left"></span>
+				    </a>
+				    <h1 class="title">我要退款</h1>
+			    </header>
+
+			    <!-- 顶部浮动结束 -->
+
+			 
+			    <!-- 内容区开始 -->
+
+			    <div class="content">
+				    <div class="page-index">
+				    	<div class="div_constainer margin_top_div">
+			    			<div class="list_div_item">
+					    	 	<div class="list_div_content_input_last">
+					    	 		退款原因：
+					    	 		<input type="text" id="reason">
+					    	 	</div>
+					    	 </div>
+				    	</div>
+				    	<div class="div_constainer margin_top_div">
+			    			<div class="list_div_item">
+					    	 	<div class="list_div_content_last">
+					    	 		退款金额：<span class="big_price">¥${price!'0'}</span>
+					    	 		
+					    	 	</div>
+					    	</div>
+				    	</div>
+				    	<div class="list_div_item_text">
+				    	    提醒：退款金额是根据课程详情说明里的规则来显示的，请参考课程说明。微信支付的用户会扣掉微信支付平台的手续费0.6%；实际退款金额我们会在2个工作日内返还到你。
+				    	</div>
+				    	<div class="button or_submit_btn" id="order_refund_div_sbt">提交申请</div>
+				    </div>
+			    </div>
+
+			    <!-- 内容区结束 -->
+		</div>
+	</div>
+
+	<#include "/WEB-INF/include/include_sui_js.html" />
+
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+
+</body>
+</html>

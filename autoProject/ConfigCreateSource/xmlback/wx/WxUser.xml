@@ -1,0 +1,14 @@
+  <resultMap  type="WxUser" mark="wxconfig" tables="wx_user" comment="微信用户" >
+    <result column="wxuserid" jdbcType="VARCHAR" comment="用户ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="openid" jdbcType="VARCHAR" comment="微信标识"/>
+    <result column="nickname" jdbcType="VARCHAR" comment="微信昵称"/>
+    <result column="sex" jdbcType="INT" comment="性别"/>
+    <result column="province" jdbcType="VARCHAR" comment="省份"/>
+    <result column="city" jdbcType="VARCHAR" comment="城市"/>
+    <result column="headimgurl" jdbcType="VARCHAR" comment="头像"/>
+    <result column="privilege" jdbcType="VARCHAR" comment="特权信息"/>
+    <result column="unionid" jdbcType="VARCHAR" comment="unionid"/>
+    <result column="createtime" jdbcType="DATETIME" comment="创建时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+    <result column="groupid" jdbcType="VARCHAR" comment="所属分组" />
+    <result column="wxconfigid" jdbcType="VARCHAR" comment="所属公众号"/>
+ </resultMap>

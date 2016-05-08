@@ -1,0 +1,10 @@
+  <resultMap  type="WxAutoanswer" mark="wxconfig" tables="wx_autoanswer" comment="自动回复" >
+    <result column="autoanswerid" jdbcType="VARCHAR" comment="自动回复ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="keywords" jdbcType="VARCHAR" comment="关键字"/>
+    <result column="msgtypeid" jdbcType="VARCHAR" comment="消息类型ID"/>
+    <result column="answermsgid" jdbcType="VARCHAR" comment="回复内容ID"/>
+    <result column="easymsg" jdbcType="VARCHAR" comment="简单回复"/>
+    <result column="wxconfigid" jdbcType="VARCHAR" comment="所属公众号"/>
+    <result column="createtime" jdbcType="DATETIME" comment="创建时间时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+    <result column="status" jdbcType="INT" comment="状态" />
+ </resultMap>

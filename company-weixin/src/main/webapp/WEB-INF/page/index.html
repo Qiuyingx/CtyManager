@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- 首页推荐 -->
+	<title>汇聚全城精选兴趣课程</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+
+	<#include "/WEB-INF/include/include_animate_css.html" />
+	
+	<style type="text/css">
+	.title{
+		color: #121313;
+	}
+	</style>
+</head>
+<body onLoad="loadDown()">
+	<div class="page container">
+		<div>
+			<!-- 顶部浮动开始 -->
+			<div>
+			    <header class="bar bar-nav container_top">
+				    <a class="button button-link button-nav pull-left" data-transition='slide-out' href="enter_login" id="first_tool_icon">
+				      <div class="icon icon_right_usergroup bar_nav_margin_right">
+				      		<img src="../source/images/open.png" style="height:13px; margin-top:14px;margin-left:15px;">
+				      </div>
+				    </a>
+				    <h1 class="title">觅趣小镇</h1>	
+					<a onclick="javascript:forward('around_index')">
+				      <button class="button button-link button-nav pull-right icon_right_usergroup ">
+					    	<span style="padding-right:23px;"><img src="../source/images/location.png" height="17px"></span>
+					  </button>
+					</a>
+					<a onclick="javascript:forward('train_type')">
+				      <button class="button button-link button-nav pull-right icon_right_usergroup" height="17px">
+					    	<span style="padding-right:12px;"><img src="../source/images/search.png"></span>
+					  </button>
+					</a>
+			    </header>
+			</div>
+
+			<!-- 顶部浮动结束 -->
+
+		    <!-- 内容区开始 -->
+
+			<!-- 顶部幻灯片结束 -->
+			
+		    <div class="content infinite-scroll pull-to-refresh-content" data-distance="50"  data-ptr-distance="70">
+		    	<!-- 默认的下拉刷新层 -->
+			    <div class="pull-to-refresh-layer">
+			        <div class="preloader"></div>
+			        <div class="pull-to-refresh-arrow"></div>
+			    </div>
+			    <div class="page-index">
+			    	<!-- 顶部幻灯片开始  <div class="swiper-slide"><img src="../source/images/temp/4.jpg" alt=""> </div><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>-->
+			    	<div class="">
+				    	<div class="native-scroll index_banner_div container_top index_padding_top" id="">
+						    <div class="swiper-container swiper-container-horizontal" data-space-between="10" data-pagination=".swiper-pagination">
+						      <div class="swiper-wrapper" id="index_banner_list">
+						      </div>
+						      <div class="swiper-pagination" id="index_banner_bullet">
+						      </div>
+						    </div>
+						</div>
+			    	</div>
+			    	<div class="container">
+		    			<div class="face_list_div" id="topList"></div>
+		    			<div class="loading_text">已无更多数据加载...</div>
+					    <!-- 加载提示符 -->
+					    <div class="infinite-scroll-preloader">
+					        <div class="preloader"></div>
+					    </div>
+					    <!-- 备案号 -->
+			    		<div>
+			    			<div class="cv_bk_text">蜀ICP备15017656号-1</div>
+			    		</div>
+			    	</div>
+			    	<!-- 顶部幻灯片结束 -->
+			    </div>
+		    </div>
+
+		    <!-- 内容区结束 -->
+		</div>
+	</div>
+	<div class="panel-overlay"></div>
+	<!-- 侧边栏 -->
+	<div class="panel panel-left panel-reveal theme-dark">
+	  <div>
+	   	    <div>
+	   	    	<div>
+	   	    		<div class="index_tool_username" onclick="javascript:forward('enter_userhome')">
+	   	    			<div id="login_down_div">
+		   	    			<img src="../source/images/face_default.png"  class="index_user_face_img" id="label_headimg">
+		   	    			<div class="index_tool_username_text">
+			   	    			<span class="font_15" id="label_nickname"></span><br/>
+			   	    			<span id="label_tel" class="font_12"></span>
+		   	    			</div>
+	   	    			</div>
+	   	    		</div>
+	   	    	</div>
+		    	<div class="index_tool_item">
+		    	 	<div class="index_tool_content">
+		    	 		<img src="../source/images/first.png">
+		    	 		<span>首页</span>
+		    	 		<div class="index_status_checked"></div>
+		    	 	</div>
+		    	 	<div class="index_line"></div>
+		    	</div>
+		    	<div class="index_tool_item" onclick="javascript:click_order_owner()">
+		    	 	<div class="index_tool_content">
+		    	 		<img src="../source/images/myorder.png">
+		    	 		<span>我的订单</span>
+		    	 		<div class="index_status_normal">
+		    	 		</div>
+		    	 	</div>
+		    	 	<div class="index_line"></div>
+		    	</div>
+		    	<div class="index_tool_item" onclick="javascript:click_shop_index()" id="is_shoper_div" style="display:none;">
+		    	 	<div class="index_tool_content">
+		    	 		<img src="../source/images/myshop.png">
+		    	 		<span>我的店铺</span>
+		    	 		<div class="index_status_normal"></div>
+		    	 	</div>
+		    	 	<div class="index_line"></div>
+		    	</div>
+		    	<div class="index_tool_item index_exit_div" onclick="javascript:exitLogin()">
+		    	 	<div class="index_tool_content">
+		    	 		<img src="../source/images/exit.png">
+		    	 		<span>退出登录</span>
+		    	 		<div class="index_status_normal"></div>
+		    	 	</div>
+		    	 	<div class="index_line"></div>
+		    	</div>
+
+	    </div>
+	  </div>
+	</div>
+
+	<!-- 搜索popup开始 -->
+    <div class="popup container_popup container_style">
+
+    	<!-- 搜索框 -->
+	    <div class="traintype_search_div container_style traintype_alone_search_div">
+	    	  <div class="searchbar row">
+			    <div class="search-input col-85">
+			      <label class="icon icon-search" for="search" id="search_label"></label>
+			      <input type="search" id='search' placeholder='搜索'  class="open-popup"/>
+			    </div>
+			    <a class="col-15 traintype_search_btn close-popup">取消</a>
+			  </div>
+	    </div>
+
+	    <!-- 历史搜索关键词 -->
+	    <div class="traintype_history_search_div" style="display:none;">
+	    	 <div class="traintype_history_item">
+	    	 	<div class="traintype_history_content">
+	    	 		<img src="../source/images/time.png">
+	    	 		<span>瑜伽</span>
+	    	 		<img src="../source/images/cancel.png" class="traintype_history_item_cancel">
+	    	 	</div>
+	    	 	<div class="aft_line"></div>
+	    	 </div>
+	    	 <div class="traintype_history_item">
+	    	 	<div class="traintype_history_content">
+	    	 		<img src="../source/images/time.png">
+	    	 		<span>瑜伽</span>
+	    	 		<img src="../source/images/cancel.png"  class="traintype_history_item_cancel">
+	    	 	</div>
+	    	 	<div class="aft_line"></div>
+	    	 </div>
+	    	 <div class="traintype_history_item">
+	    	 	<div class="traintype_history_content">
+	    	 		<img src="../source/images/time.png">
+	    	 		<span>瑜伽</span>
+	    	 		<img src="../source/images/cancel.png"  class="traintype_history_item_cancel">
+	    	 	</div>
+	    	 	<div class="aft_line"></div>
+	    	 </div>
+	    	 <div class="traintype_history_clear">清空搜索历史</div>
+	    </div>
+
+	    <!-- 搜索列表 -->
+	    <div class="traintype_search_content_list container_style" style="display:block">
+	    	<div class="face_list_div" id="search_top_list">
+	    	</div>
+	    </div>
+	</div>
+    <!-- 搜索popup结束 -->
+
+	<#include "/WEB-INF/templ/templ_div_item.html" />
+
+	<#include "/WEB-INF/include/include_sui_js.html" />
+
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+	
+	<#include "/WEB-INF/include/include_animate_js.html" />
+	
+	<script type="text/javascript">
+		$.config = {
+				autoInit: true,
+				showPageLoadingIndicator: true,
+				swipePanelOnlyClose: true
+		}
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			// 判断是否为商户
+			isShoper();
+			
+			// 获取初始数据
+			getAllList(pageNum, rowsNum);
+			
+			// 获取登录信息
+			var userId = getCookie("user.userId");
+			if(!isNull(userId)) {
+				// 自动登录
+				if(isAutoLogin) {
+					
+				}
+				
+				// 是否完善资料判断
+			 	if(isNull(getCookie("user.nickname")) || isNull(getCookie("user.headIcon"))) {
+					// 此时需要完善资料
+					$("#first_tool_icon").removeAttr("href");
+					$("#first_tool_icon").attr("onClick", "javascript:click_forward_userhome()");
+					$("#first_tool_icon").removeClass("open-panel");
+				}else{
+					// 已经登录（cookie中存在用户信息）
+					$("#first_tool_icon").removeAttr("href");
+					$("#first_tool_icon").addClass("open-panel");
+					// 展示用户信息
+					// $("#label_headimg").prop("src", imgPath+getCookie("user.headIcon"));
+					$("#label_headimg").prop("src", "../source/images/face_default.png");
+					$("#label_nickname").text(getCookie("user.nickname"));
+					$("#label_tel").text(getCookie("user.tel"));
+				}
+			}else{
+				// 未登录，提供登录入口
+				$("#first_tool_icon").prop("href", "enter_login");
+				$("#first_tool_icon").removeClass("open-panel");
+			}
+		});
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		// 加载更多
+		$(document).on('infinite', '.infinite-scroll',function() {
+	        // 如果正在加载，则退出
+	        if (loading) return;
+	        
+            // 添加新条目
+			getSecondAllList(pageNum, rowsNum);
+
+            //容器发生改变,如果是js滚动，需要刷新滚动
+            $.refreshScroller();
+		});
+		
+		// 下拉刷新
+		var zindex = 1;
+		$(document).on('refresh', '.pull-to-refresh-content',function(e) {
+			pageNum = 1;
+			if(zindex == 1) {
+				zindex = 2;
+				getSecondAllList(pageNum, rowsNum);
+			}else{
+				zindex = 1;
+			}
+	        // 加载完毕需要重置
+	        $.pullToRefreshDone('.pull-to-refresh-content');
+		});
+		// 动画
+		//new WOW().init();
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+  <resultMap  type="KbHot" mark="keweiweb" tables="kb_hot" comment="热点推荐" >
+    <result column="hot_id" jdbcType="VARCHAR" comment="热点推荐ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="hot_name" jdbcType="VARCHAR" comment="名称"/>
+    <result column="hot_des" jdbcType="VARCHAR" comment="描述"/>
+    <result column="hot_price" jdbcType="VARCHAR" comment="价格"/>
+    <result column="hot_star" jdbcType="INT" comment="星级"/>
+    <result column="sort" jdbcType="INT" comment="排序"/>
+ </resultMap>

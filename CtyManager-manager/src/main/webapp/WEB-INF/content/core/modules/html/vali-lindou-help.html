@@ -1,0 +1,45 @@
+<!-- 帖子内容展示模板 （邻豆来源验证《帮帮采纳》）
+		 @!{postTime} 发帖时间  ； @!{postNickName} 发帖人昵称；  @!{postContent}（包含表情） 发帖内容；  @!{postImages} 发帖图片； @!{userFace} 评论者头像；
+		 @!{userNickName} 评论者昵称 ； @!{userTime} 评论时间 ；  @!{userContent} 评论内容（包含表情）；
+	-->
+	<div id="postInfo_template" style="display:none;">
+		<li>
+			<span></span>
+	        <div class="div_content bk_white">
+		  		<div class="div_content_inner">
+					<!-- 时间 -->
+					<div class="div_time">
+						<span class="span_time"> @!{postTime}</span><span class="span_from"> @!{postNickName}</span>
+					</div><br/>
+					<!-- 图文内容 -->
+					<div class="div_content_html">
+						 @!{postContent}<br/><br/> @!{postImages}
+					</div>
+					<!-- 帖子评论区 -->
+					<div style="padding-bottom:60px;">
+						<div class="comment_title">评论</div>
+						<!-- 评论项展示 -->
+						<div class="cm_list">
+							<!-- ===========评论1=============== -->
+							<div class="cm_item">
+								<!-- 头像 -->
+								<div class="cm_item_face"><img src="@!{userFace}" /></div>
+								<!--  基础信息 -->
+								<div class="cm_item_base">
+									<div class="cm_item_nickname"> @!{userNickName}</div>
+									<div class="cm_item_time"> @!{userTime}</div>
+									<div class="cm_item_com"><img src="../../image/modules/accept.png" height="23px"/></div>
+								</div>
+								<!-- 评论内容 -->
+								<div class="cm_item_content">
+								        @!{userContent} 
+								</div>
+								<!-- 分割线 -->
+								<div class="hrDiv"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		   </div>
+		</li>
+    </div>

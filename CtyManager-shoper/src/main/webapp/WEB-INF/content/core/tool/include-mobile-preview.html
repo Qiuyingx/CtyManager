@@ -1,0 +1,49 @@
+<style>
+	#previewbox {
+	  z-index: 10000;
+	  display: none;
+	  position: fixed;
+	  left: 125px;
+	  top: 30px;
+	  width: 185px;
+	  height: 291px;
+	  background: url('../../image/modules/jizzyoujizz_com.png');
+	  background-size: contain;
+	  padding: 120px 25px 116px 36px;
+	  display: table-cell;
+  	  vertical-align: middle;
+	}
+</style>
+<div>
+	<div id="previewbox" style="display: none;">
+		<div
+			style="width: 100%; margin-top: -32px; height: 362px; overflow-y: scroll; overflow-x : hidden; padding-right: 5px;">
+			<div style="font-size: 18px; line-height: 24px; font-weight: 700">这里将会展示标题</div>
+			<div>
+				<em style="color: #8c8c8c; font-style: normal; font-size: 12px;">2015-07-30</em>
+				<a style="font-size: 12px; color: #607fa6" href="javascript:void(0);"
+					id="post-user">邻聚</a>
+			</div>
+			<div id="preview" style="height: 800px; margin-top:8px;"></div>
+		</div>
+		<div
+			style="position: absolute; right: 30px; top: 20px; cursor: pointer; width: 50px; height: 50px; font-size: 50px; font-weight: 700"
+			id="phoneclose">X</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	  $("#phoneclose").click(function(){
+		  $("#previewbox").hide();
+	  });
+
+	function preview(content){
+		$("#previewbox").show();
+		$("#preview").html(content);
+	}
+	
+	function previewContent() {
+		$("#previewbox").show();
+		$("#preview").html(ue.getContent());
+	}
+</script>

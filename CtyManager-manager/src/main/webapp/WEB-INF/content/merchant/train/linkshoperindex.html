@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>商家管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+</head>
+<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script> 
+<script type="text/javascript" src="../../js/merchant/train/linkshoperindex.js?${.now?long}"></script> 
+<script type="text/javascript">
+	var contentId = "${contentId!''}";
+</script>
+<body class="easyui-layout" id="main">
+	<div region="center" style="padding: 5px; background: #eee;">
+		<div id="toolbar">
+			 <a class="easyui-linkbutton" plain="true" iconCls="icon-back" onclick="history.go(-1)">返回列表</a> 
+			 <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="javascript:delTopContent()">删除推荐</a> 
+		</div>
+		
+		<!-- 列表数据 -->
+		<table id="grid" class="easyui-datagrid" idField="id" url="querylinklist?contentId=${contentId!''}" rownumbers="true" striped="true" fitColumns="true" fit="true"
+			pagination="true" singleSelect="true"   toolbar="#toolbar" pageSize="20">
+			<thead>
+				<tr>
+					<th field="id" hidden="true">商家信息ID</th>
+					<th field="nickName" width="25">昵称</th>
+					<th field="userId" hidden="true">用户ID</th>
+					<th field="tel" width="25">联系电话</th>
+					<th field="title" width="25">店名</th>
+					<th field="description" width="30">简述</th>
+					<th field="businessHours" width="32">营业时间</th>
+					<th field="address" width="30">地址</th>
+					<th field="categoryName" width="25" >标签</th>
+					<th field="views" width="13">访问量</th>
+					<th field="createTime" formatter="mills2DateTime" width="20">开店时间</th>
+					<th field="status" width="14" formatter="trainInfoStatus">店铺状态</th>
+					<th field="getTime" formatter="mills2DateTime" width="20">推荐时间</th>
+				</tr>
+			</thead>
+		</table> 
+	</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+  <resultMap  type="WxPush" mark="wxconfig" tables="wx_push" comment="推送设置" >
+    <result column="pushid" jdbcType="VARCHAR" comment="推送ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="pushname" jdbcType="VARCHAR" comment="推送名称"/>
+    <result column="descript" jdbcType="VARCHAR" comment="推送描述"/>
+    <result column="contentgroupid" jdbcType="VARCHAR" comment="内容分组" />
+    <result column="wxconfigid" jdbcType="VARCHAR" comment="公众平台ID" />
+    <result column="pushtime" jdbcType="DATETIME" comment="推送时间" />
+    <result column="createtime" jdbcType="DATETIME" comment="创建时间时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+    <result column="status" jdbcType="INT" comment="状态" />
+ </resultMap>

@@ -1,0 +1,6 @@
+  <resultMap  type="KwGoodsService" mark="kewei" tables="kw_goods_service" comment="服务内容管理" >
+    <result column="service_id" jdbcType="VARCHAR" comment="服务内容ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="name" jdbcType="VARCHAR" comment="名称"/>
+    <result column="price" jdbcType="DOUBLE" comment="价格"/>
+    <result column="description" jdbcType="VARCHAR" comment="描述"/>
+ </resultMap>

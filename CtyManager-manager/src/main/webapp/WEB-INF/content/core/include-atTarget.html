@@ -1,0 +1,158 @@
+<!-- 添加@对象面板  -->
+	<div id="atTargetInfo"  class="easyui-window" closed="true" style="overflow:auto;" align="center">
+	    <div id="atTag" class="easyui-tabs" fit=true style="width:270px;">
+	    	<div title="添加">
+			    <table border="0" style="width:100%; height:100px;">	
+					<tr align="center">
+						<td>
+						     <input id="atNickName" class="easyui-textbox" prompt="请输入昵称" value=""/>
+							  <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-ok" id="likeSearch">模糊搜索</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							 <div style="width:270px; height:130px; overflow: auto; margin:auto;" id="userSearchList">
+							 </div>
+						</td>
+					</tr>
+				 </table>
+	    	</div>
+	    	<div title="管理">
+				 <div style="width:270px; height:150px; margin:auto; overflow: auto; margin-top:20px;" id="atManagerList">
+				 </div>
+	    	</div>
+	    </div>
+	</div>
+	
+	<script type="text/javascript">
+	
+	// 添加@对象
+	$("#atTarget").click(function() {
+		enterAtTarget();
+	});
+	
+	// 按昵称模糊搜索用户
+	$("#likeSearch").click(function() {
+		getUserMess();
+	});
+	
+	// 选中“管理”选项卡
+	$('#atTag').tabs({    
+	    border:false,    
+	    onSelect:function(title,index){    
+	        if(index == 1) {
+	        	$("#atManagerList").html(adminAtTarget());
+	        }
+	    }    
+	});  
+
+
+	
+	/**添加@对象*/
+	function addAtTarget(id, nickName) {
+		ue.execCommand("insertHtml", "@"+nickName);
+		addRelations(id, nickName);
+		layer.msg("已成功@"+nickName);
+	}
+	
+	/**删除@关联关系*/
+	function delAtTarget(id, nickName, scene, append) {
+		 $("#main").mask("正在处理，请稍后...");
+		 $.ajax({
+				url : "../../attarget/info/del",
+				type : "post",
+				data : {
+					"entity.atTargetId" : id,
+					"entity.atNickName" : nickName,
+					"entity.scene" : scene,
+					"entity.append" : append
+				},
+				dataType : "json",
+				success : function(json) {
+					if(json.isSuccess) {
+						$("#atManagerList").html(adminAtTarget());
+						var reg=new RegExp("@"+nickName,"g");
+						ue.setContent(ue.getContent().replace(reg,""));
+					}
+					$("#main").unmask();
+					layer.msg(json.msg);
+				},
+				error : function(json) {
+					layer.msg( "服务器繁忙，操作失败！！");
+				}
+			});
+	}
+	
+	/**打开at用户添加面板*/
+	function enterAtTarget() {
+		var win = $("#atTargetInfo").window({
+			title : "@对象面板",
+			width : 350,
+			height : 250,
+			// 居中打开
+			top : (($(window).height() - 250) * 0.5+$(document).scrollTop()),
+			left : ($(window).width() - 350) * 0.5,
+			shadow : true,
+			modal : true, // 模态窗口
+			iconCls : "icon-add",
+			closed : true,
+			zIndex : 10002,
+			minimizable : true,
+			maximizable : true,
+			collapsible : false
+		});
+		
+		win.window("open");
+	}
+
+	
+	/**通过用户昵称查询用户信息*/
+	function getUserMess() {
+		var scrollTop = $(document).scrollTop();
+		var nickName = $("#atNickName").textbox("getValue");
+		if(!Common.isNull(nickName)) {
+			$("#main").mask("正在搜索，请稍后...");
+			$.ajax({
+				url : "../../user/info/getuserbynickname",
+				type : "post",
+				data : {
+					"nickName" : nickName
+				},
+				dataType : "json",
+				success : function(json) {
+					$("#main").unmask();
+					var data = json.data;
+					var userList = "";
+					if(data.length <= 0) {
+						layer.msg("无法搜索到该用户，请确认昵称！");
+						$(document).scrollTop(scrollTop);
+						return false;
+					}
+					for(var i=0; i<data.length; i++) {
+						var nickName = data[i].nickName;
+						var id = data[i].id;
+						var headIcon = data[i].headIcon;
+						if(Common.isNull(headIcon)) {
+							headIcon = "";
+						}
+						
+						userList += "<div style=\"margin-left:10px;\"><img src=\""+headIcon+"\" style=\"width:34px; border-radius:5px;vertical-align:middle;\" onerror=\"javascript:this.src='../../image/noImg.png'\" />";
+						userList += "<span style=\"margin-left:3px\">"+nickName+"</span>";
+						userList += "<span style=\"color:green; float:right; cursor:pointer; margin-top:5px; margin-right:15px;\" onclick=\"addAtTarget("+id+",'"+nickName+"')\">添加</span>"
+						userList += "</div><br/>"
+					}
+					$("#userSearchList").html(userList);
+					$(document).scrollTop(scrollTop);
+				},
+				error : function(json) {
+					layer.msg( "服务器繁忙，搜索失败！！");
+					$(document).scrollTop(scrollTop);
+				}
+			});
+		}else{
+			$(document).scrollTop(scrollTop);
+			layer.msg("请输入昵称！");
+			return false;
+		}
+	}
+</script>

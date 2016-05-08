@@ -1,0 +1,745 @@
+<style>
+element.style {
+	width: 960px;
+	margin-left: -480px;
+	margin-top: -313px;
+}
+
+.dialog_wrp {
+	z-index: 9999;
+}
+
+.dialog_wrp {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 726px;
+	z-index: 3;
+}
+
+.dialog {
+	border-width: 0;
+	overflow: visible;
+}
+
+.dialog {
+	overflow: hidden;
+	border: 1px solid transparent;
+	background-color: #fff;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+.dialog_hd {
+	line-height: 52px;
+	height: 52px;
+	border-bottom-width: 0;
+}
+
+.dialog_hd {
+	position: relative;
+	padding: 0 20px;
+	background-color: #f4f5f9;
+	background-image: -moz-linear-gradient(top, #f4f5f9 0, #f4f5f9 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f5f9),
+		to(#f4f5f9));
+	background-image: -webkit-linear-gradient(top, #f4f5f9 0, #f4f5f9 100%);
+	background-image: -o-linear-gradient(top, #f4f5f9 0, #f4f5f9 100%);
+	background-image: linear-gradient(to bottom, #f4f5f9 0, #f4f5f9 100%);
+	border-bottom: 1px solid #e7e7eb;
+}
+
+.dialog_hd h3 {
+	font-weight: 400;
+	font-style: normal;
+}
+
+.dialog_hd h3 {
+	color: #222;
+}
+
+.pop_closed {
+	background:
+		url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z284ee4.png")
+		0 -2757px no-repeat;
+}
+
+.pop_closed {
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	right: 20px;
+	width: 16px;
+	height: 16px;
+	line-height: 999em;
+	overflow: hidden;
+}
+
+a {
+	color: #459ae9;
+	text-decoration: none;
+}
+
+input, textarea, button, a {
+	outline: 0;
+}
+
+user agent stylesheeta:-webkit-any-link {
+	color: -webkit-link;
+	text-decoration: underline;
+	cursor: auto;
+}
+
+.appmsg_media_dialog {
+	height: auto;
+}
+
+.dialog_media_container {
+	position: relative;
+	height: 498px;
+}
+
+.dialog_ft {
+	padding: 16px 0;
+	background-color: #f4f5f9;
+}
+
+.dialog_ft {
+	margin: 0;
+	padding: 25px 0;
+	text-align: center;
+	border-top: 1px solid transparent;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.dialog_ft .btn {
+	margin-left: .3em;
+	margin-right: .3em;
+}
+
+.btn.btn_input {
+	min-width: 104px;
+}
+
+.btn.btn_input {
+	padding: 0;
+}
+
+.btn {
+	min-width: 60px;
+}
+
+.btn_primary {
+	background-color: #44b549;
+	background-image: -moz-linear-gradient(top, #44b549 0, #44b549 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#44b549),
+		to(#44b549));
+	background-image: -webkit-linear-gradient(top, #44b549 0, #44b549 100%);
+	background-image: -o-linear-gradient(top, #44b549 0, #44b549 100%);
+	background-image: linear-gradient(to bottom, #44b549 0, #44b549 100%);
+	border-color: #44b549;
+	color: #fff;
+}
+
+.btn {
+	display: inline-block;
+	overflow: visible;
+	padding: 0 22px;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	font-size: 14px;
+	border-width: 1px;
+	border-style: solid;
+	cursor: pointer;
+}
+
+.btn_default {
+	background-color: #fff;
+	background-image: -moz-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff),
+		to(#fff));
+	background-image: -webkit-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -o-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: linear-gradient(to bottom, #fff 0, #fff 100%);
+	border-color: #e7e7eb;
+	color: #222;
+}
+
+.media_dialog.appmsg_list {
+	position: relative;
+	padding: 28px 140px;
+	height: 345px;
+	margin: 0;
+	overflow-y: auto;
+}
+
+.appmsg_list {
+	text-align: justify;
+	text-justify: distribute-all-lines;
+	font-size: 0;
+	margin: 0 30px;
+	letter-spacing: -4px;
+}
+.appmsg_col {
+	display: inline-block;
+	vertical-align: top;
+	width: 320px;
+	text-align: left;
+	font-size: 14px;
+	letter-spacing: normal;
+	margin-left: 10px;
+}
+
+.appmsg_content {
+	padding: 0 14px;
+	position: relative;
+}
+
+.pagination_wrp {
+	text-align: right;
+}
+
+.pagination_wrp {
+	background-color: #fff;
+	padding: 25px 20px 0;
+}
+
+.page_nav_area {
+	letter-spacing: 4px;
+}
+
+.page_nav_area, .goto_area {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 12px;
+}
+
+.goto_area {
+	margin-left: 8px;
+}
+
+.page_nav_area, .goto_area {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 12px;
+}
+
+.pagination .btn {
+	min-width: 0;
+}
+
+.btn.page_first, .btn.page_last, .btn.page_go {
+	background-color: #fff;
+	background-image: -moz-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff),
+		to(#fff));
+	background-image: -webkit-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -o-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: linear-gradient(to bottom, #fff 0, #fff 100%);
+	border-color: #e6e7ec;
+	color: #222;
+	height: 30px;
+	line-height: 30px;
+	width: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.btn.page_first, .btn.page_last, .btn.page_go {
+	background-color: #fff;
+	background-image: -moz-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff),
+		to(#fff));
+	background-image: -webkit-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -o-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: linear-gradient(to bottom, #fff 0, #fff 100%);
+	border-color: #e6e7ec;
+	color: #222;
+	height: 30px;
+	line-height: 30px;
+	width: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.page_nav_area .btn {
+	letter-spacing: normal;
+}
+
+.appmsg_title {
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	padding-top: 10px;
+	line-height: 28px;
+	max-height: 56px;
+	overflow: hidden;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.page_num {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 14px;
+	letter-spacing: normal;
+}
+
+.btn.page_prev, .btn.page_next {
+	position: relative;
+	font-size: 0;
+	letter-spacing: -5px;
+	background-color: #fff;
+	background-image: -moz-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff),
+		to(#fff));
+	background-image: -webkit-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -o-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: linear-gradient(to bottom, #fff 0, #fff 100%);
+	border-color: #e6e7ec;
+	color: #222;
+	height: 30px;
+	line-height: 30px;
+	width: auto;
+	padding-left: 14px;
+	padding-right: 14px;
+}
+
+.btn.page_prev .arrow, .btn.page_next .arrow {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -6px;
+	margin-left: -3px;
+}
+
+.page_next .arrow {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-width: 6px;
+	border-style: dashed;
+	border-color: transparent;
+	border-right-width: 0;
+	border-left-color: #919191;
+	border-left-style: solid;
+}
+
+.goto_area input[type="text"] {
+	vertical-align: middle;
+	width: 75px;
+	height: 22px;
+	line-height: 22px;
+	padding: 4px 0;
+	border: 1px solid #e7e7eb;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	text-align: center;
+	font-size: 14px;
+	margin-right: 4px;
+}
+
+button, input, select, textarea {
+	
+}
+
+textarea, input {
+	color: #222;
+}
+
+button, input, select, textarea {
+	font-family: inherit;
+	font-size: 100%;
+	margin: 0;
+}
+
+fieldset, legend, textarea, input {
+	padding: 0;
+}
+
+input, textarea, button, a {
+	outline: 0;
+}
+
+.frm_input {
+	height: 22px;
+	margin: 4px 0;
+}
+
+.frm_input, .frm_textarea {
+	width: 80%;
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+}
+
+.search_btn{
+	float:right;
+	margin-right:20px;
+	margin-top:2px;
+	cursor:pointer;
+}
+
+.search_btn:hover{
+	border-bottom-style:outset;
+	border-color: orange;
+}
+
+.frm_input_box.search .frm_input_append {
+	border-left: 1px solid #e7e7eb;
+	right: 0;
+	width: 30px;
+	text-align: center;
+}
+
+.frm_input_box.append .frm_input_append {
+	position: absolute;
+	top: 0;
+	right: .8em;
+}
+
+.frm_input_box .frm_input_append {
+	font-size: 0;
+}
+
+.appmsg_create a {
+	margin-left: 8px;
+}
+
+.appmsg {
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 20px;
+	border: 1px solid #e7e7eb;
+	background-color: #fff;
+	color: #666;
+}
+
+.btn {
+	min-width: 60px;
+}
+
+.btn_primary {
+	background-color: #44b549;
+	background-image: -moz-linear-gradient(top, #44b549 0, #44b549 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#44b549),
+		to(#44b549));
+	background-image: -webkit-linear-gradient(top, #44b549 0, #44b549 100%);
+	background-image: -o-linear-gradient(top, #44b549 0, #44b549 100%);
+	background-image: linear-gradient(to bottom, #44b549 0, #44b549 100%);
+	border-color: #44b549;
+	color: #fff;
+}
+
+.appmsg_create {
+	
+}
+
+.tr {
+	text-align: right;
+}
+
+.sub_title_bar {
+	padding: 0 30px;
+	line-height: 55px;
+}
+
+.sub_title_bar:after {
+	content: "\200B";
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.frm_input_box.search .del_btn {
+	right: 30px;
+}
+
+.frm_input_box .del_btn {
+	position: absolute;
+	right: 0;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	font-size: 0;
+}
+
+.sub_title_bar.in_dialog {
+	background-color: #fff;
+	padding: 0 20px;
+	border-bottom: 1px solid #e7e7eb;
+}
+
+.appmsg_info {
+	font-size: 13px;
+	line-height: 20px;
+	padding-bottom: 10px;
+}
+
+.appmsg_date {
+	font-weight: 400;
+	font-style: normal;
+}
+
+.appmsg_title a {
+	display: block;
+	color: #222;
+}
+
+.appmsg_thumb_wrp {
+	height: 160px;
+	overflow: hidden;
+}
+
+.appmsg_desc {
+	padding: 5px 0 10px;
+	word-wrap: break-word;
+	word-break: break-all;
+	height: 50px;
+}
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: alpha(opacity = 75);
+  -moz-opacity: .75;
+  -khtml-opacity: .75;
+  opacity: .75;
+  background-color: black;
+  z-index: 899;
+}
+
+.appmsg_opr {
+	background-color: #f4f4f4;
+	border-top: 1px solid #e7e7eb;
+}
+
+.appmsg_opr_item {
+	float: left;
+	line-height: 44px;
+	height: 44px;
+}
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, fieldset, textarea {
+	margin: 0;
+}
+
+.appmsg_opr ul {
+	overflow: hidden;
+}
+
+.appmsg_opr ul li {
+	cursor: pointer;
+	background-color: #f4f4f4;
+}
+
+.appmsg_opr ul li:hover {
+	cursor: pointer;
+	background-color: #DDDDE0;
+}
+
+.size1of2 {
+	width: 50%;
+}
+
+.size1of1 {
+	width: 100%;
+}
+a.js_del.no_extra.js_tooltip {
+	display: inline-block;
+	vertical-align: top;
+	width: 160px;
+	text-align: left;
+	font-size: 14px;
+	letter-spacing: normal;
+}
+
+.appmsg_opr_item a.no_extra {
+	border-right-width: 0;
+}
+.appmsg_opr_item a {
+	display: block;
+	border-right: 1px solid #e7e7eb;
+	text-align: center;
+	text-decoration: none;
+}
+
+ul, ol {
+	padding-left: 0;
+	list-style-type: none;
+}
+</style>
+
+<div id="include-style-dialog-panel"  style="display:none;">
+	<div class="dialog_wrp media align_edge ui-draggable"
+		style="width: 960px; margin-left: -480px;   margin-top: -280px; z-index: 1000">
+		<div class="dialog">
+			<div class="dialog_hd">
+				<h3>学堂选择</h3>
+				<a href="javascript:;" onclick="return false"
+					class="icon16_opr closed pop_closed" id="dialog_close">关闭</a>
+			</div>
+			<div class="dialog_bd">
+				<div class="dialog_media_container appmsg_media_dialog">
+					<div class="sub_title_bar in_dialog">
+						<div class="search_bar">
+							<span class="frm_input_box search with_del append"> <input
+								id="msgSearchInput" type="text" placeholder="搜索/请输入学堂名称" value=""
+								class="frm_input">
+								<img src="../../core/img/center/search-btn.png" title="点击可按照关键字搜索。。" class="search_btn" id="search_btn"/>
+							</span>
+						</div>
+					</div>
+					<div class="dialog_media_inner">
+	
+						<div class="js_appmsg_list appmsg_list media_dialog" id="dialog_datalist">
+
+						</div>
+					</div>
+				</div>
+			</div>
+	
+<!-- 			<div class="dialog_ft">
+	
+				<span class="btn btn_primary btn_input js_btn_p"><button
+						type="button" class="js_btn" data-index="0">确定</button></span> <span
+					class="btn btn_default btn_input js_btn_p"><button
+						type="button" class="js_btn" data-index="1" id="dialog_cancel_btn">取消</button></span>
+	
+			</div> -->
+		</div>
+	</div>
+	
+	<div class="mask"><iframe frameborder="0" style="filter:progid:DXImageTransform.Microsoft.Alpha(opacity:0);position:absolute;top:0px;left:0px;width:100%;height:100%;z-index:1000" src="about:blank"  id="maskDiv"></iframe></div>
+</div>
+
+<div id="course_include-style-dialog-panel"  style="display:none;">
+	<div class="dialog_wrp media align_edge ui-draggable"
+		style="width: 960px; margin-left: -480px;   margin-top: -280px; z-index: 1000">
+		<div class="dialog">
+			<div class="dialog_hd">
+				<h3>课程选择</h3>
+				<a href="javascript:;" onclick="return false"
+					class="icon16_opr closed pop_closed" id="course_dialog_close">关闭</a>
+			</div>
+			<div class="dialog_bd">
+				<div class="dialog_media_container appmsg_media_dialog">
+					<div class="sub_title_bar in_dialog">
+						<div class="search_bar">
+							<span class="frm_input_box search with_del append"> <input
+								id="course_msgSearchInput" type="text" placeholder="搜索/请输入课程名称" value=""
+								class="frm_input">
+								<img src="../../core/img/center/search-btn.png" title="点击可按照关键字搜索。。" class="search_btn" id="search_course_btn"/>
+							</span>
+						</div>
+					</div>
+					<div class="dialog_media_inner">
+	
+						<div class="js_appmsg_list appmsg_list media_dialog" id="course_dialog_datalist">
+
+						</div>
+					</div>
+				</div>
+			</div>
+	
+<!-- 			<div class="dialog_ft">
+	
+				<span class="btn btn_primary btn_input js_btn_p"><button
+						type="button" class="js_btn" data-index="0">确定</button></span> <span
+					class="btn btn_default btn_input js_btn_p"><button
+						type="button" class="js_btn" data-index="1" id="dialog_cancel_btn">取消</button></span>
+	
+			</div> -->
+		</div>
+	</div>
+	
+	<div class="mask"><iframe frameborder="0" style="filter:progid:DXImageTransform.Microsoft.Alpha(opacity:0);position:absolute;top:0px;left:0px;width:100%;height:100%;z-index:1000" src="about:blank"></iframe></div>
+</div>
+
+
+<div id="course_include-style-dialog-col" style="display:none;">
+	<div class="appmsg_col" id="course_appmsg_col_@!{id}">
+		<div class="js_appmsgitem">
+			<div class="appmsg">
+				<div class="appmsg_content">
+
+					<h4 class="appmsg_title js_title">
+						<a>@!{title}</a>
+					</h4>
+					<div class="appmsg_info">
+						<em class="appmsg_date">@!{time}</em>
+					</div>
+					<div class="appmsg_thumb_wrp">
+						<img src="@!{titleImg}" alt="" class="appmsg_thumb">
+					</div>
+					<p class="appmsg_desc">@!{description}</p>
+
+				</div>
+				<div class="appmsg_opr">
+					<ul>
+						<li class="appmsg_opr_item grid_item size1of1 no_extra" onclick="@!{eventClick}" id="course_appmsg_col_btn_@!{eventid}">
+							<a title="点击推荐该学堂">&nbsp;确认推荐</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="include-style-dialog-col" style="display:none;">
+	<div class="appmsg_col" id="appmsg_col_@!{id}">
+		<div class="js_appmsgitem">
+			<div class="appmsg">
+				<div class="appmsg_content">
+
+					<h4 class="appmsg_title js_title">
+						<a>@!{title}</a>
+					</h4>
+					<div class="appmsg_info">
+						<em class="appmsg_date">@!{time}</em>
+					</div>
+					<div class="appmsg_thumb_wrp">
+						<img src="@!{titleImg}" alt="" class="appmsg_thumb">
+					</div>
+					<p class="appmsg_desc">@!{description}</p>
+
+				</div>
+				<div class="appmsg_opr">
+					<ul>
+						<li class="appmsg_opr_item grid_item size1of1 no_extra" onclick="@!{eventClick}" id="appmsg_col_btn_@!{eventid}">
+							<a title="点击推荐该学堂">&nbsp;确认推荐</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+  $(function(){
+	 // 关闭Dialog
+	 $("#dialog_close, #dialog_cancel_btn").click(function(){
+		 $("#include-style-dialog-panel").hide();
+	 });
+
+	 $("#course_dialog_close").click(function(){
+		 $("#course_include-style-dialog-panel").hide();
+	 });
+  });
+</script>

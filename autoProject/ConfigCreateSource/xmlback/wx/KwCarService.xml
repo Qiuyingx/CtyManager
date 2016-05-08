@@ -1,0 +1,7 @@
+  <resultMap  type="KwCarService" mark="kewei" tables="kw_car_service" comment="车辆保养管理" >
+    <result column="car_service_id" jdbcType="VARCHAR" comment="车辆保养ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="type_id" jdbcType="VARCHAR" comment="型号ID"/>
+    <result column="service_id" jdbcType="VARCHAR" comment="服务内容ID"/>
+    <result column="goods_id" jdbcType="VARCHAR" comment="配件商品ID"/>
+    <result column="service_type_id" jdbcType="VARCHAR" comment="保养类型ID"/>
+ </resultMap>

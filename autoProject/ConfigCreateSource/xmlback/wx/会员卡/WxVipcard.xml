@@ -1,0 +1,11 @@
+  <resultMap  type="WxVipcard" mark="wxshops" tables="wx_m_vipcard" comment="会员卡管理" >
+    <result name="vipcardId" column="vipcard_id" jdbcType="VARCHAR" comment="会员卡ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result name="wxConfigId" column="wxconfigid" jdbcType="VARCHAR" comment="所属公众平台"/>
+    <result name="vipcardName" column="vipcard_name" jdbcType="VARCHAR" comment="会员卡名称"/>
+    <result name="vipcardImg" column="vipcard_img" jdbcType="VARCHAR" comment="会员卡卡图"/>
+    <result name="vipcardDescription" column="vipcard_description" jdbcType="VARCHAR" comment="会员卡说明"/>
+    <result name="status" column="status" jdbcType="INT" comment="状态"/>
+    <result name="time" column="time" jdbcType="DATETIME" comment="创建时间"/>
+    <result name="userid" column="userid" jdbcType="VARCHAR" comment="创建人"/>
+    <result name="sort" column="sort" jdbcType="INT" comment="排序"/>
+ </resultMap>

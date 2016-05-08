@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>大院子科技商家后台管理系统</title> 
+<#include "/WEB-INF/content/core/include-jquery.html"/> 
+<#include "/WEB-INF/content/core/include-easyui.html"/>
+<#include "/WEB-INF/content/core/include-layer.html"/>
+<link Rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" type="text/css" href="core/css/center.css?${.now?long}">
+<script type="text/javascript" src="core/js/center.js?${.now?long}"></script>
+
+<script type="text/javascript">
+function sessionTimeout(msg) {
+	$.messager.alert("提示", msg, "info", function() {
+		location.href = "${request.contextPath}";
+	});
+}
+
+</script>
+</head>
+<body class="easyui-layout" id="main">
+	<div region="north" border="false"
+		style=" background: #ffffff; overflow: hidden; height:40px;">
+		<div id="menu" style="margin-top:0px;">
+			<div class="left">
+				<div class="menu_ico">
+					<img src="image/admin/manager/logo_02_100X100.png" height="35px" />
+				</div>
+				<div class="menu_txt">
+					觅趣
+				</div>
+			</div>
+			<div class="right">
+				  <div class="fr" style="display:block;">
+				      <span class="tip">${(map["account"]!).sysUserNo!}</span>
+				      <span class="tip"><img src="core/img/center/shopLogo.png"></span>
+				      <span class="tip"><a onclick="javascript:location.href='logout'">退出</a></span>
+				  </div>
+			</div>
+			
+			<div class="clear"></div>
+		</div>
+	</div>
+			
+    <div region="south" border="false"
+		style="height: 25px; text-align: center; font-size: 12px; background: #eee; padding-top: 3px; color:#89898a;">Copyright
+		© 2015, 成都大院子科技, All Rights Reserved</div> 
+	<div region="west" split="true"
+		title=" "  border="false"
+		style="width: 150px; background: #ffffff; color: #464e78" id="west">
+		<!-- BEGIN -->
+		<#switch map.menu_type> <#case "accordion_small_icon_menu">
+		<!-- 两级小图标菜单模式accordion_small_icon_menu -->
+		<div class="easyui-accordion" fit="true">
+			<#list map["menus"] as menu>
+			<div title="${menu.sysMenuName!}" iconCls="module-sys"
+				style="overflow: auto;">
+				<div class="small_icon_menu">
+					<ul>
+						<#list menu.modules as module>
+						<li id="${module.sysMenuId!}" class="module" url="${module.url!}"
+							value="${module.url!}"><img
+							src="core/img/center/default_small_icon.png" width="16"
+							height="16" /><span class="word">${module.sysMenuName!}</span></li> </#list>
+					</ul>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+			</#list>
+		</div>
+		<#break> <#default> </#switch>
+		<!-- END -->
+	</div>
+	<div region="center" style="padding: 5px; background: #ffffff;">
+	
+		<div id="workbench" class="easyui-tabs" fit=true>
+			<div title="欢迎" style="overflow: auto; background-color:#ffffff;">
+				<table width="100%" height="100%" style="margin-top:70px;">
+					<tr>
+						<td align="center"><img alt="欢迎使用管理平台"
+							src="core/img/center/welcome.gif"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

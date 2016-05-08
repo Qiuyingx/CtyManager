@@ -1,0 +1,7 @@
+  <resultMap  type="KwAccessoriesGoods" mark="kewei" tables="kw_accessories_goods" comment="配件商品管理" >
+    <result column="goods_id" jdbcType="VARCHAR" comment="配件商品ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="name" jdbcType="VARCHAR" comment="商品名称"/>
+    <result column="price" jdbcType="DOUBLE" comment="商品价格"/>
+    <result column="description" jdbcType="VARCHAR" comment="描述"/>
+    <result column="accessories_id" jdbcType="VARCHAR" comment="配件ID"/>
+ </resultMap>

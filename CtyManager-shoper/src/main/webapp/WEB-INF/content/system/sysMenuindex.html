@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>系统菜单管理管理</title> <#include "/WEB-INF/content/core/include-jquery.html"/> <#include "/WEB-INF/content/core/include-easyui.html"/>
+</head>
+<style>
+html body {
+	font-family: "微软雅黑";
+}
+
+.table {
+	width: 100%;
+	height: 99%;
+	line-height: 30px;
+	padding-top: 4px;
+	overflow: hidden;
+}
+
+.row {
+	width: 95%;
+	height: 30px;
+	margin-left: 10px;
+}
+
+.column {
+	float: left;
+	width: 50%;
+}
+</style>
+<script type="text/javascript" src="${request.contextPath}/js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="${request.contextPath}/js/common/common.js?${.now?long}"></script>
+<script type="text/javascript" src="${request.contextPath}/js/system/sysMenuindex.js?${.now?long}"></script>
+<script type="text/javascript">
+</script>
+<body class="easyui-layout" id="main">
+	<div region="center" title="" border="false">
+		<ul id="permissionTree" class="easyui-tree" dnd="true" url="../sysRole/getpermissiontree" lines="true" data-options="onLoadSuccess:function() {hideMask();}" ></ul> 
+	</div>
+	
+    <!--  系统菜单操作面板  -->
+	<div id="sysMenuInfo" class="easyui-window" closed="true" resizable="false" style="overflow:hidden;">
+		<!-- 隐藏字段 -->
+	    <input type="hidden" id="sysMenuInfo_sysmenuid" />
+		<input id="sysMenuInfo_parentmenuid" type="hidden" />
+		<input type="hidden" id="hi_sysmenuname"/>
+		<input type="hidden" id="hi_parentmenuid"/>
+		<input type="hidden" id="hi_parentmenuname"/>
+		<input type="hidden" id="hi_url"/>
+		<input type="hidden" id="hi_status"/>
+		<input type="hidden" id="hi_isfunction"/>
+		<input type="hidden" id="hi_sort"/>
+		<div id="sysmenutabs" class="easyui-tabs" fit=true >
+			<div title="修改" style="overflow: hidden;" id="updatePanel">
+		
+			        <!-- 系统菜单修改面板 -->
+					 <div style="width:100%;height:150px;">
+						<table style="width:100%;margin-left:5px;margin-top: 5px;height:280px">
+							<tbody>
+								<tr>
+								    <td>父级名称:</td>
+								    <td><span id="update_sysMenuInfo_parentmenuname"></span></td>
+								</tr>
+								<tr>
+									<td><label>菜单名称：</label></td>
+									<td><input id="update_sysMenuInfo_sysmenuname" class="easyui-textbox" /></td>
+								</tr>
+								<tr>
+								    <td>菜单类型：</td>
+								    <td><input type="radio" id="update_isfunction_0" name="update_isfunction" checked="checked" value="0"/>  功能菜单  &nbsp;<input id="update_isfunction_1" type="radio" name="update_isfunction" value="1"/>  非功能菜单</td>
+								</tr>
+								<tr>
+								    <td>菜单链接：</td>
+								    <td><input id="update_sysMenuInfo_url" class="easyui-textbox" /></td>
+								</tr>
+								<tr>
+								    <td>菜单排序：</td>
+								    <td><input id="update_sysMenuInfo_sort" class="easyui-numberspinner" /></td>
+								</tr>
+								<tr>
+								    <td>菜单状态：</td>
+								    <td><input type="radio" id="update_status_1" name="update_status" checked="checked" value="1"/>  启用  &nbsp;<input id="update_status_0" type="radio" name="update_status" value="0"/>  禁用</td>
+								</tr>
+								<tr>
+								    <td colspan="2" align="center">
+											<div style="text-align: center; margin-top: 7px;" >	
+											    <input id="update_submitBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px;" value="确认" onclick="javascript:openSysMenuInfoWin(false);"/> 
+												<input id="update_closeBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px" value="取消"	onclick="javascript:Common.closeWin('sysMenuInfo'); "/>
+											</div>
+								    </td>
+								</tr>
+				
+							</tbody>
+						</table>
+					</div>
+
+			</div>
+			<div title="添加" style="overflow: hidden;" id="addPanel">
+			
+                <!--  系统菜单添加面板  -->
+				<div style="width: 100%; height: 150px;">
+					<table style="width: 100%; margin-left: 5px; margin-top: 5px; height: 280px">
+						<tbody>
+							<tr>
+								<td>父级名称:</td>
+								<td><span id="add_sysMenuInfo_parentmenuname"></span></td>
+							</tr>
+							<tr>
+								<td><label>菜单名称：</label></td>
+								<td><input id="add_sysMenuInfo_sysmenuname" class="easyui-textbox" /></td>
+							</tr>
+							<tr>
+								<td>菜单类型：</td>
+								<td><input type="radio" id="add_isfunction_0" name="add_isfunction" checked="checked" value="0" /> 功能菜单 &nbsp;<input
+									id="add_isfunction_1" type="radio" name="add_isfunction" value="1" /> 非功能菜单</td>
+							</tr>
+							<tr>
+								<td>菜单链接：</td>
+								<td><input id="add_sysMenuInfo_url" class="easyui-textbox" /></td>
+							</tr>
+							<tr>
+								<td>菜单排序：</td>
+								<td><input id="add_sysMenuInfo_sort" class="easyui-numberspinner" /></td>
+							</tr>
+							<tr>
+								<td>菜单状态：</td>
+								<td><input type="radio" id="add_status_1" name="add_status" checked="checked" value="1" /> 启用 &nbsp;<input
+									id="add_status_0" type="radio" name="add_status" value="0" /> 禁用</td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center">
+									<div style="text-align: center; margin-top: 7px;">
+										<input id="add_submitBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px;" value="确认"
+											onclick="javascript:openSysMenuInfoWin(false);" /> <input id="add_closeBtn" type="button" class="easyui-linkbutton"
+											style="width: 80px; height: 30px" value="取消" onclick="javascript:Common.closeWin('sysMenuInfo'); " />
+									</div>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>	
+			
+		     </div>
+		</div> 
+	</div>
+
+</body>
+</html>

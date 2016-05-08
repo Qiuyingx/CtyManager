@@ -1,0 +1,203 @@
+package ${package}.${mark}.service;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import com.bluebox.core.service.common.BaseService;
+import com.bluebox.core.util.Constant;
+import com.bluebox.core.util.GenUUID;
+import ${package}.base.entity.ConditionEntity;
+import com.bluebox.manager.base.util.JsonResult;
+import ${package}.${mark}.entity.${entityName}ViewEntity;
+
+/**
+ * Service
+ * @author 夏远明
+ *
+ */
+public class ${entityName}Service extends BaseService<${entityName}ViewEntity> {
+	private static final ${entityName}Service cs = new ${entityName}Service();
+
+	private ${entityName}Service() {
+
+	}
+
+	public static ${entityName}Service getInstance() {
+		return cs;
+	}
+
+	/**
+	 * ${table.comment} 列表数据（分页）
+	 * @param condition
+	 * @param sort
+	 * @param order
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	public List<${entityName}ViewEntity> query${entityName}List(ConditionEntity condition, String sort, String order, long page, long rows) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select a.* from ${table.name} a where 1=1 ");
+		
+		List<Object> params = new ArrayList<Object>();
+       #if(${table.hasQueryColumns()})
+		    #foreach(${column} in ${table.queryColumns})
+		        #if(${column.inputType}==6)
+		        
+	    if (null != condition) {
+			if (null != condition.getStartDate() && !"".equals(condition.getStartDate())) {
+				sql.append("and a.${column.code} >= ? ");
+				params.add(condition.getStartDate() + " 00:00:00");
+			}
+	
+			if (null != condition.getEndDate() && !"".equals(condition.getEndDate())) {
+				sql.append("and a.${column.code} <= ? ");
+				params.add(condition.getEndDate() + " 23:59:59");
+			}
+	     }
+		             
+		         #end
+			#end
+		#end
+
+		if (null != sort && !"".equals(sort) && null != order && !"".equals(order)) {
+			sql.append("order by ").append(sort).append(" ").append(order);
+		}
+
+		sql.append(" LIMIT ?, ?");
+		params.add((page - 1) * rows);
+		params.add(rows);
+
+		try {
+			return query(sql.toString(), params.toArray());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * ${table.comment} 列表总行数
+	 * @param condition
+	 * @return
+	 */
+	public long query${entityName}ListCount(ConditionEntity condition) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select count(*) from ${table.name} a where 1=1 ");
+
+		List<Object> params = new ArrayList<Object>();
+
+		     #if(${table.hasQueryColumns()})
+		    #foreach(${column} in ${table.queryColumns})
+		        #if(${column.inputType}==6)
+		        
+	    if (null != condition) {
+			if (null != condition.getStartDate() && !"".equals(condition.getStartDate())) {
+				sql.append("and a.${column.code} >= ? ");
+				params.add(condition.getStartDate() + " 00:00:00");
+			}
+	
+			if (null != condition.getEndDate() && !"".equals(condition.getEndDate())) {
+				sql.append("and a.${column.code} <= ? ");
+				params.add(condition.getEndDate() + " 23:59:59");
+			}
+	     }
+		             
+		         #end
+			#end
+		#end
+
+
+		try {
+			return (Long) certain(sql.toString(), params.toArray());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	/**
+	 * ${table.comment} 新增
+	 * 
+	 */
+	public void add(${entityName}ViewEntity ${varName}, String userId, Map<String, Object> map) {
+		         String param = ""
+#foreach(${column} in ${table.editColumns})
+                   +"  ,${column.code}"
+#end;
+                 String paramValue = ""
+#foreach(${column} in ${table.editColumns})
+                   +" ,? "
+#end;
+       
+        StringBuilder update = new StringBuilder();
+		update.append("insert into ${table.name}("+param.replaceFirst(",", "")+",${table.primaryKeyColumn.code}) values("+paramValue.replaceFirst(",", "")+",?)");
+
+		try {
+			if (updates(update.toString()#foreach(${column} in ${table.editColumns})
+			, ${varName}.get${column.entityName}()
+#end 			
+			,GenUUID.uuid()) == 1) {
+			    JsonResult.toJson(map, true, "新增${comment}成功！");
+			} else {
+			    JsonResult.toJson(map, false, "新增${comment}失败，数据库操作失败！");
+			}
+		} catch (Exception e) {
+			JsonResult.toJson(map, false, "新增${comment}失败，服务器繁忙请稍候再试！");
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * ${table.comment} 修改
+	 * 
+	 */
+	public void update(${entityName}ViewEntity ${varName}, Map<String, Object> map) {
+         String param = ""
+#foreach(${column} in ${table.editColumns})
+                   +" ,${column.code} = ?"
+#end;
+       
+        StringBuilder update = new StringBuilder();
+		update.append("update ${table.name} set "+param.replaceFirst(",", "")+" where ${table.primaryKeyColumn.code} = ? ");
+
+		try {
+			if (updates(
+			update.toString()
+#foreach(${column} in ${table.editColumns})
+			, ${varName}.get${column.entityName} ()
+#end 			
+			,${varName}.get${table.primaryKeyColumn.entityName}()
+			) == 1) {
+				JsonResult.toJson(map, true, "修改${table.comment}成功！");
+			} else {
+				JsonResult.toJson(map, false, "修改${table.comment}失败，数据库操作失败！");
+			}
+		} catch (Exception e) {
+			JsonResult.toJson(map, false, "修改${table.comment}失败，服务器繁忙请稍候再试！");
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * ${table.comment} 删除
+	 *
+	 */
+	public void del(${entityName}ViewEntity ${varName}, Map<String, Object> map) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("delete from ${table.name} where ${table.primaryKeyColumn.code} = ? ");
+
+		try {
+			if (updates(sql.toString(), ${varName}.get${table.primaryKeyColumn.entityName}()) == 1) {
+			    JsonResult.toJson(map, true, "删除成功！");
+			} else {
+			    JsonResult.toJson(map, false, "删除失败，数据库操作失败！");
+			}
+		} catch (Exception e) {
+			JsonResult.toJson(map, false, "修改失败，服务器繁忙请稍候再试！");
+			e.printStackTrace();
+		}
+	}
+}

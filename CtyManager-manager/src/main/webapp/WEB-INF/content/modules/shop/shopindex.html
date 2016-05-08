@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>邻豆商城管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+</head>
+<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/modules/shop/shopindex.js?${.now?long}"></script> 
+<body class="easyui-layout" id="main">
+	<!-- 商品筛选 -->
+ 	<div region="north" border="false" title="检索信息" style="height: 60px; min-width: 700px; background: #eee; line-height: 25px">
+		<div style="margin-top:4px;">
+			<input id="titleSearch" class="easyui-textbox" prompt="商品名称" style="width:130px; height:27px;"/> 
+			<input id="statusSearch" class="easyui-combobox" url="../../js/modules/data/json/goodsStatusText.js" 
+					panelHeight="auto" panelMaxHeight="200" editable="false" valueField="id" textField="text" prompt="请选择商品状态"
+			     	style="width:130px; height:27px;"/>
+			&nbsp;&nbsp;
+			<a href="#" class="easyui-linkbutton"  iconCls="icon-search" onclick="javascript:query()">点击筛选</a>
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-reload" onclick="javascript:flush()">重置筛选</a>
+		</div>
+	</div> 
+	<!-- 数据列表 -->
+	<div region="center" style="padding: 5px; background: #eee;">
+		<div id="toolbar">
+			 <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="javascript:addShop()">添加商品</a> 
+			 <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-edit" onclick="javascript:updateShop()">编辑商品</a> 
+			 <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="javascript:del()">删除</a> 
+			 <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-reload" onclick="javascript:changeStatus()">在售/下架</a>
+		</div>
+		<table id="grid" class="easyui-datagrid" idField="id" url="querylist" rownumbers="true" striped="true" fitColumns="true" fit="true"
+			pagination="true" singleSelect="true"   toolbar="#toolbar" pageSize="20">
+			<thead>
+				<tr>
+					<th field="id" width="20" sortable="true" align="left" hidden="true">商品ID</th>
+					<th field="goodsName" width="20" align="left">商品名称</th>
+					<th field="price" width="20" align="left">价格</th>
+					<th field="stockLimit" width="20" align="left">剩余库存</th>
+					<th field="remark" width="20" align="left" hidden="true">商品描述</th>
+					<th field="status" width="20" align="left" formatter="goodsStatus">商品状态</th>
+					<th field="image" hidden="true">封面图</th>
+					<th field="listImage" hidden="true">多图</th>
+				</tr>
+			</thead>
+		</table> 
+	</div>
+	
+</body>
+</html>

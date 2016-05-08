@@ -1,0 +1,8 @@
+  <resultMap  type="WxBaseGroup" mark="library" tables="wx_base_group" comment="微信基础分组" >
+    <result column="groupid" jdbcType="VARCHAR" comment="分組ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="groupname" jdbcType="VARCHAR" comment="分组名称"/>
+    <result column="grouptype" jdbcType="INT" comment="分组类型"/>
+    <result column="sysuserid" jdbcType="VARCHAR" comment="创建人"/>
+    <result column="sort" jdbcType="INT" comment="排序"/>
+    <result column="createtime" jdbcType="DATETIME" comment="创建时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+ </resultMap>

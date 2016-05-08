@@ -1,0 +1,6 @@
+  <resultMap  type="KwCarType" mark="kewei" tables="kw_car_type" comment="型号管理" >
+    <result column="type_id" jdbcType="VARCHAR" comment="型号ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="name" jdbcType="VARCHAR" comment="型号名称"/>
+    <result column="imgpath" jdbcType="VARCHAR" comment="型号图"/>
+    <result column="series_id" jdbcType="VARCHAR" comment="系列ID"/>
+ </resultMap>

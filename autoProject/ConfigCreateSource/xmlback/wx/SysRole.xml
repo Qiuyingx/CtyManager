@@ -1,0 +1,5 @@
+  <resultMap  type="SysRole" mark="system" tables="sys_role" comment="用户角色管理" >
+    <result column="sysroleid" jdbcType="VARCHAR" comment="角色ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="sysrolename" jdbcType="VARCHAR" comment="角色名称"/>
+    <result column="status" jdbcType="INT" comment="状态" />
+ </resultMap>

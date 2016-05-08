@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汇聚全城精选兴趣课程</title>
+	<!-- 填写订单完成 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+	
+</head>
+<body>
+	
+	<div class="page container">
+		<div>
+			    <!-- 顶部浮动开始 -->
+
+			    <header class="bar bar-nav">
+				    <a class="button button-link button-nav pull-left" onclick="javascript:click_order_owner()" data-transition='slide-out'>
+				      <span class="icon icon-left  bar_nav_margin_left"></span>
+				    </a>
+				    <h1 class="title">付款成功</h1>
+			    </header>
+
+			    <!-- 顶部浮动结束 -->
+
+			 
+			    <!-- 内容区开始 -->
+
+			    <div class="content">
+				    <div class="page-index container_style">
+				    	<div class="od_bk_div">
+				    		<!-- 背景图 -->
+				    		<div class="od_bk_img">
+				    			<img src="../source/images/order_down_bk.png">
+				    		</div>
+				    		<div class="od_content_base">
+						    	<!-- 成功文字提示 -->
+								<div class="od_head_div">
+									<div class="od_head_title">您已成功付款&nbsp;<span class="od_head_title_price" >¥<span id="od_head_title_price">0</span></span>&nbsp;元</div>
+									<div class="od_head_short_title">下单时间：<span class="od_head_time" id="od_head_time"></span></div>
+								</div>
+						    	<!-- 订单信息 -->
+						    	<div class="od_content_div">
+						    		<div class="od_order_id_div">
+						    			订单编号：<span class="od_order_id" id="od_order_id"></span>
+						    		</div>
+						    		<div class="od_content_success_text">
+						    			觅取后台已经收到你的报名信息，我们已经为你发送了短信验证码，到店凭此短信验证码消费。
+						    		</div>
+						    	</div>
+					    	</div>
+				    	</div>
+				    </div>
+			    </div>
+
+			    <!-- 内容区结束 -->
+		</div>
+	</div>
+
+	<#include "/WEB-INF/include/include_sui_js.html" />
+
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+	
+	<script type="text/javascript">
+		showSuccessOrderInfo("${orderNo!0}");
+	</script>
+	
+</body>
+</html>

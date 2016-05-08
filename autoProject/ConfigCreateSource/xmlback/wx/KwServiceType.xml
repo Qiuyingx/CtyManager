@@ -1,0 +1,4 @@
+  <resultMap  type="KwServiceType" mark="kewei" tables="kw_service_type" comment="保养类型" >
+    <result column="service_type_id" jdbcType="VARCHAR" comment="保养类型ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="name" jdbcType="VARCHAR" comment="保养名称"/>
+ </resultMap>

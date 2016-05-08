@@ -1,0 +1,5 @@
+  <resultMap  type="WxMsgtype" mark="wxconfig" tables="wx_msgtype" comment="消息类型" >
+    <result column="msgtypeid" jdbcType="VARCHAR" comment="消息类型ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="msgtypename" jdbcType="VARCHAR" comment="消息类型名称"/>
+    <result column="status" jdbcType="INT" comment="状态" />
+ </resultMap>

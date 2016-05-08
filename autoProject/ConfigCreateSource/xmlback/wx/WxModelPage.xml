@@ -1,0 +1,9 @@
+  <resultMap  type="WxModelPage" mark="content" tables="wx_model_page" comment="模板详情页" >
+    <result column="modelinfoid" jdbcType="VARCHAR" comment="模板ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="modelurl" jdbcType="VARCHAR" comment="模板URL"/>
+    <result column="modellookurl" jdbcType="VARCHAR" comment="预览URL"/>
+    <result column="wxconfigid" jdbcType="VARCHAR" comment="所属平台"/>
+    <result column="sysuserid" jdbcType="VARCHAR" comment="创建人"/>
+    <result column="createtime" jdbcType="DATETIME" comment="创建时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+    <result column="sort" jdbcType="INT" comment="排序"/>
+ </resultMap>

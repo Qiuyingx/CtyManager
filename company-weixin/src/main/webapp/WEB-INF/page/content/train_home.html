@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汇聚全城精选兴趣课程</title>
+	<!-- 学堂主页 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+    
+	<#include "/WEB-INF/include/include_animate_css.html" />
+    
+    <script type="text/javascript">
+  		 var imgPath = "${httpUrl}"
+    </script>
+</head>
+<body>
+	
+	<div class="page container">
+		<div>
+			    <!-- 顶部浮动开始 -->
+
+			    <header class="bar bar-nav">
+				    <a class="button button-link button-nav pull-left" onclick="javascript:forward('index')" data-transition='slide-out'>
+				      <span class="icon icon-left  bar_nav_margin_left"></span>
+				    </a>
+				    <h1 class="title" id="value_train_title"></h1>
+			    </header>
+
+			    <!-- 顶部浮动结束 -->
+
+			 
+			    <!-- 内容区开始 -->
+
+			    <div class="content">
+				    <div class="page-index">
+				    	<!-- 学堂封面图 -->
+				    	<div class="train_home_titleimg">
+				    		<img src="" id="value_train_titleImg" />
+				    		<div class="th_head_ele">
+				    			<div class="th_logo_div">
+				    				<div class="th_logo"><img src="" id="value_train_logo"/></div>
+				    			</div>
+				    			<div class="th_head_text">
+				    				<center>
+				    				<div class="th_head_text_pos">
+				    					简介：<span class="th_head_text_content" id="value_train_description"></span>
+				    				</div></center>
+				    			</div>
+				    		</div>
+				    	</div>
+				    	<!-- 标签层 -->
+				    	<div class="buttons-tab">
+						    <a href="#tab1" class="tab-link active button">详情</a>
+						    <a href="#tab2" class="tab-link button">课程</a>
+						</div>
+						<div class="margin_top_container">
+						    <div class="tabs">
+						        <div id="tab1" class="tab active wow fadeInLeft">
+							        <div>
+								    	<div class="course_base container_style">
+								    		<div class="c_base">
+								    			<span class="c_base_title">上课时间：</span><span class="c_base_content" id="value_hours"></span>
+								    		</div>
+<!-- 								    		<div class="c_base">
+								    			<span class="c_base_title">课<span style="padding-left:30px;">时</span>：</span><span class="c_base_content" id="value_copies"></span>
+								    		</div> -->
+								    		<div class="c_base">
+								    			<span class="c_base_title">联系电话：</span>
+												<a id="call_href_a">
+								    				<span class="c_base_content course_span_default" id="value_tel" style="margin-left:-4px;"></span><img src="../source/images/phone.png"/>
+								    			</a>
+								    		</div>
+								    		<div class="c_base">
+								    			<span class="c_base_title">联系地址：</span>
+								    			<a id="address_guide">
+								    				<span class="c_base_content course_span_default" id="value_address"></span><img src="../source/images/address.png"/>
+								    			</a>
+								    		</div>
+								    	</div>
+								    	<div class="course_content container_style text_content" id="value_content_text">
+								    	</div>
+							        </div>
+						    	</div>
+						    <div id="tab2" class="tab wow fadeInRight">
+						          	<div class="face_list_div container_style" id="value_train_of_course_list">
+							    		
+						    		</div>
+						        </div>
+						    </div>
+						</div>
+				    </div>
+			    </div>
+
+			    <!-- 内容区结束 -->
+		</div>
+	</div>
+
+	<#include "/WEB-INF/templ/templ_div_item.html" />
+	
+	<#include "/WEB-INF/include/include_animate_js.html" />
+    
+	<#include "/WEB-INF/include/include_sui_js.html" />
+	
+	<#include "/WEB-INF/include/include_animate_js.html" />
+	
+	<#include "/WEB-INF/include/include_wxjssdk_js.html" />
+
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+	
+	<script type="text/javascript">
+		$(function(){
+			lookTrainInfo("${trainId}");
+			
+			new WOW().init();
+		});
+
+		// 跳转到百度（ 定位成功）
+		function wxGetLocationSuccessProcess() {
+			$.hidePreloader();
+			if(!isNull(getLongitude()) && !isNull(getLatitude())) {
+				baiduMapPath = baiduMapPath.replace("@!{location}", getLatitude()+","+getLongitude());
+				window.location.href=baiduMapPath;
+			}else{
+				$.toast("定位失败，请手动搜索乘车方案。");
+				timeHref("http://map.baidu.com/mobile/webapp/index/index#index/index/qt=cur&wd=%E6%88%90%E9%83%BD%E5%B8%82&from=maponline&tn=m01&ie=utf-8=utf-8/tab=line");
+			}
+		}
+	</script>
+</body>
+</html>

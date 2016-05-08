@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>社区公告</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+</head>
+<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script> 
+<script type="text/javascript" src="../../js/modules/notice/radioindex.js?${.now?long}"></script>
+<body class="easyui-layout"  id="main">
+	<div region="center" style="padding: 5px; background: #eee; " align="center">
+		<table border="0" style="width:750px; margin-top:10px;">
+			<tr>
+				<td>公告内容：</td>
+				<td colspan="3">
+				     <textarea rows="9" cols="90" id="content"></textarea>
+				</td>
+			</tr>
+			<tr style="height:50px;">
+				<td colspan="4">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="4" align="right">
+					<input id="submitBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px" value="确认发布"/> 
+					<input id="reloadBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px" value="重置"	/>
+					<input id="viewListBtn" type="button" class="easyui-linkbutton" style="width: 100px; height: 30px" value="查看公告列表"	/>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

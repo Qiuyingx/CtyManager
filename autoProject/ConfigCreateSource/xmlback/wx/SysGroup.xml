@@ -1,0 +1,5 @@
+  <resultMap  type="SysGroup" mark="system" tables="sys_group" comment="用户分组管理" >
+    <result column="sysgroupid" jdbcType="VARCHAR" comment="分组ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="sysgroupname" jdbcType="VARCHAR" comment="分组名称"/>
+    <result column="status" jdbcType="INT" comment="状态" />
+ </resultMap>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>专题管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+	<#include "/WEB-INF/content/core/include-ueditor.html"/>
+	<link rel="stylesheet" type="text/css" href="../../core/css/form_style.css">
+	<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+	<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script> 
+	<script type="text/javascript" src="../../js/modules/content/content_edit.js?${.now?long}"></script> 
+	<script type="text/javascript" src="../../js/common/ajaxfileupload.js?${.now?long}"></script>
+	<script type="text/javascript">
+		// 加载ueditor
+		var ue = UE.getEditor('editor');
+		var imgServer = "${httpUrl}";
+		var process = "${process!''}";
+		var id = "${id!''}";
+
+		ue.ready(function () {
+			ue.addListener('contentChange', function () {
+				$("#preview").html(ue.getContent());
+			});
+		});
+	</script>
+</head>
+<body id="main" onLoad="page_loading()">
+	<#include "/WEB-INF/content/core/include-loading.html"/>
+	<div region="center" style="padding: 5px; background: #eee; overflow: auto;">
+		<div class="content_form">
+			<div class="content_ele">
+				<table style="width:100%;" border="0">
+				    <colgroup>
+				    	<tr>
+				    		<td width="125px"></td>
+				    		<td></td>
+				    	</tr>
+				    </colgroup>
+				    <tr>
+				    	<td colspan="2"><a class="easyui-linkbutton" plain="true" iconCls="icon-back" onclick="history.go(-1)">返回列表</a></td>
+				    </tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips"></p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">专题标题：</label></td>
+						<td>
+							<input id="title" class="easyui-textbox" style="width: 680px; height: 40px;" 
+								data-options="validType:'length[3,50]'"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips">长度为3-50个字符。</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">专题简述：</label></td>
+						<td colspan="3"><input id="description" class="easyui-textbox" multiline="true" style="width: 680px; height: 100px;"
+								data-options="validType:'length[1,20]'"  />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips">简单描述，限制20字符以内。</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">专题状态：</label></td>
+						<td>
+							<input id="status" class="easyui-combobox" url="../../js/modules/data/json/contentStatusText.js" value="1" panelHeight="auto" panelMaxHeight="200" editable="false" valueField="id" textField="text" style="width: 320px; height: 40px;"/>
+							<span class="frm_tips_span"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">封面图片：</label></td>
+						<td>
+							<div style="width:320px; height:160px; cursor: pointer" id="imgShowDiv">
+								<img src="" style="width:100%; height:160px; display:none;" id="uploadImgArea" />
+								<img src="../../image/modules/addImg.png" style="margin-left:116px;margin-top:43px" onerror="javascript:this.src='../../image/modules/addImg.png'" id="imgArea"/>
+							</div>
+							<input type="hidden" id="image" value="" />
+							<div class="webuploader-pick" id="chooseImgBtn">点击选择图片</div><span class="frm_tips">建议尺寸：750*500</span>
+							<input id="fileName" name="file" type="file"  onchange="javascript:uploadViewImg('image','viewId','fileName','uploadImgArea', 'true')" style="width: 0; height: 0; display:none" />
+							<img id="viewId" src="" style="cursor: pointer; border: 1px; display:none;" />
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">Banner图：</label></td>
+						<td>
+							<div style="width:320px; height:160px; cursor: pointer" id="imgShowDivBanner">
+								<img src="" style="width:100%; height:160px; display:none;" id="uploadImgAreaBanner" />
+								<img src="../../image/modules/addImg.png" style="margin-left:116px;margin-top:43px" onerror="javascript:this.src='../../image/modules/addImg.png'" id="imgAreaBanner"/>
+							</div>
+							<input type="hidden" id="imageBanner" value="" />
+							<div class="webuploader-pick" id="chooseImgBtnBanner">点击选择图片</div><span class="frm_tips">建议尺寸：750*450</span>
+							<input id="fileNameBanner" name="file" type="file"  onchange="javascript:uploadViewImg('imageBanner','viewIdBanner','fileNameBanner','uploadImgAreaBanner', 'true')" style="width: 0; height: 0; display:none" />
+							<img id="viewIdBanner" src="" style="cursor: pointer; border: 1px; display:none;" />
+						</td>
+					</tr>
+					<tr>
+						<td>学堂推荐</td>
+						<td>
+							<#include "/WEB-INF/content/core/tool/include-style-show.html"/>
+							<input type="hidden" id="is_top_list" value="1"> <!-- 是否已经获取过列表数据，在页面未刷新情况下仅仅获取一次， 1未获取 2已经获取 -->
+							<div id="topList">
+							</div>
+							<div id="topAddBtn">
+								<div class="appmsg_col appmsg_add_btn">
+									<a  class="create_access_primary appmsg_add" id="js_add_appmsg" href="javascript:void(0);">
+										<ul>
+								            <i class="icon20_common add_gray">增加一条</i>
+										</ul>
+								     </a>
+								 </div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>课程推荐</td>
+						<td>
+							<input type="hidden" id="is_course_list" value="1"> <!-- 是否已经获取过列表数据，在页面未刷新情况下仅仅获取一次， 1未获取 2已经获取 -->
+							<div id="courseList">
+							</div>
+							<div id="courseAddBtn">
+								<div class="appmsg_col appmsg_add_btn">
+									<a  class="create_access_primary appmsg_add" id="js_add_appmsg" href="javascript:void(0);">
+										<ul>
+								            <i class="icon20_common add_gray">增加一条</i>
+										</ul>
+								     </a>
+								 </div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips">温馨提示：建议详情图片宽度不超过800像素，单图大小不超过300K。</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">专题详情：</label></td>
+						<td>
+							<table border="0" width="100%;">
+								<tr>
+									<td colspan="2"><!-- 
+									    <div style="position:relative; margin-bottom:-160px; margin-left:570px;">
+									     	<img alt="扫一扫，即可在手机上预览" title="扫一扫，即可在手机上预览" src="http://qr.liantu.com/api.php?text=http://www.cddayuanzi.com" width="150px">
+									     	<div style="font-size:11px; color: #666; text-align:center;">扫一扫，即可在手机上预览</div>
+									    </div> -->
+									    <script id="editor" type="text/plain" style="width:540px;height:560px"></script>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="tool_area">
+		        <div class="tool_bar border tc">
+		        	<input type="hidden" id="id" value="${id!''}" />
+		        		<#if process?? && process == "update">
+		        	 		<span id="submit_update" class="btn btn_input btn_primary" onclick="edit('update')"><button>确认修改</button></span>
+		        		<#else>
+		        			<span id="submit_add" class="btn btn_input btn_primary" onclick="edit('add')"><button>确认发布</button></span>
+		        		</#if>
+		        		<span id="js_preview" class="btn btn_input btn_default" onclick="cleanBtn()"><button>重置修改</button></span>
+		        		<span id="btn_back" class="btn btn_input btn_default" onclick="history.go(-1)"><button>返回列表</button></span>
+		         </div>
+		    </div>
+		</div>
+	</div>
+	
+	<!-- 学堂选择 -->
+	<#include "/WEB-INF/content/core/tool/include-style-dialog.html"/>
+
+	<!-- 置顶 -->
+	<#include "/WEB-INF/content/core/include-toTop.html"/>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汇聚全城精选兴趣课程</title>
+	<!-- 课程分类 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+    
+    <script type="text/javascript">
+  		 var imgPath = "${httpUrl}"
+    </script>
+</head>
+<body>
+	
+	<div class="page container">
+	    <!-- 顶部浮动开始 -->
+
+	    <header class="bar bar-nav">
+		    <a class="button button-link button-nav pull-left" onclick="javascript:forward('index')" data-transition='slide-out'>
+		      <span class="icon icon-left  bar_nav_margin_left"></span>
+		    </a>
+		    <h1 class="title">分类</h1>
+<!-- 		    <a class="button button-link button-nav pull-right" href="" data-transition='slide-out'>
+		      <div class="icon icon_right_usergroup" style="margin-right:15px;">
+		      		<img src="../source/images/usergroup.png">
+		      </div>
+		    </a> -->
+	    </header>
+
+	    <!-- 顶部浮动结束 -->
+
+	 
+	    <!-- 内容区开始 -->
+
+	    <div class="content traintype_content">
+		    <div class="page-index">
+		    	<!-- 搜索框 -->
+			    <div class="traintype_search_div">
+			    	  <div class="searchbar row">
+					    <div class="search-input col-85">
+					      <label class="icon icon-search" for="search_page"></label>
+					      <input type="search" id='search_page' placeholder='搜索'  class="open-popup"/>
+					    </div>
+					    <a class="col-15 traintype_search_btn" class="open-popup">搜索</a>
+					  </div>
+			    </div>
+			    <!-- 分类列表 -->
+			    <div class="traintype_type_list">
+					<div class="list-block contacts-block">
+					    <div class="list-group">
+					      <ul>
+					        <li>
+					          <div class="item-content">
+					            <div class="item-inner">
+					              	<div class="item_ele item_ele_right" onclick="javascript:click_traintype_id(1, '早教')")>
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/1zaojiao.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">早教</div>
+							              			<div class="item_ele_text_des">Early&nbsp;Education</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					              	<div class="item_ele item_ele_left" onclick="javascript:click_traintype_id(2, '音乐')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/5yinyue.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">音乐</div>
+							              			<div class="item_ele_text_des">Music</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					            </div>
+					          </div>
+					        </li>
+					        <li>
+					          <div class="item-content">
+					            <div class="item-inner">
+					              	<div class="item_ele item_ele_right" onclick="javascript:click_traintype_id(3, '舞蹈')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/3wudao.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">舞蹈</div>
+							              			<div class="item_ele_text_des">Dance</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					              	<div class="item_ele item_ele_left" onclick="javascript:click_traintype_id(4, '游泳')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/10youyong.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">游泳</div>
+							              			<div class="item_ele_text_des">Swimming</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					            </div>
+					          </div>
+					        </li>
+					        <li>
+					          <div class="item-content">
+					            <div class="item-inner">
+					              	<div class="item_ele item_ele_right" onclick="javascript:click_traintype_id(5, '画画')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/4huahua.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">画画</div>
+							              			<div class="item_ele_text_des">Drawing</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					              	<div class="item_ele item_ele_left" onclick="javascript:click_traintype_id(6, '钢琴')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/6gangqing.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">钢琴</div>
+							              			<div class="item_ele_text_des">Piano</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					            </div>
+					          </div>
+					        </li>
+					        <li>
+					          <div class="item-content">
+					            <div class="item-inner">
+					              	<div class="item_ele item_ele_right" onclick="javascript:click_traintype_id(7, '瑜伽')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/12yujia.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">瑜伽</div>
+							              			<div class="item_ele_text_des">Yoga</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					              	<div class="item_ele item_ele_left" onclick="javascript:click_traintype_id(8, '烘焙')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/7pengren.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">烘焙</div>
+							              			<div class="item_ele_text_des">Baking</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					            </div>
+					          </div>
+					        </li>
+					        <li>
+					          <div class="item-content">
+					            <div class="item-inner">
+					              	<div class="item_ele item_ele_right" onclick="javascript:click_traintype_id(9, '手工DIY')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/2shougong.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">手工DIY</div>
+							              			<div class="item_ele_text_des">DIY&nbsp;Craft</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					              	<div class="item_ele item_ele_left" onclick="javascript:click_traintype_id(10, '花艺')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/8huayi.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">花艺</div>
+							              			<div class="item_ele_text_des">Flower&nbsp;Art</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					            </div>
+					          </div>
+					        </li>
+					        <li>
+					          <div class="item-content">
+					            <div class="item-inner">
+					              	<div class="item_ele item_ele_right" onclick="javascript:click_traintype_id(11, '摄影')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/9sheying.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">摄影</div>
+							              			<div class="item_ele_text_des">Photography</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					              	<div class="item_ele item_ele_left" onclick="javascript:click_traintype_id(12, '多肉植物')">
+					              		<ul>
+					              			<li>
+							              		<div class="item_ele_img">
+							              			<img src="../source/images/type/11duorou.png">
+							              		</div>
+					              			</li>
+					              			<li>
+							              		<div class="item_ele_text">
+							              			<div class="item_ele_text_title">多肉</div>
+							              			<div class="item_ele_text_des">Meaty&nbsp;Plant</div>
+							              		</div>
+					              			</li>
+					              		</ul>
+					              	</div>
+					            </div>
+					          </div>
+					        </li>
+					      </ul>
+					    </div>
+				  </div>
+			    </div>
+			</div>
+	    </div>
+
+	    <!-- 内容区结束 -->
+	</div>
+
+
+    <!-- 搜索popup开始 -->
+    <div class="content popup container_popup container_style infinite-scroll" data-distance="50">
+    	<!-- 搜索框 -->
+	    <div class="traintype_search_div container_style traintype_alone_search_div">
+	    	  <div class="searchbar row">
+			    <div class="search-input col-85">
+			      <label class="icon icon-search" for="search"  id="search_label"></label>
+			      <input type="search" id='search' placeholder='搜索'/>
+			    </div>
+			    <a class="col-15 traintype_search_btn close-popup">取消</a>
+			  </div>
+	    </div>
+
+	    <!-- 历史搜索关键词 -->
+	    <div class="traintype_history_search_div" style="display:none;">
+	    	 <div class="traintype_history_item">
+	    	 	<div class="traintype_history_content">
+	    	 		<img src="../source/images/time.png">
+	    	 		<span>瑜伽</span>
+	    	 		<img src="../source/images/cancel.png" class="traintype_history_item_cancel">
+	    	 	</div>
+	    	 	<div class="aft_line"></div>
+	    	 </div>
+	    	 <div class="traintype_history_item">
+	    	 	<div class="traintype_history_content">
+	    	 		<img src="../source/images/time.png">
+	    	 		<span>瑜伽</span>
+	    	 		<img src="../source/images/cancel.png"  class="traintype_history_item_cancel">
+	    	 	</div>
+	    	 	<div class="aft_line"></div>
+	    	 </div>
+	    	 <div class="traintype_history_item">
+	    	 	<div class="traintype_history_content">
+	    	 		<img src="../source/images/time.png">
+	    	 		<span>瑜伽</span>
+	    	 		<img src="../source/images/cancel.png"  class="traintype_history_item_cancel">
+	    	 	</div>
+	    	 	<div class="aft_line"></div>
+	    	 </div>
+	    	 <div class="traintype_history_clear">清空搜索历史</div>
+	    </div>
+
+	    <!-- 搜索列表 -->
+	    <div class="traintype_search_content_list container_style">
+	    	<div class="face_list_div" id="search_top_list"></div>
+	 <!--    	<div class="loading_text">已无更多数据加载...</div>
+			加载提示符
+			<div class="infinite-scroll-preloader">
+				<div class="preloader"></div>
+			</div> -->
+	    </div>
+	</div>
+    <!-- 搜索popup结束 -->
+    
+	<#include "/WEB-INF/templ/templ_div_item.html" />
+
+	<#include "/WEB-INF/include/include_sui_js.html" />
+
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+	
+	<script type="text/javascript">
+		$(function(){
+			$(document).on('opened','.popup', function () {
+				$("#search_page").blur();
+				$("#search").focus();
+				//$("#search").click();
+			});
+		});
+	</script>
+	<script type="text/javascript">
+/* 	$(function(){
+		// $('.infinite-scroll-preloader').remove();
+		// 加载更多
+		$(document).on('infinite', '.infinite-scroll',function() {
+	        // 如果正在加载，则退出
+	        if (loading) return;
+            // 添加新条目
+			var key = $("#search").val();
+			getSearchList(pageNum, rowsNum, key, getLongitude(), getLatitude());
+
+            //容器发生改变,如果是js滚动，需要刷新滚动
+            $.refreshScroller();
+		});
+	}); */
+	</script>
+</body>
+</html>

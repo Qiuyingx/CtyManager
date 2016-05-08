@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>大院子科技后台管理系统</title>
+<link Rel="shortcut icon" href="image/admin/manager/128X128.ico" />
+<script type="text/javascript" src="core/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="core/js/login.js"></script>
+<script type="text/javascript" src="js/common/common.js"></script>
+<script type="text/javascript" src="layer-v1.9.3/layer/layer.js"></script>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 微软雅黑;
+}
+
+body {
+	background-color: #e8f6fe;
+}
+
+.itemFrom {
+	position:position:relative;
+	background-color: #ffffff;
+	width: 230px;
+	height: 35px;
+	margin-top: 11px;
+	-moz-border-radius: 20px; /* Gecko browsers */
+	-webkit-border-radius: 20px; /* Webkit browsers */
+	border-radius: 20px; /* W3C syntax */
+}
+
+.itemFrom_border {
+	position:position:relative;
+	background-color: #ffffff;
+	width: 140px;
+	height: 35px;
+	margin-top: 11px;
+	-moz-top-left-border-radius: 20px; /* Gecko browsers */
+	-webkit-top-left-border-radius: 20px; /* Webkit browsers */
+	border-top-left-radius: 20px; /* W3C syntax */
+	-moz-bottom-left-border-radius: 20px; /* Gecko browsers */
+	-webkit-bottom-left-border-radius: 20px; /* Webkit browsers */
+	border-bottom-left-radius: 20px; /* W3C syntax */
+}
+
+.submit_normal {
+	background-color: #49b2e9;
+	width: 230px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	margin-top: 30px;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 400;
+	border-radius: 20px; /* W3C syntax */
+	-moz-border-radius: 20px; /* Gecko browsers */
+	-webkit-border-radius: 20px; /* Webkit browsers */
+	cursor: pointer;
+}
+.submit_over{
+	background-color: #00a2d4;
+}
+
+.lineLink {
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.imgPosition {
+	margin-left: 15px;
+	margin-top: 7px;
+}
+
+.inputText {
+	width: 120px;
+	height: 35px;
+	color: #646464;
+ 	outline: none;
+	border: none; 
+	background: none;
+	line-height: 30px;
+	font-size: 12px;
+	margin-left: 3px;
+}
+
+/* .valiCodeDiv {
+	margin-left: 7px;
+	text-align: center;
+	font-style: italic;
+	width: 87px;
+	height: 35px;
+	line-height: 35px;
+	background-color: #49b2e9;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 400;
+	letter-spacing: 2px;
+	-moz-border-right-radius: 20px; 
+	-webkit-border-right-radius: 20px;
+	border-top-right-radius: 20px; 
+	border-bottom-right-radius: 20px; 
+} */
+.valiCodeDiv {
+	margin-top: -38px;
+	margin-left: 140px;
+	text-align: center;
+	font-style: italic;
+	width: 87px;
+	height: 35px;
+	line-height: 35px;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 400;
+	letter-spacing: 2px;
+}
+</style>
+<script type="text/javascript">
+	;!function(){
+		layer.config({
+		    extend: 'extend/layer.ext.js'
+		});
+	}();
+
+	function viewPics(data,index){
+		var picData = {
+			    "start": index,
+			    "data": data
+		};
+	    layer.photos({
+	        photos: picData
+	    });
+	}
+</script>
+<script type="text/javascript">
+$(function(){
+	$("#loginButton").mouseover(function(){
+		$(this).addClass("submit_over");
+	}).mouseout(function () {
+		$(this).removeClass("submit_over");
+	});
+});
+</script>
+</head>
+
+<body>
+	<div>
+	<div>
+		<div style="position:fixed; top:70px; left:40%; z-index:2">	
+			<div>
+				<img src="image/admin/manager/adminText.png" style="width:230px"/>
+			</div>
+			<div style="margin-top: 30px;">
+				<form id="login" method="post">
+					<div class="itemFrom">
+						<div class="lineLink">
+							<img src="image/admin/manager/adminName.png" width="18px;" class="imgPosition"/>
+						</div>
+						<div class="lineLink">
+							<input id="account" name="account" type="text" class="inputText" style="width:150px;" placeholder="请输入登录账号"/>
+						</div>
+					</div>
+					<div class="itemFrom">
+						<div class="lineLink">
+							<img src="image/admin/manager/adminPwd.png" width="18px;" class="imgPosition" />
+						</div>
+						<div class="lineLink">
+							<input id="pwd" name="pwd" type="password" class="inputText" style="width:150px;" placeholder="请输入登录密码"/>
+						</div>
+					</div>
+					<div class="itemFrom_border">
+						<div class="lineLink">
+							<img src="image/admin/manager/adminVali.png" width="18px;" class="imgPosition"/>
+						</div>
+						<div class="lineLink">
+							<input id="code" name="code" type="text" class="inputText" style="width:90px;"  placeholder="请输入验证码"/>
+						</div>
+					</div>
+					
+					<div class="valiCodeDiv">
+						<img id="kaptcha"
+							title="点击刷新验证码" src="kaptcha.jpg" align="absmiddle" style="cursor: pointer;" />
+					</div>
+				</form>
+			</div>
+			<div>
+				<div class="submit_normal" id="loginButton">登录</div>
+			</div>
+		</div>
+	</div>
+	<div style="position:fixed; bottom:0px; width:100%; min-width:900px;">
+		<img src="image/admin/manager/adminImg.png" style="width:100%"/>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+// 这一段必须写在最后面，不然easyui渲染不了。会报错
+var interceptorMsg = "${map.interceptorMsg!}";
+if (!Common.isNull(interceptorMsg)) {
+	$.messager.show({
+		title : "提示",
+		msg : "<span style=\"color:red\">" + interceptorMsg + "</span>"
+	});
+}
+</script>
+</html>

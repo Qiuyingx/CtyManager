@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.patternMatcher" value="namedVariable" />
+	<constant name="struts.multipart.maxSize" value="104857600" />
+	<constant name="struts.action.excludePattern" value="/ueditor/.*,/upload/.*" />
+	<constant name="struts.freemarker.manager.classname" value="com.yard.manager.base.manager.FreemarkerTagsManager" />  
+	<!-- 静止默认静态资源加载 -->
+	<constant name="struts.serve.static" value="false" />
+	<package name="json" extends="json-default">
+		<interceptors>
+			<interceptor name="customInterceptor" class="com.yard.manager.platform.interceptor.CustomInterceptor" />
+			<interceptor-stack name="customInterceptorStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="customInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="customInterceptorStack"></default-interceptor-ref>
+		<global-results>
+			<result name="unknownError" type="freemarker">/WEB-INF/content/error.html</result>
+			<result name="accountValid" type="freemarker">/WEB-INF/content/login.html</result>
+			<result name="sessionTimeout" type="freemarker">/WEB-INF/content/sessiontimeout.html</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="unknownError" />
+		</global-exception-mappings>
+	</package>
+</struts>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>商家管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+</head>
+<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script> 
+<script type="text/javascript" src="../../js/modules/user/userstarindex.js?${.now?long}"></script> 
+<script type="text/javascript">
+</script>
+<body class="easyui-layout" id="main">
+	<div region="center" style="padding: 5px; background: #eee;">
+		<div id="toolbar">
+			  <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-tip" onclick="javascript:lookPics('${httpUrl}')">浏览反馈图</a>
+			  <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-reload" onclick="javascript:updateStatus(1, '通过')">审核通过</a>
+			  <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-reload" onclick="javascript:enterValiRemarkPanel()">审核不通过</a>
+		</div>
+		
+		<!-- 列表数据 -->
+		<table id="grid" class="easyui-datagrid" idField="id" url="querylist" rownumbers="true" striped="true" fitColumns="true" fit="true"
+			pagination="true" singleSelect="true"   toolbar="#toolbar" pageSize="20">
+			<thead>
+				<tr>
+					<th field="id" hidden="true">商家信息ID</th>
+					<th field="userId" hidden="true">用户ID</th>
+					<th field="imageNames" hidden="true">认证图</th>
+					<th field="nickName" width="25">昵称</th>
+					<th field="tel" width="25">联系电话</th>
+					<th field="courtyardName" width="25">所属院子</th>
+					<th field="tagName" width="35">技能名称</th>
+					<th field="content" width="40">技能说明</th>
+					<th field="createTime" formatter="mills2DateTime" width="20">申请时间</th>
+					<th field="status" width="14" formatter="userStarStatus">认证状态</th>
+					<th field="remark" width="30">审核备注</th>
+				</tr>
+			</thead>
+		</table> 
+	
+		<!-- 审核备注面板 -->
+		<div id="valiRemarkPanel"  class="easyui-window" closed="true" style="overflow:auto;" align="center">
+			<table border="0" style="width:100%; height:100px; margin-top:10px;">
+				<tr align="center">
+					<td>
+						 <input id="textRemark" class="easyui-textbox" multiline="true" style="width: 200px; height: 90px;" />
+						<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-ok" onclick="javascript:updateStatus(2, '不通过')">确认审核</a>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left"><span style="color:red; margin-left:20px;">请填写审核不通过的原因，将推送给用户！</span></td>
+				</tr>
+			 </table>
+		</div>
+	</div>
+</body>
+</html>

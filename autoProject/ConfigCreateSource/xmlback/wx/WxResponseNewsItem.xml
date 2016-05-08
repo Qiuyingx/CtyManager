@@ -1,0 +1,10 @@
+  <resultMap  type="WxResponseNewsItem" mark="library" tables="wx_response_news_item" comment="图文消息回复项" >
+    <result column="newsitemid" jdbcType="VARCHAR" comment="图文消息项ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="newsid" jdbcType="VARCHAR" comment="所属图文消息"/>
+    <result column="title" jdbcType="VARCHAR" comment="标题"/>
+    <result column="description" jdbcType="VARCHAR" comment="描述"/>
+    <result column="picurl" jdbcType="VARCHAR" comment="图片链接"/>
+    <result column="url" jdbcType="VARCHAR" comment="跳转链接"/>
+    <result column="sort" jdbcType="INT" comment="排序"/>
+    <result column="createtime" jdbcType="DATETIME" comment="创建时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+ </resultMap>

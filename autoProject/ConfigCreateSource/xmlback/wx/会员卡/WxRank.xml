@@ -1,0 +1,5 @@
+  <resultMap  type="WxRank" mark="wxconfig" tables="wx_m_rank" comment="会员等级管理" >
+    <result name="rankId" column="rank_id" jdbcType="VARCHAR" comment="级别ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result name="rankName" column="rank_name" jdbcType="VARCHAR" comment="级别名称"/>
+    <result name="wxConfigId" column="wxconfigid" jdbcType="VARCHAR" comment="所属公众平台"/>
+ </resultMap>

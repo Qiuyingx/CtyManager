@@ -1,0 +1,91 @@
+package ${package}.${mark}.action;
+
+import java.util.ArrayList;
+
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+
+import ${package}.base.action.BaseAction;
+import ${package}.${mark}.entity.${entityName}ViewEntity;
+import ${package}.${mark}.service.${entityName}Service;
+import ${package}.platform.shiro.ShiroUtil;
+
+/**
+ * ${comment}  ACTION
+ * @author 夏远明
+ *
+ */
+@SuppressWarnings("unchecked")
+@Results({ @Result(type = "freemarker", name = "${varName}index", location = "/WEB-INF/content/${mark}/${varName}index.html") })
+public class ${entityName}Action extends BaseAction {
+	private static final long serialVersionUID = ${VersionUID}L;
+	private static final String NAMESPACE = "/${mark}/${varName}";
+	private static final ${entityName}Service cs = ${entityName}Service.getInstance();
+	
+	/**
+	 * Action，跳转请求
+	 * @return
+	 */
+	@Action(NAMESPACE + "/${varName}index")
+	public String ${varName}Index() {
+		return "${varName}index";
+	}
+	
+	/**
+	 * Action，列表请求
+	 * @return
+	 */
+	@Action(NAMESPACE + "/query${varName}list")
+	public String query${entityName}List() {
+		try {
+			map.put("total", cs.query${entityName}ListCount(condition));
+			map.put("rows", cs.query${entityName}List(condition, sort, order, page, rows));
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("total", 0);
+			map.put("rows", new ArrayList<${entityName}ViewEntity>());
+		}
+		return MAP;
+	}
+	
+	/**
+	 * Action，新增请求
+	 * @return
+	 */
+	@Action(NAMESPACE + "/add")
+	public String add() {
+		cs.add(${varName}, ShiroUtil.currentAccount(), map);
+		return MAP;
+	}
+	
+	/**
+	 * Action，更新请求
+	 * @return
+	 */
+	@Action(NAMESPACE + "/update")
+	public String update() {
+		cs.update(${varName}, map);
+		return MAP;
+	}
+	
+	/**
+	 * Action，删除请求
+	 * @return
+	 */
+	@Action(NAMESPACE + "/del")
+	public String del() {
+		cs.del(${varName}, map);
+		return MAP;
+	}
+	
+	private ${entityName}ViewEntity ${varName};
+
+	public ${entityName}ViewEntity get${entityName}() {
+		return ${varName};
+	}
+
+	public void set${entityName}(${entityName}ViewEntity ${varName}) {
+		this.${varName} = ${varName};
+	}
+}

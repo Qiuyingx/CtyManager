@@ -1,0 +1,8 @@
+  <resultMap  type="WxResponseText" mark="library" tables="wx_response_text" comment="文本消息回复" >
+    <result column="textid" jdbcType="VARCHAR" comment="文本消息ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="content" jdbcType="VARCHAR" comment="文本内容"/>
+    <result column="groupid" jdbcType="VARCHAR" comment="所属分组"/>
+    <result column="sysuserid" jdbcType="VARCHAR" comment="创建人"/>
+    <result column="sort" jdbcType="INT" comment="排序"/>
+    <result column="createtime" jdbcType="DATETIME" comment="创建时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+ </resultMap>

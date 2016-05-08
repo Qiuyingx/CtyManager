@@ -1,0 +1,6 @@
+  <resultMap  type="WxContentgroupdetail" mark="wxconfig" tables="Wx_contentgroupdetail" comment="内容分组明细" >
+    <result column="pushgroupdetailid" jdbcType="VARCHAR" comment="明细ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="contentid" jdbcType="VARCHAR" comment="内容ID"/>
+    <result column="contentgroupid" jdbcType="VARCHAR" comment="内容分组ID"/>
+    <result column="sort" jdbcType="INT" comment="排序" isSort="true"/>
+ </resultMap>

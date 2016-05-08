@@ -1,0 +1,9 @@
+  <resultMap  type="WxResponseImage" mark="library" tables="wx_response_image" comment="图片消息回复" >
+    <result column="imageid" jdbcType="VARCHAR" comment="圖片消息ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="imagename" jdbcType="VARCHAR" comment="图片名称"/>
+    <result column="imagepath" jdbcType="VARCHAR" comment="图片路径"/>
+    <result column="groupid" jdbcType="VARCHAR" comment="所属分组"/>
+    <result column="sysuserid" jdbcType="VARCHAR" comment="创建人"/>
+    <result column="sort" jdbcType="INT" comment="排序"/>
+    <result column="createtime" jdbcType="DATETIME" comment="创建时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+ </resultMap>

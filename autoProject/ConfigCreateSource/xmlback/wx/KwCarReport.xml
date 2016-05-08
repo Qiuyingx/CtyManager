@@ -1,0 +1,11 @@
+  <resultMap  type="KwCarReport" mark="kewei" tables="kw_car_report" comment="检测报告书" >
+    <result column="report_id" jdbcType="VARCHAR" comment="报告书ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="order_id" jdbcType="VARCHAR" comment="订单ID"/>
+    <result column="description" jdbcType="VARCHAR" comment="描述"/>
+    <result column="sys_run" jdbcType="INT" comment="行驶系统"/>
+    <result column="sys_opwer" jdbcType="INT" comment="动力系统"/>
+    <result column="sys_brake" jdbcType="INT" comment="制动系统"/>
+    <result column="sys_light" jdbcType="INT" comment="灯光系统"/>
+    <result column="sys_air" jdbcType="INT" comment="空调系统"/>
+    <result column="sys_wash" jdbcType="INT" comment="清洗系统"/>
+ </resultMap>

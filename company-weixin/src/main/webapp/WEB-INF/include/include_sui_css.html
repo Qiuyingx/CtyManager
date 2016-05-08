@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="//g.alicdn.com/sui-mobile/sm/0.5.0/css/sm.min.css">
+<link rel="stylesheet" href="//g.alicdn.com/sui-mobile/sm/0.5.0/css/sm-extend.min.css">
+   
+<link rel="stylesheet" type="text/css" href="../source/css/style.css?${.now?long}">
+
+<script type="text/javascript">
+	var imgPath = "${httpUrl}"
+	
+	function loadDown() {
+		document.getElementById("isLoading").style.display = "none";
+	}
+	
+	window.onload = function(){
+		loadDown();
+	}
+</script>
+
+<div style="position:fixed; top:45%;width:100%;" id="isLoading">
+	<div style="margin:auto; text-align:center"><img src="../source/images/load/pageloading.gif"></div>
+</div>

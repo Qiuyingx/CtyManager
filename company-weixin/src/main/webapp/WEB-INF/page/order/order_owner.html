@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汇聚全城精选兴趣课程</title>
+	<!-- 我的订单 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+
+    <script type="text/javascript">
+  		 var imgPath = "${httpUrl}";
+  		 var openId = "${openId!''}";
+    </script>
+</head>
+<body>
+	
+	<div class="page container">
+		<div>
+			    <!-- 顶部浮动开始 -->
+
+			    <header class="bar bar-nav">
+				    <a class="button button-link button-nav pull-left" onclick="javascript:forward('index')" data-transition='slide-out'>
+				      <span class="icon icon-left  bar_nav_margin_left"></span>
+				    </a>
+				    <h1 class="title">我的订单</h1>
+			    </header>
+
+			    <!-- 顶部浮动结束 -->
+
+			 
+			    <!-- 内容区开始 -->
+
+			    <div class="content osl_content overflow_hidden infinite-scroll pull-to-refresh-content" data-distance="50"  data-ptr-distance="70">
+				  	<!-- 默认的下拉刷新层 -->
+					<div class="pull-to-refresh-layer">
+						<div class="preloader"></div>
+						<div class="pull-to-refresh-arrow"></div>
+					</div>
+				    <div class="page-index">
+					    <!-- 订单列表 -->
+					    <div class="osl_search_list" id="order_owner_list_div"></div>
+					    <div class="loading_text">已无更多数据加载...</div>
+						<!-- 加载提示符 -->
+						<div class="infinite-scroll-preloader">
+							<div class="preloader"></div>
+						</div>
+				    </div>
+			    </div>
+
+			    <!-- 内容区结束 -->
+		</div>
+	</div>
+
+	<#include "/WEB-INF/templ/templ_div_item.html" />
+
+    <script type="text/javascript" src="../source/js/formatter.js"  charset='utf-8'></script>
+    
+	<#include "/WEB-INF/include/include_sui_js.html" />
+
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+    
+	<script type="text/javascript">
+	$(function(){
+		if(!isNull(openId)) {
+			setCookie("user.openId", openId);
+		}
+		
+		getOrderOwnerList(pageNum, rowsNum);
+	});
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		// 加载更多
+		$(document).on('infinite', '.infinite-scroll',function() {
+	        // 如果正在加载，则退出
+	        if (loading) return;
+	        
+            // 添加新条目
+			getOrderOwnerList(pageNum, rowsNum);
+
+            //容器发生改变,如果是js滚动，需要刷新滚动
+            $.refreshScroller();
+		});
+		
+		// 下拉刷新
+		var zindex = 1;
+		$(document).on('refresh', '.pull-to-refresh-content',function(e) {
+			pageNum = 1;
+			if(zindex == 1) {
+				zindex = 2;
+				getOrderOwnerList(pageNum, rowsNum);
+			}else{
+				zindex = 1;
+			}
+	        // 加载完毕需要重置
+	        $.pullToRefreshDone('.pull-to-refresh-content');
+		});
+	});
+	</script>
+</body>
+</html>

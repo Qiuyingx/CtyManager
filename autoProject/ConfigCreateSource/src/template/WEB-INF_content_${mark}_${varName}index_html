@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>${comment}管理</title> <${include} "/WEB-INF/content/core/include-jquery.html"/> <${include} "/WEB-INF/content/core/include-easyui.html"/>
+</head>
+<style>
+html body {
+	font-family: "微软雅黑"
+}
+
+.table {
+	width: 100%;
+	height: 99%;
+	line-height: 30px;
+	padding-top: 4px;
+	overflow: hidden;
+}
+
+.row {
+	width: 95%;
+	height: 30px;
+	margin-left: 10px;
+}
+
+.column {
+	float: left;
+	width: 50%;
+}
+</style>
+<script type="text/javascript" src="${request.contextPath}/js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="${request.contextPath}/js/common/common.js?${.now?long}"></script>
+<script type="text/javascript" src="${request.contextPath}/js/${mark}/${varName}index.js?${.now?long}"></script>
+<script type="text/javascript">
+</script>
+<body class="easyui-layout">
+	<div region="north" border="false" title="检索信息" style="height: 70px; min-width: 700px; background: #eee; line-height: 25px">
+		<form id="search_form" style="margin-top:5px">
+	       #if(${table.hasQueryColumns()})
+			    #foreach(${column} in ${table.queryColumns})
+			        #if(${column.inputType}==6)
+				<span style="margin-left: 10px;">创建时间：</span>
+				<input id="startDate" class="easyui-datebox" editable="false">
+				&nbsp;至&nbsp;
+				<input id="endDate" class="easyui-datebox" editable="false">
+			         #end
+				#end
+			#end
+		</form>
+	</div>
+	<div region="center" style="padding: 5px; background: #eee;">
+		<div id="toolbar">
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="javascript:query()">检索</a> 
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="javascript:open${entityName}InfoWin(true)">新增</a> 
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-edit" onclick="javascript:open${entityName}InfoWin(false)">修改</a> 
+			<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="javascript:del()">删除</a> 
+		</div>
+		<table id="grid" class="easyui-datagrid" idField="${table.primaryKeyColumn.code}" url="query${varName}list" rownumbers="true" striped="true" fitColumns="true" fit="true"
+			pagination="true" singleSelect="true" #if(${table.hasSortColumn()}) sortName="${table.sortColumn.code}" sortOrder="desc" #end  toolbar="#toolbar" pageSize="20">
+			<thead>
+				<tr>
+				<th field="${table.primaryKeyColumn.code}" width="20" sortable="true" align="left" hidden="true">${table.primaryKeyColumn.comment}</th>
+#foreach(${column} in ${table.pageShowColumns})
+			    <th field="${column.name}" width="20" sortable="true" align="left">${column.comment}</th>
+#end
+				</tr>
+			</thead>
+		</table> 
+	</div>
+	
+	<div id="${varName}Info" class="easyui-window" closed="true" resizable="false" style="overflow:hidden">
+		<!-- 隐藏字段 -->
+#foreach(${column} in ${table.hiddenColumns})
+		<input type="hidden" id="${varName}Info_${column.name}" />
+#end
+		<div style="width:100%;height:auto;">
+			<table style="width:100%;margin-left:5px;margin-top: 5px;height:280px;text-align: center">
+						<tbody>
+#foreach(${column} in ${table.editColumns})
+							<tr>
+							    <td>${column.comment}:</td>
+							    <td><input id="${varName}Info_${column.name}" class="#if(${column.inputType}==1)easyui-textbox#elseif(${column.inputType}==2)easyui-combobox#elseif(${column.inputType}==3)easyui-datebox#elseif(${column.inputType}==4)easyui-datetimebox#elseif(${column.inputType}==5)easyui-datetimespinner#elseif(${column.inputType}==6)easyui-datebox#elseif(${column.inputType}==7)easyui-numberspinner#elseif(${column.inputType}==8)easyui-timespinner#elseif(${column.inputType}==9)easyui-filebox#end" /></td>
+							</tr>
+#end
+							<tr>
+							    <td colspan="2" align="center">
+										<div style="width: 100%; text-align: center; margin-top: 7px">
+											<input id="submitBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px" value="" onclick="javascript:submit();"/> 
+											<input id="closeBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px" value="取消"	onclick="javascript:Common.closeWin('${varName}Info'); "/>
+										</div>
+							    </td>
+							</tr>
+
+						</tbody>
+			 </table>
+	  </div>
+</div>
+</body>
+</html>

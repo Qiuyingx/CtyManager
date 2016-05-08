@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>商家申请管理</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+</head>
+<script type="text/javascript" src="../../js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script> 
+<script type="text/javascript" src="../../js/merchant/train/trainopenindex.js?${.now?long}"></script> 
+<script type="text/javascript">
+</script>
+<body class="easyui-layout" id="main">
+	<div region="center" style="padding: 5px; background: #eee;">
+		<div id="toolbar">
+			  <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="javascript:trainBlackEnter()">商家后台入驻</a> 
+			  <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-tip" onclick="javascript:lookPics('${httpUrl}')">浏览图片</a>
+			  <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-reload" onclick="javascript:updateStatus(2, '通过')" id="btnYes">审核通过</a>
+			  <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-reload" onclick="javascript:enterValiRemarkPanel()" id="btnNo">审核不通过</a> 
+		</div>
+		
+		<!-- 列表数据 -->
+		<table id="grid" class="easyui-datagrid" idField="id" url="querylist" rownumbers="true" striped="true" fitColumns="true" fit="true"
+			pagination="true" singleSelect="true"   toolbar="#toolbar" pageSize="20">
+			<thead>
+				<tr>
+					<th field="id" hidden="true">验证ID</th>
+					<th field="imageNames" hidden="true">图片</th>
+					<th field="userId" formatter="isBindName">是否绑定账号</th>
+					<th field="name">姓名</th>
+					<th field="nickName" width="30"  align="left">昵称</th>
+					<th field="userName" width="25">账号</th>
+					<th field="tel" width="25" align="left">手机号码</th>
+					<th field="email" width="40">邮箱地址</th>
+					<th field="category" width="20">经营类别</th>
+					<th field="introduction" width="40">基本介绍</th>
+					<th field="createTime" width="25" align="left" formatter="mills2DateTime">提交时间</th>
+					<th field="passed" width="20" formatter="valiTrainOpenStatus">审核状态</th>
+					<th field="valiTime" width="25" formatter="mills2DateTime">审核时间</th>
+					<th field="remark" width="30">审核备注</th>
+					<th field="source" width="30" formatter="sourceTrainStatus">申请渠道</th>
+				</tr>
+			</thead>
+		</table> 
+		
+		<!-- 审核备注面板 -->
+	  <div id="valiRemarkPanel"  class="easyui-window" closed="true" style="overflow:auto;" align="center">
+			<table border="0" style="width:100%; height:100px; margin-top:10px;">
+				<tr align="center">
+					<td>
+						 <input id="textRemark" class="easyui-textbox" multiline="true" style="width: 200px; height: 90px;" />
+						<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-ok" onclick="javascript:updateStatus(1, '不通过')">确认审核</a>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left"><span style="color:red; margin-left:20px;">请填写审核不通过的原因！</span></td>
+				</tr>
+			 </table>
+		</div>
+		
+		<!-- 账号绑定面板 -->
+		<div id="bindNamePanel"  class="easyui-window" closed="true" style="overflow:auto;" align="center">
+			<table border="0" style="width:100%; height:100px; margin-top:10px;">
+				<tr align="center">
+					<td>
+						 <input id="usertel" class="easyui-textbox" style="width: 200px; height: 30px;" />
+						<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-ok" onclick="javascript:startBindUser()">确认绑定</a>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left"><span style="color:red; margin-left:20px;">请填写需要绑定的商户账号！</span></td>
+				</tr>
+			 </table>
+		</div>
+		
+	 	<!-- 商家后台入驻 -->
+		 <div id="blackEnterPanel"  class="easyui-window" closed="true" style="overflow:auto;" align="center">
+				<table border="0" style="width:100%; height:100px;">
+					<tr>
+						<td colspan="2" align="left" height="60px"><span style="color:red; padding-left:20px; padding-right:20px; width:300px"><span style="color:green">商家后台入驻：</span>通过后台人员录入以下商户基本信息，自动完成商家入驻申请->商户后台创建->商户信息完善->课程信息发布等！</span></td>
+					</tr>
+					<tr>
+						<td>APP账号：</td>
+						<td>
+							<input id="train_username" class="easyui-textbox" style="width: 130px; height: 30px;" data-options="validType:'length[11,11]'"/>
+							<input type="checkbox" checked  id="autoCreated"/>自动创建
+						</td>
+					</tr>
+					<tr>
+						<td>手机号码：</td>
+						<td><input id="train_tel" class="easyui-textbox" style="width: 200px; height: 30px;" data-options="validType:'length[11,11]'"/></td>
+					</tr>
+					<tr>
+						<td>邮箱地址：</td>
+						<td><input id="train_email" class="easyui-textbox" style="width: 200px; height: 30px;" data-options="validType:'length[0,30]'"/></td>
+					</tr>
+					<tr align="center">
+						<td colspan="2" height="70px">
+							<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-ok" onclick="javascript:submitTrain()">确认入驻</a>
+						</td>
+					</tr>
+				 </table>
+			</div>
+	</div>
+</body>
+</html>

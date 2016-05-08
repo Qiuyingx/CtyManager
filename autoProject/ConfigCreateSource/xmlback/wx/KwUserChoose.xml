@@ -1,0 +1,21 @@
+  <resultMap  type="KwUserChoose" mark="kewei" tables="kw_user_choose" comment="用户选择信息管理" >
+    <result column="choose_id" jdbcType="VARCHAR" comment="选择ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="brand_name" jdbcType="VARCHAR" comment="品牌名称"/>
+    <result column="brand_icon" jdbcType="VARCHAR" comment="品牌icon"/>
+    <result column="series_name" jdbcType="VARCHAR" comment="系列名称"/>
+    <result column="type_name" jdbcType="VARCHAR" comment="型号名称"/>
+    <result column="type_imgpath" jdbcType="VARCHAR" comment="型号图"/>
+    <result column="type_id" jdbcType="VARCHAR" comment="型号ID"/>
+    <result column="service_id" jdbcType="VARCHAR" comment="服务内容ID"/>
+    <result column="service_name" jdbcType="VARCHAR" comment="服务内容名称"/>
+    <result column="service_price" jdbcType="DOUBLE" comment="服务内容价格"/>
+    <result column="is_provide" jdbcType="INT" comment="是否自备配件"/>
+    <result column="accessories_id" jdbcType="VARCHAR" comment="配件名称ID"/>
+    <result column="accessories_name" jdbcType="VARCHAR" comment="配件名称"/>
+    <result column="accessories_goods_id" jdbcType="VARCHAR" comment="配件商品ID"/>
+    <result column="accessories_goods_name" jdbcType="VARCHAR" comment="配件商品名称"/>
+    <result column="accessories_goods_price" jdbcType="DOUBLE" comment="配件商品价格"/>
+    <result column="service_type_id" jdbcType="VARCHAR" comment="保养类型ID"/>
+    <result column="service_type_name" jdbcType="VARCHAR" comment="保养类型名称"/>
+    <result column="total_price" jdbcType="DOUBLE" comment="总金额"/>
+ </resultMap>

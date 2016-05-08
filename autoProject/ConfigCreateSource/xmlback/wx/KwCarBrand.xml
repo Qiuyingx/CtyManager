@@ -1,0 +1,5 @@
+  <resultMap  type="KwCarBrand" mark="kewei" tables="kw_car_brand" comment="品牌管理" >
+    <result column="brand_id" jdbcType="VARCHAR" comment="品牌ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="name" jdbcType="VARCHAR" comment="品牌名称"/>
+    <result column="icon" jdbcType="VARCHAR" comment="品牌Icon"/>
+ </resultMap>

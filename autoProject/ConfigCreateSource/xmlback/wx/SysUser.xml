@@ -1,0 +1,9 @@
+  <resultMap  type="SysUser" mark="system" tables="sys_user" comment="系统用户" >
+    <result column="sysuserid" jdbcType="VARCHAR" comment="用户ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="sysuserno" jdbcType="VARCHAR" comment="用户编号"/>
+    <result column="sysusername" jdbcType="VARCHAR" comment="用户名称"/>
+    <result column="sysuserpwd" jdbcType="VARCHAR" comment="用户密码"/>
+    <result column="sysgroupid" jdbcType="VARCHAR" comment="用户分组"/>
+    <result column="createtime" jdbcType="DATETIME" comment="创建时间时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+    <result column="status" jdbcType="INT" comment="状态" />
+ </resultMap>

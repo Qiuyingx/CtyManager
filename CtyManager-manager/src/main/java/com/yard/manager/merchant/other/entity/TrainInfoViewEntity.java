@@ -1,0 +1,26 @@
+package com.yard.manager.merchant.other.entity;
+
+public class TrainInfoViewEntity extends TrainInfoEntity {
+	/**
+	 * 用户昵称
+	 */
+	private String nickName;
+
+	public TrainInfoViewEntity() {
+		
+	}
+	
+	public TrainInfoViewEntity(Integer userId, Integer managerId) {
+		this.userId = userId;
+		this.managerId = managerId;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	
+}

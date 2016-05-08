@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>大院子科技后台管理系统</title>
+<link Rel="shortcut icon" href="image/admin/manager/128X128.ico" />
+
+<!-- CSS -->
+<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+<link rel="stylesheet" href="core/assets/css/reset.css">
+<link rel="stylesheet" href="core/assets/css/supersized.css">
+<link rel="stylesheet" href="core/assets/css/style.css">
+</head>
+
+<body>
+        <div class="page-container">
+            <img alt="" src="core/img/center/web_logo.png"><h1>后台管理系统</h1>
+            <form action="login" method="post">
+                <input type="text" name="account" id="account" class="username" placeholder="登录账号">
+                <input type="password" name="pwd" id="pwd" class="pwd" placeholder="登录密码">
+                <div class="button" id="loginButton">立即登录</div>
+            </form>
+        </div>
+
+        <!-- Javascript -->
+        <script src="core/assets/js/jquery-1.8.2.min.js"></script>
+        <script src="core/assets/js/supersized.3.2.7.min.js"></script>
+        <script src="core/assets/js/supersized-init.js"></script>
+        <script src="core/assets/js/scripts.js"></script>
+        
+		<script type="text/javascript" src="core/js/login.js"></script>
+		<script type="text/javascript" src="js/common/common.js"></script>
+		<script type="text/javascript" src="layer-v1.9.3/layer/layer.js"></script>
+		<script type="text/javascript">
+			;!function(){
+				layer.config({
+				    extend: 'extend/layer.ext.js'
+				});
+			}();
+		
+			function viewPics(data,index){
+				var picData = {
+					    "start": index,
+					    "data": data
+				};
+			    layer.photos({
+			        photos: picData
+			    });
+			}
+		</script>
+</body>
+<script type="text/javascript">
+// 这一段必须写在最后面，不然easyui渲染不了。会报错
+var interceptorMsg = "${map.interceptorMsg!}";
+if (!Common.isNull(interceptorMsg)) {
+	$.messager.show({
+		title : "提示",
+		msg : "<span style=\"color:red\">" + interceptorMsg + "</span>"
+	});
+}
+</script>
+</html>

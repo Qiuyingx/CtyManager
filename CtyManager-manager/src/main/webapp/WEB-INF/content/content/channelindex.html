@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>栏目管理</title> <#include "/WEB-INF/content/core/include-jquery.html"/> <#include "/WEB-INF/content/core/include-easyui.html"/>
+</head>
+<style>
+html body {
+	font-family: "微软雅黑"
+}
+
+.table {
+	width: 100%;
+	height: 99%;
+	line-height: 30px;
+	padding-top: 4px;
+	overflow: hidden;
+}
+
+.row {
+	width: 95%;
+	height: 30px;
+	margin-left: 10px;
+}
+
+.column {
+	float: left;
+	width: 50%;
+}
+</style>
+<script type="text/javascript" src="。。/../../js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="。。/../../js/common/common.js?${.now?long}"></script>
+<script type="text/javascript" src="。。/../../js/content/channelindex.js?${.now?long}"></script>
+<script type="text/javascript">
+</script>
+<body class="easyui-layout">
+	<!-- 栏目列表 -->
+	<div region="center" style="padding: 5px; background: #eee;">
+		<div id="toolbar">
+		              栏目名称：<input id="channelInfo_channelName" class="easyui-textbox" placeholder="请输入栏目名称"/>
+			<@shiro.hasPermission name="channel:querychannellist">
+				<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="javascript:query()">检索</a>
+			</@shiro.hasPermission>
+			<@shiro.hasPermission name="channel:add">
+				<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="javascript:submit(true)">新增</a>
+			</@shiro.hasPermission>
+			<@shiro.hasPermission name="channel:update">
+				<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-edit" onclick="javascript:submit(false)">修改</a>
+			</@shiro.hasPermission>
+			<@shiro.hasPermission name="channel:del">
+				<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="javascript:del()">删除</a>
+			</@shiro.hasPermission>
+		</div>
+		<table id="grid" class="easyui-datagrid" idField="channelId" url="querychannellist" rownumbers="true" striped="true" fitColumns="true" fit="true"
+			pagination="true" singleSelect="true" sortName="createTime" sortOrder="desc" toolbar="#toolbar" pageSize="20">
+			<thead>
+				<tr>
+					<th field="channelId" width="20" sortable="true" align="left" hidden="true">栏目ID</th>
+					<th field="sysUserId" width="20" sortable="true" align="left" hidden="true">创建人ID</th>
+					<th field="wxConfigId" width="20" sortable="true" align="left" hidden="true">所属公众号ID</th>
+					<th field="channelName" width="20" sortable="true" align="left">栏目名称</th>
+					<th field="wxConfigName" width="20" sortable="true" align="left" hidden="true">所属公众号</th>
+					<th field="createTime" width="20" sortable="true" align="left" hidden="true">创建时间</th>
+					<th field="status" width="20" sortable="true" align="left" formatter="statusFormatter" hidden="true">状态</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</body>
+</html>

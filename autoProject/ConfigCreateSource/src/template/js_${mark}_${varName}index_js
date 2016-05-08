@@ -1,0 +1,159 @@
+/**
+ * 查询按钮
+ */
+function query() {
+	// 设置参数
+	var queryParams = $("#grid").datagrid("options").queryParams;
+	queryParams = $.extend(queryParams, {
+		"condition.startDate" : $("#startDate").datebox("getValue"),
+		"condition.endDate" : $("#endDate").datebox("getValue")
+	});
+
+	// 重新加载datagrid的数据
+	$("#grid").datagrid("reload");
+}
+
+/**
+ * 查看栏目信息
+ */
+function open${entityName}InfoWin(isAdd) {
+	// 打开窗口
+	var win;
+	if (isAdd) {
+		// 清空win内所有域
+		cleanWin();
+
+		win = new Common().getWindow("新增${comment}", 520, 420, "${varName}Info");
+		win.window("open");
+		$("#submitBtn").attr("value", "新增");
+	} else {
+		var row = Common.getSelectedRow("grid");
+		if (!row) {
+			$.messager.alert("提示", "请选择想修改的数据！");
+			return false;
+		}
+
+		win = new Common().getWindow("修改${comment}", 520, 420, "${varName}Info");
+		win.window("open");
+		$("#submitBtn").attr("value", "修改");
+		
+#foreach(${column} in ${table.hiddenColumns})
+          $("#${varName}Info_${column.name}").val(row.${column.name});
+#end
+
+#foreach(${column} in ${table.editColumns})
+           $("#${varName}Info_${column.name}").#if(${column.inputType}==1)val(#elseif(${column.inputType}==2)combobox("setValue",#elseif(${column.inputType}==3)datebox("setValue",#elseif(${column.inputType}==4)datetimebox("setValue",#elseif(${column.inputType}==5)datetimespinner("setValue",#elseif(${column.inputType}==6)datebox("setValue",#elseif(${column.inputType}==7)numberspinner("setValue",#elseif(${column.inputType}==8)timespinner("setValue",#elseif(${column.inputType}==9)filebox("setValue",#end row.${column.name});
+#end
+	}
+}
+
+/**
+ * 清空win里面的域
+ */
+function cleanWin() {
+}
+
+/**
+ * 提交
+ * 
+ * @returns
+ */
+function submit() {
+	var url;
+	var isAdd;
+
+	if ($("#submitBtn").attr("value") == "新增") {
+		url = "add";
+		isAdd = true;
+	} else {
+		url = "update";
+		isAdd = false;
+	}
+
+#foreach(${column} in ${table.hiddenColumns})
+    var ${column.name} = $("#${varName}Info_${column.name}").val();
+#end
+
+#foreach(${column} in ${table.editColumns})
+    var ${column.name} = $("#${varName}Info_${column.name}").#if(${column.inputType}==1)val(#elseif(${column.inputType}==2)combobox("getValue"#elseif(${column.inputType}==3)datebox("getValue"#elseif(${column.inputType}==4)datetimebox("getValue"#elseif(${column.inputType}==5)datetimespinner("getValue"#elseif(${column.inputType}==6)datebox("getValue"#elseif(${column.inputType}==7)numberspinner("getValue"#elseif(${column.inputType}==8)timespinner("getValue"#elseif(${column.inputType}==9)filebox("getValue"#end);
+#if(${column.isCheckNull()})
+   	if (Common.isNull(${column.name})) {
+		$.messager.alert("提示", "请输入${column.comment}！");
+		return false;
+	}
+#end
+#end
+
+	$.ajax({
+		url : url,
+		type : "post",
+		data : {
+#foreach(${column} in ${table.hiddenColumns})
+               "${varName}.${column.name}":${column.name},
+#end
+#foreach(${column} in ${table.editColumns})
+               "${varName}.${column.name}":${column.name},
+#end
+               "1":1
+		},
+		dataType : "json",
+		success : function(json) {
+			if (json.isSuccess) {
+				if (isAdd) {
+					// 刷新列表
+					Common.refreshGrid("grid");
+				} else {
+					// 更新列表
+					Common.updateSelectedRowData("grid", {
+#foreach(${column} in ${table.editColumns})
+                                "${column.name}":${column.name},
+#end
+								 "1":1
+					});
+				}
+
+				// 关闭窗口
+				Common.closeWin("${varName}Info");
+			}
+
+            Common.msgslide(json.msg);
+		},
+		error : function(json) {
+			$.messager.alert("提示", "服务器繁忙，请稍候再试！！");
+		}
+	});
+}
+
+/**
+ * 删除一条记录
+ */
+function del() {
+	var row = Common.getSelectedRow("grid");
+	if (!row) {
+		$.messager.alert("提示", "请选择想删除的数据！");
+		return false;
+	}
+
+	$.messager.confirm("提示", "你确定删除该条记录吗？", function(r) {
+		if (r) {
+			$.ajax({
+				url : "del",
+				type : "post",
+				data : {
+					"${varName}.${table.primaryKeyColumn.name}" : row.${table.primaryKeyColumn.name}
+				},
+				dataType : "json",
+				success : function(json) {
+					if (json.isSuccess) {
+						Common.deleteSelectedRow("grid");
+					}
+
+                    Common.msgslide(json.msg);
+				},
+				error : function(json) {
+					$.messager.alert("提示", "服务器繁忙，请稍候再试！！");
+				}
+			});
+		}
+	});
+}

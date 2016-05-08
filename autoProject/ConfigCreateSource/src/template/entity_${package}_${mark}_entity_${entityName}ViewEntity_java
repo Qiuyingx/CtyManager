@@ -1,0 +1,12 @@
+package ${package}.${mark}.entity;
+
+/**
+* 
+* @Author 夏远明
+*
+*/
+public class ${entityName}ViewEntity extends ${entityName}Entity {
+	private static final long serialVersionUID = ${VersionUID}L;
+
+
+}

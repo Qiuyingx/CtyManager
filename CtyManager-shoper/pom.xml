@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.yard</groupId>
+    <artifactId>CtyManager</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>com.yard</groupId>
+  <artifactId>CtyManager-shoper</artifactId>
+  <packaging>war</packaging>
+   <properties>
+	<!-- <shiro.version>1.2.3</shiro.version> -->
+
+	<iteam.version>4.0.0</iteam.version>
+	<!-- gson版本 -->
+	<gson.version>2.2.4</gson.version>
+	<!-- MongoDB数据库驱动 -->
+	<MongoDB-connector.version>2.12.4</MongoDB-connector.version>
+
+</properties>
+  <dependencies>
+		<!-- <dependency> <groupId>org.apache.shiro</groupId> <artifactId>shiro-core</artifactId> <version>${shiro.version}</version> </dependency> 
+			<dependency> <groupId>org.apache.shiro</groupId> <artifactId>shiro-web</artifactId> <version>${shiro.version}</version> </dependency> -->
+		<dependency>
+			<groupId>com.yard.core</groupId>
+			<artifactId>CtyManager-core</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<!-- gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>${MongoDB-connector.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>6.0.41</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.11</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.quartz-scheduler</groupId>
+		  <artifactId>quartz</artifactId>
+		  <version>2.2.1</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-core</artifactId>
+		  <version>4.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-beans</artifactId>
+		  <version>4.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-expression</artifactId>
+		  <version>4.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-context-support</artifactId>
+		  <version>4.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-web</artifactId>
+		  <version>4.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.googlecode.guice-junit4</groupId>
+		  <artifactId>guice-junit4-spring-transactional</artifactId>
+		  <version>0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.notnoop.apns</groupId>
+			<artifactId>apns</artifactId>
+			<version>1.0.0.Beta6</version>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- 百度富文本编辑器，还需手动引入lib中的json.jar，百度用的非标 <dependency> <groupId>com.baidu</groupId> <artifactId>ueditor</artifactId> <version>1.1.1</version> 
+			</dependency> -->
+	</dependencies>
+  <build>
+    <finalName>CtyManager-shoper</finalName>
+  </build>
+</project>

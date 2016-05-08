@@ -1,0 +1,7 @@
+  <resultMap  type="KbService" mark="keweiweb" tables="kb_service" comment="服务列表" >
+    <result column="service_id" jdbcType="VARCHAR" comment="服务ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="service_name" jdbcType="VARCHAR" comment="服务名称"/>
+    <result column="service_icon" jdbcType="VARCHAR" comment="服务图标"/>
+    <result column="service_des" jdbcType="VARCHAR" comment="服务描述"/>
+    <result column="sort" jdbcType="INT" comment="排序"/>
+ </resultMap>

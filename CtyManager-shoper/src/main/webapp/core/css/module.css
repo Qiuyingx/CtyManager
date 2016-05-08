@@ -1,0 +1,18 @@
+.form  td {
+	border: 1px solid #ccc;
+}
+
+.form  .label {
+	border: 1px solid #ccc;
+	background: #eee;
+	text-align: right;
+	width: 100px;
+	font-weight: bold;
+}
+
+.form .validate {
+	border: 1px solid #ccc;
+	text-align: left;
+	width: 200px;
+	color: red;
+}

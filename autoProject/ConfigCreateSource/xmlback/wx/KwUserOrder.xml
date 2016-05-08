@@ -1,0 +1,10 @@
+  <resultMap  type="KwUserOrder" mark="kewei" tables="kw_user_order" comment="预约订单管理" >
+    <result column="order_ids" jdbcType="VARCHAR" comment="订单ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="status" jdbcType="INT" comment="订单状态"/>
+    <result column="sub_time" jdbcType="DATETIME" comment="提交时间" isQuery="true" inputType="6" isSort="true" isEdit="false"/>
+    <result column="sure_time" jdbcType="DATETIME" comment="确认时间" isQuery="true" inputType="6" isSort="true" />
+    <result column="down_time" jdbcType="DATETIME" comment="完成时间" isQuery="true" inputType="6" isSort="true" />
+    <result column="wxconfigid" jdbcType="VARCHAR" comment="公众平台原始ID"/>
+    <result column="choose_id" jdbcType="VARCHAR" comment="用户选择信息ID"/>
+    <result column="user_message_id" jdbcType="VARCHAR" comment="用户基础信息ID"/>
+ </resultMap>

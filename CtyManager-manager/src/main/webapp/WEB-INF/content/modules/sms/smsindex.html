@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>短信发送</title> 
+	<#include "/WEB-INF/content/core/include-jquery.html"/> 
+	<#include "/WEB-INF/content/core/include-easyui.html"/>
+	<#include "/WEB-INF/content/core/include-layer.html"/>
+	<link rel="stylesheet" type="text/css" href="../../core/css/form_style.css">
+	<script type="text/javascript" src="../../js/common/common.js?${.now?long}"></script> 
+	<script type="text/javascript" src="../../js/modules/sms/smsindex.js?${.now?long}"></script> 
+</head>
+<body id="main" onLoad="page_loading()">
+	<#include "/WEB-INF/content/core/include-loading.html"/>
+	<div region="center" style="padding: 5px; background: #eee; overflow: auto;">
+		<div class="content_form">
+			<div class="content_ele">
+				<table style="width:100%;" border="0">
+				    <colgroup>
+				    	<tr>
+				    		<td width="125px"></td>
+				    		<td></td>
+				    	</tr>
+				    </colgroup>
+				    <tr>
+				    	<td colspan="2"><a class="easyui-linkbutton" plain="true" iconCls="icon-back" onclick="history.go(-1)">返回列表</a></td>
+				    </tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips"></p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">手机号码：</label></td>
+						<td colspan="3"><input id="mobiles" class="easyui-textbox" multiline="true" style="width: 680px; height: 300px;" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						 	<p class="frm_tips">多个手机号，请以英文逗号：‘,’隔开。</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="frm_lable">短信内容：</label></td>
+						<td colspan="3"><input id="content" class="easyui-textbox" multiline="true" style="width: 680px; height: 200px;" />
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="tool_area">
+		        <div class="tool_bar border tc">
+		        	 <span id="submit_update" class="btn btn_input btn_primary" onclick="sendSms()"><button>确认发送</button></span>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</body>
+</html>

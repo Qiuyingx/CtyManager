@@ -1,0 +1,5 @@
+  <resultMap  type="WxRequesttype" mark="wxconfig" tables="wx_requesttype" comment="请求类型" >
+    <result column="requesttypeid" jdbcType="VARCHAR" comment="请求类型ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="requesttypename" jdbcType="VARCHAR" comment="请求类型名称"/>
+    <result column="status" jdbcType="INT" comment="状态" />
+ </resultMap>

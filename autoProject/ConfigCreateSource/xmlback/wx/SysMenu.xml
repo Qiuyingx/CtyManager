@@ -1,0 +1,9 @@
+  <resultMap  type="SysMenu" mark="system" tables="sys_menu" comment="系统菜单管理" >
+    <result column="sysmenuid" jdbcType="VARCHAR" comment="菜单ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result column="sysmenuname" jdbcType="VARCHAR" comment="菜单名称"/>
+    <result column="parentmenuid" jdbcType="VARCHAR" comment="上级菜单ID"/>
+    <result column="url" jdbcType="VARCHAR" comment="菜单url"/>
+    <result column="isfunction" jdbcType="INT" comment="是否功能菜单"/>
+    <result column="status" jdbcType="INT" comment="状态" />
+    <result column="sort" jdbcType="INT" comment="排序" isSort="true"/>
+ </resultMap>

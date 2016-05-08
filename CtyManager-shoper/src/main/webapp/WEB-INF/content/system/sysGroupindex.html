@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户分组管理管理</title> <#include "/WEB-INF/content/core/include-jquery.html"/> <#include "/WEB-INF/content/core/include-easyui.html"/>
+</head>
+<style>
+html body {
+	font-family: "微软雅黑"
+}
+</style>
+<link rel="stylesheet" type="text/css" href="${request.contextPath}/core/css/tablelayout.css">
+<script type="text/javascript" src="${request.contextPath}/js/common/formatter.js?${.now?long}"></script>
+<script type="text/javascript" src="${request.contextPath}/js/common/common.js?${.now?long}"></script>
+<script type="text/javascript" src="${request.contextPath}/js/system/sysGroupindex.js?${.now?long}"></script>
+<script type="text/javascript">
+</script>
+<body class="easyui-layout">
+	     <div region="west" border="false" style="width: 800px;heigth:100%">
+		    <div class="easyui-layout" style="width:100%;height:100%">
+				<div region="west" style="width:50%;height:100%" title="用户组管理">
+					<div region="center" style="background: #eee;height:100%">		
+						<div id="toolbar">
+							<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="javascript:query()">检索</a> 
+							<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="javascript:openSysGroupInfoWin(true)">新增</a> 
+							<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-edit" onclick="javascript:openSysGroupInfoWin(false)">修改</a> 
+							<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="javascript:updateStatus()">禁用/启用</a>
+							<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-save" onclick="javascript:save()">保存权限</a> 
+						</div>
+						<table id="grid" class="easyui-datagrid" idField="sysgroupid" url="querysysGrouplist" rownumbers="true" striped="true" fitColumns="true" fit="true"
+							pagination="true" singleSelect="true"   toolbar="#toolbar" pageSize="20">
+							<thead>
+								<tr>
+								<th field="sysGroupId" width="20" sortable="true" align="left" hidden="true">分组ID</th>
+							    <th field="sysGroupName" width="20" sortable="true" align="left">分组名称</th>
+							    <th field="status" width="20" sortable="true" align="left" formatter="statusFormatter">状态</th>
+								</tr>
+							</thead>
+						</table> 
+					</div>
+				
+				</div>
+			
+				<div region="center" style="width:50%;height:100%" title="拥有的角色">
+					<table id="groupRoleGrid" class="easyui-datagrid" idField="sysRoleId" url="../sysRole/queryrolelist" rownumbers="true" striped="true" fitColumns="true" fit="true"
+						singleSelect="false" sortName="sysrolename" sortOrder="asc" checkOnSelect="true" >
+						<thead>
+							<tr>
+								<th field="ck" checkbox="true"></th>
+								<th field="sysRoleId" width="20" sortable="true" align="left" hidden="true">用户组ID</th>
+								<th field="sysRoleName" width="20" sortable="true" align="left" >用户组名称</th>
+								<th field="status" width="20" sortable="true" align="left" formatter="statusFormatter">状态</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+		</div>
+	</div>
+	
+	<div region="center" title="权限树" border="false">
+		<ul id="permissionTree" class="easyui-tree" url="getgrouppermissiontree" lines="true"></ul> 
+	</div>
+	
+	
+	<div id="sysGroupInfo" class="easyui-window" closed="true" resizable="false" style="overflow:hidden">
+		<!-- 隐藏字段 -->
+		<input type="hidden" id="sysGroupInfo_sysgroupid" />
+		<table>
+			<tr>
+				<td class="tableLabel">分组名称：</td>
+				<td><input id="sysGroupInfo_sysgroupname" class="easyui-textbox" /></td>
+			</tr>
+			<tr><td class="tableSpaceRow" colspan="2"></td></tr>
+			<tr>
+				<td colspan="2" class="tableBtn">
+					<input id="submitBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px" value="" onclick="javascript:submit();"/> 
+					<input id="closeBtn" type="button" class="easyui-linkbutton" style="width: 80px; height: 30px" value="取消"	onclick="javascript:Common.closeWin('sysGroupInfo'); "/>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

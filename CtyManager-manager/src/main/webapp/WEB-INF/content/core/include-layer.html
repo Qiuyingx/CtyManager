@@ -1,0 +1,18 @@
+<script type="text/javascript" src="../../layer-v1.9.3/layer/layer.js"></script>
+<script>
+	;!function(){
+		layer.config({
+		    extend: 'extend/layer.ext.js'
+		});
+	}();
+
+	function viewPics(data,index){
+		var picData = {
+			    "start": index,
+			    "data": data
+		};
+	    layer.photos({
+	        photos: picData
+	    });
+	}
+</script>

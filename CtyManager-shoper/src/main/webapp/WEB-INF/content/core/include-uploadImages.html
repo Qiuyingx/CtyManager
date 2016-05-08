@@ -1,0 +1,20 @@
+<script id="upload_imgs" type="text/plain" style="width:370px;height:600px margin-left:160px; margin-top:300px; display:none;"></script>
+<!-- 多图上传 -->
+<script type="text/javascript">
+	// 加载ueditor
+	var _editor = UE.getEditor('upload_imgs');
+	_editor.ready(function () {
+		_editor.addListener('beforeInsertImage', function (t, arg) {
+			var imgPaths = "";
+			for(var i=0; i<arg.length; i++) {
+				imgPaths += (arg[i].src + "|").replace("${httpUrl}","");
+			}
+			uploadImagesProcess(imgPaths);
+		});
+	});
+	//弹出图片上传的对话框
+	function upImage() {
+	    var myImage = _editor.getDialog("insertimage");
+	    myImage.open();
+	}
+</script>

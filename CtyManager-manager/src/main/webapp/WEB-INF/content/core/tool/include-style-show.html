@@ -1,0 +1,335 @@
+<style>
+.appmsg {
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 20px;
+	border: 1px solid #e7e7eb;
+	background-color: #fff;
+	color: #666;
+}
+
+.appmsg_content {
+	padding: 0 14px;
+	position: relative;
+}
+
+.appmsg_title {
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	padding-top: 10px;
+	line-height: 28px;
+	max-height: 56px;
+	overflow: hidden;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.appmsg_info {
+	font-size: 13px;
+	line-height: 20px;
+	padding-bottom: 10px;
+}
+
+.appmsg_thumb_wrp {
+	height: 160px;
+	overflow: hidden;
+}
+
+.appmsg_desc {
+	padding: 5px 0 10px;
+	word-wrap: break-word;
+	word-break: break-all;
+	height: 50px;
+}
+
+.appmsg_opr {
+	background-color: #f4f4f4;
+	border-top: 1px solid #e7e7eb;
+}
+
+.appmsg_opr_item {
+	float: left;
+	line-height: 44px;
+	height: 44px;
+}
+
+.size1of2 {
+	width: 50%;
+}
+
+.size1of1 {
+	width: 100%;
+}
+
+.grid_item {
+	float: left;
+}
+
+user agent stylesheetli {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+a.js_del.no_extra.js_tooltip {
+	display: inline-block;
+	vertical-align: top;
+	width: 160px;
+	text-align: left;
+	font-size: 14px;
+	letter-spacing: normal;
+}
+
+.appmsg_opr_item a.no_extra {
+	border-right-width: 0;
+}
+
+.appmsg_opr_item a {
+	display: block;
+	border-right: 1px solid #e7e7eb;
+	text-align: center;
+	text-decoration: none;
+}
+
+a.js_del.no_extra.js_tooltip {
+	display: inline-block;
+	vertical-align: top;
+	width: 32%;
+	text-align: left;
+	font-size: 14px;
+	letter-spacing: normal;
+}
+
+.appmsg_date {
+	font-weight: 400;
+	font-style: normal;
+}
+
+.appmsg_title a {
+	display: block;
+	color: #222;
+}
+
+a {
+	color: #459ae9;
+	text-decoration: none;
+}
+
+input, textarea, button, a {
+	outline: 0;
+}
+
+user agent stylesheeta:-webkit-any-link {
+	color: -webkit-link;
+	text-decoration: underline;
+	cursor: auto;
+}
+
+.appmsg_col {
+	display: inline-block;
+	vertical-align: top;
+	width: 320px;
+	text-align: left;
+	font-size: 14px;
+	letter-spacing: normal;
+}
+
+.icon18_common.edit_gray {
+	background:
+		url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z284ee4.png")
+		0 -5310px no-repeat;
+}
+
+.icon18_common.del_gray {
+	background:
+		url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z284ee4.png")
+		0 -4610px no-repeat;
+}
+
+.icon18_common {
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+	display: inline-block;
+	line-height: 100px;
+	overflow: hidden;
+}
+
+.appmsg_opr ul {
+	overflow: hidden;
+}
+
+.appmsg_opr ul li {
+	cursor: pointer;
+	background-color: #f4f4f4;
+}
+
+.appmsg_opr ul li:hover {
+	cursor: pointer;
+	background-color: #DDDDE0;
+}
+
+ul, ol {
+	padding-left: 0;
+	list-style-type: none;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, fieldset, textarea {
+	margin: 0;
+}
+
+.appmsg_add {
+  margin: 20px 14px;
+}
+.create_access_primary {
+  display: block;
+  border: 2px dotted #d9dadc;
+  line-height: 150px;
+  font-size: 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.icon20_common {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 100px;
+  overflow: hidden;
+}
+.icon20_common.add_gray {
+  background: url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z284ee4.png") 0 -2809px no-repeat;
+}
+.create_access_primary i {
+  cursor: pointer;
+}
+.appmsg_add_btn a{
+	background-color:#ffffff;
+}
+.appmsg_add_btn a:hover{
+	background-color:#e7e7eb;
+}
+</style>
+
+
+<!-- 标题+封面图+时间+描述+修改+编辑 -->
+<div id="include_style_show_item_two" style="display:none;">
+	<div class="appmsg_col">
+		<div class="js_appmsgitem">
+			<div class="appmsg">
+				<div class="appmsg_content">
+	
+					<h4 class="appmsg_title js_title">
+						<a
+							href="@!{url}"
+							target="_blank">@!{title}</a>
+					</h4>
+					<div class="appmsg_info">
+						<em class="appmsg_date">@!{time}</em>
+					</div>
+					<div class="appmsg_thumb_wrp">
+						<img
+							src="@!{titleImg}"
+							alt="" class="appmsg_thumb">
+					</div>
+					<p class="appmsg_desc">@!{description}</p>
+	
+				</div>
+	
+				<div class="appmsg_opr">
+					<ul>
+						<li class="appmsg_opr_item grid_item size1of2"><a
+							title="编辑">&nbsp;<i class="icon18_common edit_gray">编辑</i></a>
+						</li>
+						<li class="appmsg_opr_item grid_item size1of2 no_extra">
+							<a title="删除">&nbsp;<i class="icon18_common del_gray">删除</i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 标题+封面图+时间+描述+编辑 -->
+<div id="include_style_show_item_one" style="display:none;">
+	<div class="appmsg_col" id="appmsg_item_@!{id}">
+		<div  class="js_appmsgitem">
+			<div class="appmsg">
+				<div class="appmsg_content">
+	
+					<h4 class="appmsg_title js_title">
+						<a
+							href="@!{url}"
+							target="_blank">@!{title}</a>
+					</h4>
+					<div class="appmsg_info">
+						<em class="appmsg_date">@!{time}</em>
+					</div>
+					<div class="appmsg_thumb_wrp">
+						<img
+							src="@!{titleImg}"
+							alt="" class="appmsg_thumb">
+					</div>
+					<p class="appmsg_desc">@!{description}</p>
+	
+				</div>
+	
+				<div class="appmsg_opr">
+					<ul>
+						<li class="appmsg_opr_item grid_item size1of1 no_extra" onclick="@!{eventClick}">
+							<a title="删除">&nbsp;<i class="icon18_common del_gray">删除</i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 标题+封面图+时间+描述+编辑 -->
+<div id="course_include_style_show_item_one" style="display:none;">
+	<div class="appmsg_col" id="course_appmsg_item_@!{id}">
+		<div  class="js_appmsgitem">
+			<div class="appmsg">
+				<div class="appmsg_content">
+	
+					<h4 class="appmsg_title js_title">
+						<a
+							href="@!{url}"
+							target="_blank">@!{title}</a>
+					</h4>
+					<div class="appmsg_info">
+						<em class="appmsg_date">@!{time}</em>
+					</div>
+					<div class="appmsg_thumb_wrp">
+						<img
+							src="@!{titleImg}"
+							alt="" class="appmsg_thumb">
+					</div>
+					<p class="appmsg_desc">@!{description}</p>
+	
+				</div>
+	
+				<div class="appmsg_opr">
+					<ul>
+						<li class="appmsg_opr_item grid_item size1of1 no_extra" onclick="@!{eventClick}">
+							<a title="删除">&nbsp;<i class="icon18_common del_gray">删除</i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 添加 -->
+<div id="include_style_show_add_btn" style="display:none;">
+	<div class="appmsg_col appmsg_add_btn" style="margin-top:90px;">
+		<a  class="create_access_primary appmsg_add" id="js_add_appmsg" href="javascript:void(0);">
+			<ul>
+	            <i class="icon20_common add_gray">增加一条</i>
+			</ul>
+	     </a>
+	</div>
+</div>

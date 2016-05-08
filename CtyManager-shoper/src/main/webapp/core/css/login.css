@@ -1,0 +1,61 @@
+/*登录界面CSS*/
+#bg {
+	width: 770px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#bg #top {
+	height: 209px;
+	width: 770px;
+	background-image: url(../img/login/1_02.jpg);
+	background-position: bottom;
+}
+
+#bg #Content {
+	height: 255px;
+	width: 770px;
+	background-image: url(../img/login/1_05.jpg);
+	background-position: top;
+	background-repeat: no-repeat;
+}
+
+#bg #Content #sign {
+	width: 218px;
+	position: relative;
+	left: 280px;
+	top: 30px;
+}
+
+#bg #footer {
+	height: 118px;
+	width: 770px;
+	background-image: url(../img/login/1_09.jpg);
+	background-repeat: no-repeat;
+	background-position: top;
+}
+
+input {
+	height: 20px;
+	width: 155px;
+	margin-left: 3px;
+}
+
+#code {
+	height: 20px;
+	width: 65px;
+	margin-right: 10px;
+}
+
+td {
+	
+}
+
+#key {
+	margin-left: 10px;
+}
+
+#checkbox {
+	height: 16px;
+	width: 16px;
+}

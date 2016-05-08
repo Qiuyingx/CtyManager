@@ -1,0 +1,19 @@
+  <resultMap  type="WxShops" mark="wxshops" tables="wx_m_shops" comment="商家门店管理" >
+    <result name="shopsId" column="shops_id" jdbcType="VARCHAR" comment="门店ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result name="wxConfigId" column="wxconfigid" jdbcType="VARCHAR" comment="所属公众平台"/>
+    <result name="shopsName" column="shops_name" jdbcType="VARCHAR" comment="门店名称"/>
+    <result name="shopsProvince" column="shops_province" jdbcType="VARCHAR" comment="省份"/>
+    <result name="shopsCity" column="shops_city" jdbcType="VARCHAR" comment="市"/>
+    <result name="shopsArea" column="shops_area" jdbcType="VARCHAR" comment="区"/>
+    <result name="shopsAddress" column="shops_address" jdbcType="VARCHAR" comment="详细地址"/>
+    <result name="shopsType" column="shops_type" jdbcType="VARCHAR" comment="类别"/>
+    <result name="shopsCall" column="shops_call" jdbcType="VARCHAR" comment="联系方式"/>
+    <result name="shopsLongitude" column="shops_longitude" jdbcType="VARCHAR" comment="经度"/>
+    <result name="shopsLatitude" column="shops_latitude" jdbcType="VARCHAR" comment="纬度"/>
+    <result name="shopsMapname" column="shops_mapname" jdbcType="VARCHAR" comment="定位名称"/>
+    <result name="shopsDescription" column="shops_description" jdbcType="VARCHAR" comment="描述"/>
+    <result name="status" column="status" jdbcType="INT" comment="状态"/>
+    <result name="time" column="time" jdbcType="DATETIME" comment="创建时间"/>
+    <result name="userid" column="userid" jdbcType="VARCHAR" comment="创建人"/>
+    <result name="sort" column="sort" jdbcType="INT" comment="排序"/>
+ </resultMap>

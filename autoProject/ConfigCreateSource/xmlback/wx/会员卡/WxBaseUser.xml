@@ -1,0 +1,12 @@
+  <resultMap  type="WxBaseUser" mark="wxconfig" tables="wx_m_base_user" comment="用户附加管理" >
+    <result name="baseId" column="base_id" jdbcType="VARCHAR" comment="基础信息ID" isPrimaryKey="true" isPageShow="false" isEdit="false"/>
+    <result name="wxUserId" column="wxuserid" jdbcType="VARCHAR" comment="微信用户ID"/>
+    <result name="baseName" column="base_name" jdbcType="VARCHAR" comment="姓名"/>
+    <result name="baseMobile" column="base_mobile" jdbcType="VARCHAR" comment="电话"/>
+    <result name="baseCardno" column="base_cardno" jdbcType="VARCHAR" comment="身份证"/>
+    <result name="baseAddress" column="base_address" jdbcType="VARCHAR" comment="联系地址"/>
+    <result name="base_birthday" column="base_birthday" jdbcType="VARCHAR" comment="生日"/>
+    <result name="baseLike" column="base_like" jdbcType="VARCHAR" comment="喜好"/>
+    <result name="baseCredits" column="base_credits" jdbcType="INT" comment="积分"/>
+    <result name="baseSex" column="base_sex" jdbcType="INT" comment="性别"/>
+ </resultMap>

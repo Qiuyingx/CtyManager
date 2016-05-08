@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汇聚全城精选兴趣课程</title>
+	<!-- 待付款订单 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<#include "/WEB-INF/include/include_sui_css.html" />
+    
+    <script type="text/javascript">
+  		 var imgPath = "${httpUrl}"
+  		 var orderId = "${orderId!''}";
+  		 var forwardFunction = "${forwardFunction!''}";
+  		 var enterType = 1; // 
+  		 if(forwardFunction == "click_shop_index") {
+  			 enterType = 2;
+  		 }
+  		 var remark = "${remark!''}";
+    </script>
+</head>
+<body>
+	
+	<div class="page container">
+		<div>
+			    <!-- 顶部浮动开始 -->
+
+			    <header class="bar bar-nav">
+				    <a class="button button-link button-nav pull-left" onclick="javascript:${forwardFunction!'index'}()" data-transition='slide-out'>
+				      <span class="icon icon-left  bar_nav_margin_left"></span>
+				    </a>
+				    <h1 class="title" id="label_order_statusName"></h1>
+					<a id="click_refund_div" class="hide">
+				      <button class="button button-link button-nav pull-right" style="margin-right:5px;">
+					    	<span style="color:#2cc7d2; padding-right:12px;font-size:16px">申请退款</span>
+					  </button>
+					</a>
+					<a id="click_cancel_div" class="hide">
+				      <button class="button button-link button-nav pull-right" style="margin-right:5px;">
+					    	<span style="color:#2cc7d2; padding-right:12px;font-size:16px">取消订单</span>
+					  </button>
+					</a>
+			    </header>
+
+			    <!-- 顶部浮动结束 -->
+
+			 
+			    <!-- 内容区开始 -->
+
+			    <div class="content">
+				    <div>
+				    	<div class="div_constainer margin_top_container">
+			    			<div class="list_div_item">
+					    	 	<div class="list_div_content create-actions">
+					    	 		订单编号：
+					    	 		<span id="label_order_orderNo"></span>
+					    	 	</div>
+					    	 </div>
+					    	 <div class="list_div_item">
+					    	 	<div class="list_div_content">
+					    	 		总计金额：
+					    	 		<span class="big_price" id="label_order_price">¥0</span>
+					    	 	</div>
+					    	 </div>
+					    	 <div class="list_div_item">
+					    	 	<div class="list_div_content_last" >
+					    	 		下单时间：
+					    	 		<span id="label_order_time"></span>
+					    	 	</div>
+					    	 </div>
+				    	</div>
+				    	<div class="div_constainer margin_top_div">
+							<div class="opn_title container_style" id="click_course_div" >
+								<table width="100%" border="0">
+									<tr>
+										<td><img src="" alt="" id="label_order_course_img"></td>
+										<td>
+											<div class="margin_left_text" id="label_order_course_title"></div>
+											<div class="margin_left_text" id="label_order_course_count"></div>
+											<!-- <div class="margin_left_text opn_title_act_time" id="activity_time_div">活动时间：<span id="label_order_course_actTime"></span></div> -->
+										</td>
+										<td width="50px">
+											<span class="normal_price float_right opn_head_div_price">¥<span id="label_order_course_shopTotalFee"></span></span>
+											<img src="../source/images/right_forward.png" class="opn_div_cancel" style="width:10px; height:auto; margin-top:-54px;">
+										</td>
+									</tr>
+								</table>
+							</div>
+
+					    	 <div class="list_div_item">
+					    	 	<div class="list_div_content_last" style="margin-left:-10px">
+					    	 		<span class="lp_2">规</span>格：
+					    	 		<span id="label_order_item"></span>
+					    	 	</div>
+					    	 </div>
+						</div>
+				    	<div class="list_div_item_clear">
+				    	 		个人信息
+				    	</div>
+				    	<div class="div_constainer">
+			    			<div class="list_div_item">
+					    	 	<div class="list_div_content" style="margin-left:-10px">
+					    	 		<span class="lp_2">姓</span>名：
+					    	 		<span id="order_buyName"></span>
+					    	 	</div>
+					    	 </div>
+					    	 <div class="list_div_item">
+					    	 	<div class="list_div_content_last">
+					    	 		联系电话：
+					    	 		<span id="order_buyerTel"></span>
+					    	 	</div>
+					    	 </div>
+				    	</div>
+
+				    	<div class="div_constainer margin_top_div">
+			    			<div class="list_div_item">
+					    	 	<div class="list_div_content_last">
+					    	 		备注：
+					    	 		<span id="order_remark"></span>
+					    	 	</div>
+					    	 </div>
+				    	</div>
+				    	<div id="pay_way_div">
+					    	 <div class="list_div_item_clear">
+					    	 		支付方式
+					    	 </div>
+					    	<div class="div_constainer">
+<!-- 				    			<div class="list_div_item ow_zfb_way">
+						    	 	<div class="list_div_content">
+						    	 		<img src="../source/images/zfb_logo.png" style="height:28px; padding-right: 4px;">
+						    	 		支付宝
+						    	 		<div class="float_right input_choose_ok"><div class="input_choose_normal" id="ow_zfb"></div></div>
+						    	 	</div>
+						    	 </div> -->
+						    	 <div class="list_div_item ow_wx_way">
+						    	 	<div class="list_div_content_last">
+						    	 		<img src="../source/images/wx_logo.png" style="height:25px; padding-right: 4px; padding-left:2px;">
+						    	 		微信支付
+						    	 		<div class="float_right input_choose_ok"><div class="input_choose_selected" id="ow_wx"></div></div>
+						    	 	</div>
+						    	 </div>
+					    	</div>
+	
+					    	<div class="list_div_item_text ops_bottom_div">
+					    	    微信中不能使用支付宝支付<!-- ，请用浏览器打开支付 -->
+					    	</div>
+				    	</div>
+
+					    <!-- 底部浮动条开始 -->
+						<div class="order_bottom_div container_bottom" id="btn_float_text">
+							<!-- 待付款 -->
+							<!--<div class="button ow_submit_btn hide">立即支付</div>
+							已付款
+							<div class="button ow_submit_btn hide">再次购买</div>
+							已消费
+							<div class="button ow_submit_btn">再次购买</div>
+							待消费
+							<div class="button ow_submit_btn hide">确认消费</div> -->
+							<div class="button ow_submit_btn" id="btn_text_submit">再次购买</div>
+						</div>
+						<!-- 底部浮动条结束 -->
+				    	
+				    </div>
+			    </div>
+
+			    <!-- 内容区结束 -->
+		</div>
+	</div>
+
+	<#include "/WEB-INF/include/include_sui_js.html" />
+
+    <script type="text/javascript" src="../source/js/formatter.js"  charset='utf-8'></script>
+	<#include "/WEB-INF/include/include_base_normal_js.html" />
+    
+	<#include "/WEB-INF/include/include_animate_js.html" />
+
+	<script type="text/javascript">
+		$(function(){
+			//　查询订单信息
+			lookOrderInfo(enterType, "${orderId!''}");
+			
+			// 支付方式选择
+
+			$(".ow_zfb_way").click(function(){
+				var thisclass = $("#ow_zfb").prop("class");
+				$("#ow_zfb").prop("class", "input_choose_selected");
+				$("#ow_wx").prop("class", "input_choose_normal");
+			});
+			$(".ow_wx_way").click(function(){
+				var thisclass = $("#ow_wx").prop("class");
+				$("#ow_wx").prop("class", "input_choose_selected");
+				$("#ow_zfb").prop("class", "input_choose_normal");
+			});
+
+		});
+	</script>
+</body>
+</html>

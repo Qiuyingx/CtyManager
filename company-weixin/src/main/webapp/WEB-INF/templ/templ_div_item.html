@@ -1,0 +1,170 @@
+    
+    <!-- 模板区开始 onerror="javascript:this.src='@!{error_titleImg}' onerror="javascript:this.src='@!{error_titleImg}'""-->
+    <!-- 课程活动 -->
+    <div style="display:none;" id="templ_course_item">
+	   	<div class="face_item_div wow lightSpeedIn"   data-wow-delay="1" id="face_item_div_@!{faceItemId}">
+			<div class="face_faceimg"><img data-echo="@!{titleImg}"></div>
+			<div class="face_info">
+				<div class="face_cover_div"  onclick="click_course_view(@!{id}, @!{classTypeId})"></div>
+<!-- 				<div class="face_info_img" onclick="click_train_view(@!{trainId})">
+					<img src="@!{logo}">
+				</div> -->
+				<div class="face_info_head_div">
+					<div class="face_info_title">
+						<span>@!{classType}</span>
+						<span>&nbsp;|&nbsp;</span>
+						<span>@!{title}</span>
+					</div>
+					<div class="face_info_desc">
+						<span>@!{address}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 无圆角课程  -->
+	<div style="display:none;" id="templ_course_item_noradius">
+		<div class="face_item_div_noradius wow lightSpeedIn" id="face_item_div_@!{faceItemId}"  data-wow-delay="1">
+			<div class="face_faceimg"><img data-echo="@!{titleImg}"></div>
+			<div class="face_info">
+				<div class="face_cover_div_noradius" onclick="click_course_view(@!{id}, @!{classTypeId})"></div>
+<!-- 				<div class="face_info_img" onclick="click_train_view(@!{trainId})">
+					<img src="@!{logo}">
+				</div> -->
+				<div class="face_info_head_div">
+					<div class="face_info_title">@!{title}</div>
+					<div class="face_info_desc">
+	   					<span class="dis_span_area">
+		   					<span>@!{distance}</span>
+		   					<span></span>
+	   					</span>
+						<span>@!{address}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 包含距离信息学堂列表 -->
+	<div style="display:none;" id="templ_course_item_distance">
+   		<div class="face_item_div wow lightSpeedIn"   data-wow-delay="1"  id="face_item_div_@!{faceItemId}">
+   			<div class="face_faceimg"><img data-echo="@!{titleImg}"></div>
+   			<div class="face_info">
+   				<div class="face_cover_div"  onclick="click_course_view(@!{id}, @!{classTypeId})"></div>
+<!--    				<div class="face_info_img" onclick="click_train_view(@!{trainId})">
+   					<img src="@!{logo}">
+   				</div> -->
+				<div class="face_info_head_div">
+	   				<div class="face_info_title">@!{title}</div>
+	   				<div class="face_info_desc">
+	   					<span class="dis_span_area">
+		   					<span>@!{distance}</span>
+		   					<span></span>
+	   					</span>
+	   					<span>@!{address}</span>
+	   				</div>
+	   			</div>
+   			</div>
+   		</div>
+	</div>
+    
+	<!-- 专题/资讯 -->
+    <div style="display:none;" id="templ_content_item">
+		<div class="face_item_div wow lightSpeedIn"  id="face_item_div_@!{faceItemId}"   data-wow-delay="1" onclick="click_content_view(@!{id}, @!{contentTypeId})">
+			<div class="face_faceimg"><img data-echo="@!{titleImg}" ></div>
+			<div class="face_info">
+				<div class="face_cover_div"></div>
+				<div class="face_info_head_div">
+					<div class="face_info_title">
+						<span>@!{contentType}</span>
+						<span>&nbsp;|&nbsp;</span>
+						<span>@!{title}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 专题相关推荐(课程) -->
+	<div style="display:none;" id="templ_course_top_item">
+		<div class="cmb_item_div" onclick="click_course_view(@!{id}, @!{classTypeId})">
+			<div class="cmb_item_img"><img data-echo="@!{titleImg}" /></div>
+			<div class="cmb_item_img_text">@!{title}</div>
+		</div>
+	</div>
+	
+	<!-- 专题相关推荐(学堂) -->
+	<div style="display:none;" id="templ_train_top_item">
+		<div class="cmb_item_div" onclick="click_train_view(@!{id})">
+			<div class="cmb_item_img"><img data-echo="@!{titleImg}" /></div>
+			<div class="cmb_item_img_text">@!{title}</div>
+		</div>
+	</div>
+	
+	<!-- 我的订单（待支付） -->
+	<div style="display:none;" id="templ_order_owner_item_pay">
+	   	<div class="osl_search_item">
+	   		<div class="osl_search_item_title padd_style">
+	   			<span class="text_align_left">@!{userName}</span><span class="float_right color_status">@!{statusName}</span>
+	   		</div>
+	   		<div class="osl_search_item_content"  onclick="javascript:click_order_info('@!{id}', '@!{forwardFunction}')">
+	   			<div class="osl_search_content_img padd_style"><img data-echo="@!{courseImg}" alt=""></div>
+	   			<div class="osl_search_content_base padd_style">
+	   				<div class="osl_scb_title">@!{courseName}</div>
+	   				<div class="osl_scb_address">地址：<span>@!{address}</span></div>
+	   			</div>
+	   		</div>
+	   		<div>
+	   			<div class="oo_bottom_process padd_style">
+	   				<div class="oob_pocess_price">合计：¥@!{coursePrice}元</div>
+	   				<div>
+	   					<div class="button oob_porcess_btn_none" onclick="javascript:payOrderForWeixin('@!{orderNo}')">立即支付</div>
+	   				</div>
+	   			</div>
+	   		</div>
+	   	</div>
+	</div>
+	
+	<!-- 我的订单（已经支付） -->
+	<div style="display:none;" id="templ_order_owner_item_again">
+    	<div class="osl_search_item">
+    		<div class="osl_search_item_title padd_style">
+    			<span class="text_align_left">@!{userName}</span><span class="float_right color_status">@!{statusName}</span>
+    		</div>
+    		<div class="osl_search_item_content" onclick="javascript:click_order_info('@!{id}', '@!{forwardFunction}')">
+    			<div class="osl_search_content_img padd_style"><img data-echo="@!{courseImg}" alt=""></div>
+    			<div class="osl_search_content_base padd_style">
+    				<div class="osl_scb_title">@!{courseName}</div>
+    				<div class="osl_scb_address">地址：<span>@!{address}</span></div>
+    			</div>
+    		</div>
+    		<div>
+    			<div class="oo_bottom_process padd_style">
+    				<div class="oob_pocess_price">合计：¥@!{coursePrice}元</div>
+    				<div>
+    					<div class="button oob_porcess_btn_again" onclick="javascript:click_order_write(@!{courseId})">再次购买</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+	</div>
+	
+	<!-- 我的订单列表（商户） -->
+	<div style="display:none;" id="templ_order_shoper_item">
+    	<div class="osl_search_item">
+    		<div class="osl_search_item_title container_style">
+    			<span class="text_align_left">@!{userName}</span><span class="float_right color_status">@!{statusName}</span>
+    		</div>
+    		
+    		<div class="osl_search_item_content_last container_style" onclick="javascript:click_order_info('@!{id}', '@!{forwardFunction}')">
+    			<div class="osl_search_content_img"><img data-echo="@!{courseImg}" alt=""></div>
+    			<div class="osl_search_content_base">
+    				<div class="osl_scb_title">@!{courseName}</div>
+    				<div class="osl_scb_count">数量：@!{buyCount}份</div>
+    				<div class="osl_scb_total">合计：<span class="scb_total_cn">¥@!{coursePrice}</span>元</div>
+    			</div>
+    		</div>
+    	</div>
+	</div>
+    <!-- 模板区结束 -->
